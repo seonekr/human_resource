@@ -1,0 +1,255 @@
+/* Bill */
+#bill {
+    width: 80%;
+    margin: 6rem auto 0 auto;
+}
+
+/* bill no: id: name: */
+.guopoidHead {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.iconnboxx {
+    text-align: center;
+    font-size: 45px;
+    color: #347FFF;
+}
+.logo_image_bill{
+    display: none;
+}
+
+.idf {
+    display: grid;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.billGopBox {
+    display: grid;
+    width: 100%;
+    margin: auto;
+    padding: 15px 0;
+}
+
+.billGopBox table {
+    width: 100%;
+}
+
+.billGopBox table tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.billGopBox table tr th {
+    width: 15%;
+    text-align: center;
+}
+
+.billGopBox table tr td {
+    width: 15%;
+    text-align: center;
+}
+.hr{
+    margin-top: 1rem;
+}
+
+.titlePrice {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.place-on {
+    display: grid;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+.popular {
+    display: flex;
+    text-align: left;
+    justify-content: space-evenly;
+    padding: 0 30px;
+}
+
+#post .edit-product-form .input-box .popular input {
+    margin-left: -15rem;
+}
+
+.box_icon_backOrderbill{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box_link_orderpage{
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    font-size: 18px;
+    margin: 1.5rem 0;
+}
+#box_icon_Back{
+    width: 20px;
+    height: 20px;
+}
+
+/* update status */
+.place-on form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.place-on form select {
+    width: 15%;
+    border-radius: 4px;
+}
+.place-on form select:focus{
+    outline: none !important;
+}
+.btn_completed{
+    background-color: #FF4F16;
+    padding: 0.5rem 2rem;
+    border-radius: 4px;
+    font-size: 17px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* ===== Commend =====*/
+
+.box_containner_commend{
+    width: 50%;
+    /* background: #347FFF; */
+    margin: auto;
+    margin-top: 1rem;
+}
+.star{
+    font-size: 1.8rem;
+    color: rgb(246, 114, 6);
+}
+
+.box_commend{
+    display: flex;
+    align-items: end;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+
+.box_commend textarea{
+    width: 80%;
+    height: 10vh;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+.btn_commend{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #FF4F16;
+    color: #FFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+    #bill .bill-detial {
+        margin-top: 2.5rem;
+    }
+
+    #bill .bill-detial .id span p {
+        padding: 0.2rem;
+        font-size: 1rem;
+    }
+
+    #bill .bill-detial .detial span {
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+
+    #bill .bill-detial .detial span h3 {
+        font-size: 1rem;
+    }
+
+    #bill .bill-detial .place-on span p:last-child {
+        padding-left: 0.2rem;
+    }
+    .logo_image_bill{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .place-on form select {
+        width: 40%;
+    }
+    .btn_completed{
+        padding: 0.5rem 2rem;
+        font-size: 14px;
+    }
+    .box_containner_commend{
+        margin-top: -3rem;
+    }
+    .place-on {
+        padding: 0 0;
+    }
+    .titlePrice{
+        padding: 25px 0;
+    }
+    
+}
+
+@media screen and (max-width: 431px) {
+    #bill {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #bill .bill-detial {
+        margin-top: 0;
+        margin-bottom: 5rem;
+    }
+
+    .bill-detial {
+        padding: 25px 20px;
+        background: #FFF;
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
+    }
+    .billGopBox{
+        margin-top: -0.5rem;
+    }
+    .hr{
+        display: none;
+    }
+   
+    .popular{
+        display: none;
+    }
+    
+    .box_btn_product{
+        display: none;
+        /* gap: 0.3rem;
+        margin-left: -0.8rem; */
+    }
+    .btn_delete_save{
+        gap: 0.3rem;
+    }
+    .btn_select_all{
+        gap: 0.3rem;
+    }
+    .titlePrice {
+        margin-top: -0.5rem;
+    }
+    .place-on {
+        margin-top: -0.5rem;
+    }
+
+}
