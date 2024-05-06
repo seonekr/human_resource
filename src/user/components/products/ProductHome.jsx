@@ -18,13 +18,13 @@ const ProductHome = () => {
         <div className="box_container_ux_ui">
           <div className="container_Uxui">
             <div className="box_Uxui">
-              <p>UX/UI</p>
+              <div>UX/UI</div>
             </div>
             <p>Software developer</p>
             <p>Data Analysis</p>
           </div>
           <div className="box_TfiMenuAlt">
-            <select className="filter_priceProduct">
+            <select className="filter_position">
               <option>More title job</option>
               <option value="1">Tester</option>
               <option value="2">Data Analysis</option>
