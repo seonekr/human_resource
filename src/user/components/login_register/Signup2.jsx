@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import axios from "axios";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 
 const Signup2 = () => {
   const locataion = useLocation();
@@ -259,6 +260,7 @@ const Signup2 = () => {
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>
+      <Menu/>
     </>
   );
 };

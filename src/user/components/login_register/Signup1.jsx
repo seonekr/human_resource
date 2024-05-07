@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUsers } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 import { FaLaptopHouse } from "react-icons/fa";
 
 const Signup1 = () => {
@@ -81,6 +82,7 @@ const Signup1 = () => {
           </div>
         </div>
       </section>
+      <Menu/>
     </>
   );
 };

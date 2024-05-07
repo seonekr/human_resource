@@ -3,6 +3,7 @@ import "./css/forgotpassword.css"
 import { Link } from 'react-router-dom';
 import { MdArrowBack } from "react-icons/md";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
   
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -89,7 +90,7 @@ const ForgotPassword = () => {
           </div>
         )}
       </section>
-      
+      <Menu/>
     </>
   )
 }
