@@ -5,6 +5,7 @@ import QrdownloadApp from '../../../img/QrdownloadApp.png'
 import {FaCartShopping} from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsShop, BsClipboardCheck  } from "react-icons/bs";
+import { GrContact } from "react-icons/gr";
 const Menu = () => {
     return (
         <section>
@@ -55,6 +56,9 @@ const Menu = () => {
                 </Link>
                 <Link to="/text" className="box-menu">
                     <span className="iconMenuSpan"><BsShop /></span><span>Induction</span>
+                </Link>
+                <Link to="/text" className="box-menu">
+                    <span className="iconMenuSpan"><GrContact /></span><span>Induction</span>
                 </Link>
             </div>
 
