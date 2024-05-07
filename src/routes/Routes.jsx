@@ -39,7 +39,8 @@ import Bank from "../admin/components/bank_account/Bank";
 import Addaccount from "../admin/components/bank_account/Addaccount";
 
 
-
+// ===============================company
+import Listusers from "../company/component/Listusers";
 
 
 const Links = () => {
@@ -63,7 +64,8 @@ const Links = () => {
                 <Route exact path="/login" Component={Login}/>
                 <Route exact path="/register" Component={Register}/>
                 
-             
+                {/*Company*/}
+                <Route exact path="/listusers" Component={Listusers}/>
 
                 {/* Admin routes */}
                 <Route exact path="/dashboard" Component={Dashboard}/>
