@@ -1,5 +1,4 @@
 import "./css/addresume.css";
-// import user_image from "../../../img/user_image2.jpg";
 import { BsUpload } from "react-icons/bs";
 import React, { useRef, useState } from "react";
 import { IoCamera } from "react-icons/io5";
