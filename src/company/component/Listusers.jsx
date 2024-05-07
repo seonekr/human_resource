@@ -64,39 +64,8 @@ const Listusers = () => {
               </div>
             </div>
 
-            <div className="box_list1">
-              <div className="box_txtandiamge">
-                <div className="box_img">
-                  <img src={image} alt="" />
-                </div>
-                <div className="box_user_text1">
-                  <p>Name: Phailin Khodyotha3</p>
-                  <p>Position: UX/UI</p>
-                </div>
-              </div>
-              <div>
-                <button className="btn_delete_user">
-                  <AiOutlineDelete />
-                </button>
-              </div>
-            </div>
 
-            <div className="box_list1">
-              <div className="box_txtandiamge">
-                <div className="box_img">
-                  <img src={image} alt="" />
-                </div>
-                <div className="box_user_text1">
-                  <p>Name: Phailin Khodyotha4</p>
-                  <p>Position: Data Analysis</p>
-                </div>
-              </div>
-              <div>
-                <button className="btn_delete_user">
-                  <AiOutlineDelete />
-                </button>
-              </div>
-            </div>
+          
             {/* Prev */}
             <div className="box_list1">
               <div className="box_txtandiamge">
