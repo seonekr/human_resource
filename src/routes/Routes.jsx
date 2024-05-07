@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 import Home from "../user/components/homepage/Home";
-import Payment from "../user/components/cart/Payment";
-import Cart from "../user/components/cart/Cart";
-import Contacts from "../user/components/contact/Contact";
-import Bill from "../user/components/order/Bill";
+
+import Contact from "../user/components/contact/Contact";
 import Dashboard from "../admin/Dashboard";
 import Post from "../admin/components/products/Post";
 
@@ -13,7 +11,6 @@ import Privacy from "../user/components/account/Privacy"
 import More from "../user/components/account/More";
 
 /* ============================== */
-import Order from "../user/components/order/Order";
 import ProductDetails from "../user/components/products/ProductDetails";
 import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
@@ -50,15 +47,11 @@ const Links = () => {
             <Routes>
                 {/*====================== */}
                 <Route exact path="/" Component={Home}/>
-                <Route exact path="/cart/payment" Component={Payment}/>
-                <Route exact path="/contacts" Component={Contacts}/>
-                <Route exact path="/order" Component={Order}/>
-                <Route exact path="/order/bill" Component={Bill}/>
+                <Route exact path="/contact" Component={Contact}/>
                 <Route exact path="/text" Component={Text}/>
 
                 {/*====================== */}
                 <Route exact path="/productdetails" Component={ProductDetails}/>
-                <Route exact path="/cart" Component={Cart}/>
                 <Route exact path="/forgotpassword" Component={ForgotPassword}/>
                 <Route exact path="/alertlogin" Component={AlertLogin}/>
                 <Route exact path="/alertregister" Component={AlertRegister}/>

@@ -136,23 +136,33 @@ const Post = () => {
                       <div className="box">
                         <input
                           type="text"
-                          placeholder="음식 이름"
-                          value={product.productName}
-                          onChange={(e) => handleProductName(e, index)}
+                          placeholder="Name"
                           required
                         />
                       </div>
                       <div className="box">
                         <input
                           type="text"
-                          placeholder="제품 가격"
-                          value={product.price}
-                          onChange={(e) => handleProductPrice(e, index)}
+                          placeholder="Age"
+                          required
+                        />
+                      </div>
+                      <div className="box">
+                        <input
+                          type="text"
+                          placeholder="Major"
+                          required
+                        />
+                      </div>
+                      <div className="box">
+                        <input
+                          type="text"
+                          placeholder="Skills"
                           required
                         />
                       </div>
                       <div className="box_popular">
-                        <label htmlFor={`popular-${index}`}>인기 있는</label>
+                        <label htmlFor={`popular-${index}`}>Suggest</label>
                         <input
                           type="checkbox"
                           id={`popular-${index}`}
@@ -174,7 +184,7 @@ const Post = () => {
           </div>
           <div className="btn_submit">
             <button type="submit" onClick={handleSubmit}>
-              제품 게시
+              Post
             </button>
           </div>
         </div>

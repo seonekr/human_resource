@@ -262,6 +262,19 @@ a {
     align-items: center;
 }
 
+
+/*========= read more text p ===========*/
+.btn_read_more{
+    padding: 3px 5px;
+    border: solid 1px #0E64D2;
+    border-radius: 3px;
+    background: #FFF;
+    cursor: pointer;
+}
+.btn_read_more:hover{
+    border: solid 1px #fa1f1fd7;
+}
+
 /* ================== Responsive ==============*/
 
 @media screen and (max-width: 1024px) {
