@@ -24,6 +24,9 @@ import AlertLogin from "../user/components/login_register/AlertLogin"
 import AlertRegister from "../user/components/login_register/AlertRegister"
 import Login from "../user/components/login_register/Login"
 import Register from "../user/components/login_register/Register"
+import Signup1 from "../user/components/login_register/Signup1";
+import Signup2 from "../user/components/login_register/Signup2";
+import CVregister from "../user/components/login_register/CVregister";
 
 
 
@@ -37,7 +40,6 @@ import Admin_acount from "../admin/components/menagerAdmin/Admin_acount";
 import Store from "../admin/components/stores/Store";
 import Bank from "../admin/components/bank_account/Bank";
 import Addaccount from "../admin/components/bank_account/Addaccount";
-
 
 // ===============================company
 import Listusers from "../company/component/Listusers";
@@ -64,8 +66,8 @@ const Links = () => {
                 <Route exact path="/login" Component={Login}/>
                 <Route exact path="/register" Component={Register}/>
                 
-                {/*Company*/}
-                <Route exact path="/listusers" Component={Listusers}/>
+             {/* Company */}
+             <Route exact path="/listusers" Component={Listusers}/>
 
                 {/* Admin routes */}
                 <Route exact path="/dashboard" Component={Dashboard}/>

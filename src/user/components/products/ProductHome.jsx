@@ -18,13 +18,13 @@ const ProductHome = () => {
         <div className="box_container_ux_ui">
           <div className="container_Uxui">
             <div className="box_Uxui">
-              <p>UX/UI</p>
+              <div>UX/UI</div>
             </div>
             <p>Software developer</p>
             <p>Data Analysis</p>
           </div>
           <div className="box_TfiMenuAlt">
-            <select className="filter_priceProduct">
+            <select className="filter_position">
               <option>More title job</option>
               <option value="1">Tester</option>
               <option value="2">Data Analysis</option>
@@ -52,9 +52,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills:  Python, MySQL, java, PHP, MySQL, java, PHP</p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -71,9 +71,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -90,9 +90,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -118,9 +118,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -137,9 +137,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} className="Checkbox" />
               <Link to="/productdetails" className="button_see">
@@ -156,9 +156,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} className="Checkbox" />
               <Link to="/productdetails" className="button_see">
@@ -175,9 +175,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -194,9 +194,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -213,9 +213,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
-                <p>Position:</p>
               </div>
             </div>
+            <p>Skills:</p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">

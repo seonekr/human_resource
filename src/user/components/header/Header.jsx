@@ -68,6 +68,11 @@ const Header = ({ handleSearch }) => {
               </form>
               <div className="icon_account_login">
                 <div>
+                  <Link to="/add_resume">
+                    CV
+                  </Link>
+                </div>
+                <div>
                   <Link to="/more">
                     <FaRegUser className="head_colorr" />
                   </Link>

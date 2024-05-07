@@ -97,14 +97,14 @@ const Listusers = () => {
                 </button>
               </div>
             </div>
-{/* Prev */}
+            {/* Prev */}
             <div className="box_list1">
               <div className="box_txtandiamge">
                 <div className="box_img">
                   <img src={image} alt="" />
                 </div>
                 <div className="box_user_text1">
-                  <p>Name: Phailin Khodyotha4</p>
+                  <p>Name: Phailin Khodyotha5</p>
                   <p>Position: Tester</p>
                 </div>
               </div>
