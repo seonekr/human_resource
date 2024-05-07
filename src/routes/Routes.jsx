@@ -57,7 +57,9 @@ const Links = () => {
                 <Route exact path="/alertlogin" Component={AlertLogin}/>
                 <Route exact path="/alertregister" Component={AlertRegister}/>
                 <Route exact path="/login" Component={Login}/>
-                <Route exact path="/register" Component={Register}/>
+                <Route exact path="/signup1" Component={Signup1}/>
+                <Route exact path="/signup2" Component={Signup2}/>
+                <Route exact path="/add_resume" Component={CVregister}/>
                 
              
 
