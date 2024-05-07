@@ -41,6 +41,7 @@ import Addaccount from "../admin/components/bank_account/Addaccount";
 
 
 
+
 const Links = () => {
     return(
         <Router>
@@ -61,7 +62,8 @@ const Links = () => {
                 <Route exact path="/alertregister" Component={AlertRegister}/>
                 <Route exact path="/login" Component={Login}/>
                 <Route exact path="/register" Component={Register}/>
-
+                
+             
 
                 {/* Admin routes */}
                 <Route exact path="/dashboard" Component={Dashboard}/>
