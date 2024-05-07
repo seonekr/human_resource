@@ -22,7 +22,8 @@ const ProductHome = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/",
+      // url: import.meta.env.VITE_API + "/resume/",
+      url: "http://3.38.225.226:8000/resume/",
     };
 
     axios
