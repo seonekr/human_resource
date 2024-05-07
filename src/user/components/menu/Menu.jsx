@@ -2,9 +2,10 @@ import "./menu.css"
 import 'boxicons'
 import { Link } from "react-router-dom";
 import QrdownloadApp from '../../../img/QrdownloadApp.png'
-import {FaCartShopping} from "react-icons/fa6";
+import {FaCartShopping, FaBold} from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsShop, BsClipboardCheck  } from "react-icons/bs";
+import { GrContact } from "react-icons/gr";
 const Menu = () => {
     return (
         <section>

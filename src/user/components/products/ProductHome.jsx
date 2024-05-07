@@ -77,63 +77,30 @@ const ProductHome = () => {
         )}
 
         <div className="contentImageProducts1">
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={logo} alt="image" />
+          {recommendedItems.map((res, index) => (
+            <div className="group_itemBox" key={index}>
+              <div className="containner_box_image">
+                <div className="box_image">
+                  <img src={res.image} alt="image" />
+                </div>
+                <div className="txtOFproduct">
+                  <h4>Name: {res.name}</h4>
+                  <p>Age: {res.age}</p>
+                  <p>Major: {res.major}</p>
+                </div>
               </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={avatar} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
+              <p>
+                <span>Skill: </span>
+                {res.skill.substring(0, 10)}...
+              </p>
+              <div className="btn_button_see">
+                <FormControlLabel control={<Checkbox />} />
+                <Link to="/productdetails" className="button_see">
+                  View
+                </Link>
               </div>
             </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={job} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="productHead_contents">
@@ -142,120 +109,30 @@ const ProductHome = () => {
           </h1>
         </div>
         <div className="contentImageProducts1">
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={logo} alt="image" />
+          {notRecommendedItems.map((res, index) => (
+            <div className="group_itemBox" key={index}>
+              <div className="containner_box_image">
+                <div className="box_image">
+                  <img src={res.image} alt="image" />
+                </div>
+                <div className="txtOFproduct">
+                  <h4>Name: {res.name}</h4>
+                  <p>Age: {res.age}</p>
+                  <p>Major: {res.major}</p>
+                </div>
               </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={avatar} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
+              <p>
+                <span>Skill: </span>
+                {res.skill.substring(0, 10)}...
+              </p>
+              <div className="btn_button_see">
+                <FormControlLabel control={<Checkbox />} />
+                <Link to="/productdetails" className="button_see">
+                  View
+                </Link>
               </div>
             </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} className="Checkbox" />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={job} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} className="Checkbox" />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={logo} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={avatar} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
-          <div className="group_itemBox">
-            <div className="containner_box_image">
-              <div className="box_image">
-                <img src={job} alt="image" />
-              </div>
-              <div className="txtOFproduct">
-                <h4>Name: </h4>
-                <p>Age: </p>
-                <p>Major: </p>
-                <p>Position:</p>
-              </div>
-            </div>
-            <div className="btn_button_see">
-              <FormControlLabel control={<Checkbox />} />
-              <Link to="/productdetails" className="button_see">
-                PDF
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="box_container_next_product">
