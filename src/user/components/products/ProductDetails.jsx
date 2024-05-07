@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import "./css/productBuy.css";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
-import CV from "./CvTest.pdf";
 import avatar from "../../../img/avatar.png";
 
 function ProductDetails() {
-  const pdfUrl = [CV]; // Replace "path_to_your_pdf_file.pdf" with the actual path or URL of your PDF file
 
   return (
     <>
