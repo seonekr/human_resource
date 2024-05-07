@@ -8,8 +8,38 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ProductHome = () => {
+  const [resume, set_resume] = useState([]);
+
+  useEffect(() => {
+    getResume();
+  }, []);
+
+  const getResume = () => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: import.meta.env.VITE_API + "/resume/",
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        set_resume(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  console.log("My resume: ", resume);
+
+  const recommendedItems = resume.filter((res) => res.is_recommend === true);
+  const notRecommendedItems = resume.filter((res) => res.is_recommend !== true);
 
   return (
     <div>
@@ -33,15 +63,19 @@ const ProductHome = () => {
               <option value="5">Backend</option>
               <option value="6">Web developer</option>
               <option value="7">Programe developer</option>
-              
             </select>
           </div>
         </div>
-        <div className="productHead_content">
-          <h1 className="htxthead">
-            <span className="spennofStyle"></span>Suggest
-          </h1>
-        </div>
+        {recommendedItems.length > 0 ? (
+          <div className="productHead_content">
+            <h1 className="htxthead">
+              <span className="spennofStyle"></span>Suggest
+            </h1>
+          </div>
+        ) : (
+          <p></p>
+        )}
+
         <div className="contentImageProducts1">
           <div className="group_itemBox">
             <div className="containner_box_image">
@@ -52,9 +86,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills:  Python, MySQL, java, PHP, MySQL, java, PHP</p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -71,9 +105,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -90,9 +124,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -107,7 +141,6 @@ const ProductHome = () => {
             <span className="spennofStyle"></span>All User
           </h1>
         </div>
-
         <div className="contentImageProducts1">
           <div className="group_itemBox">
             <div className="containner_box_image">
@@ -118,9 +151,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -137,9 +170,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} className="Checkbox" />
               <Link to="/productdetails" className="button_see">
@@ -156,9 +189,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} className="Checkbox" />
               <Link to="/productdetails" className="button_see">
@@ -175,9 +208,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -194,9 +227,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills: </p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">
@@ -213,9 +246,9 @@ const ProductHome = () => {
                 <h4>Name: </h4>
                 <p>Age: </p>
                 <p>Major: </p>
+                <p>Position:</p>
               </div>
             </div>
-            <p>Skills:</p>
             <div className="btn_button_see">
               <FormControlLabel control={<Checkbox />} />
               <Link to="/productdetails" className="button_see">

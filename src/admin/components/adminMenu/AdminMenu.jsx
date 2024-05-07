@@ -93,56 +93,56 @@ const AdminMenu = () => {
       <section id="dashboard">
         <div className="left">
           <div className="menu">
-            <NavLink to="/dashboard" className="link">
+            {/* <NavLink to="/dashboard" className="link">
               <RxDashboard />
-              <p>계기반</p>
-            </NavLink>
+              <p>Dashboard</p>
+            </NavLink> */}
             <NavLink to="/product" className="link">
               <IoDocumentText />
-              <p>제품</p>
+              <p>Product</p>
             </NavLink>
-            <NavLink to="/orderpage" className="link">
+            {/* <NavLink to="/orderpage" className="link">
               <MdOutlineSell />
-              <p>명령</p>
+              <p>Order</p>
             </NavLink>
             <NavLink to="/bank" className="link">
               <RiAccountBoxLine />
-              <p>은행 계좌</p>
+              <p>Bank</p>
             </NavLink>
             <NavLink to="/store" className="link">
               <HiOutlineBuildingStorefront />
-              <p>백화점</p>
-            </NavLink>
+              <p>Store</p>
+            </NavLink> */}
             <NavLink to="/users" className="link">
               <BiUser />
-              <p>사용자</p>
+              <p>Users</p>
             </NavLink>
             <NavLink to="/admins" className="link">
               <LiaUserCogSolid />
-              <p>관리자</p>
+              <p>Admins</p>
             </NavLink>
             <div onClick={() => setShowConfirmation(true)} className="link">
               <IoLogOutOutline />
-              <p>로그 아웃</p>
+              <p>Login</p>
             </div>
             {showConfirmation && (
               <div className="background_addproductpopup_box">
                 <div className="hover_addproductpopup_box">
                   <div className="box_logout">
-                    <p>정말로 로그아웃하시겠습니까?</p>
+                    <p>Are you sure you want to log out?</p>
                   </div>
                   <div className="btn_foasdf">
                     <button
                       className="btn_cancel btn_addproducttxt_popup"
                       onClick={handleCancelLogout}
                     >
-                      아니요
+                      No
                     </button>
                     <button
                       className="btn_confirm btn_addproducttxt_popup"
                       onClick={handleConfirmLogout}
                     >
-                      예
+                    Yes
                     </button>
                   </div>
                 </div>

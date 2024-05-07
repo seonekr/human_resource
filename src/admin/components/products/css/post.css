@@ -160,7 +160,7 @@
 
 .iconimage{ 
     width: 100%;
-    height: 56.4vh;
+    height: 68.4vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,7 +194,7 @@
 .box_input-img {
     position: relative;
     cursor: pointer;
-    width: 260px;
+    width: 265px;
     height: 36vh;
     overflow: hidden;
 }
