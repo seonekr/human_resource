@@ -26,6 +26,7 @@ import Login from "../user/components/login_register/Login"
 import Register from "../user/components/login_register/Register"
 import Signup1 from "../user/components/login_register/Signup1";
 import Signup2 from "../user/components/login_register/Signup2";
+import CVregister from "../user/components/login_register/CVregister";
 
 
 
@@ -64,7 +65,8 @@ const Links = () => {
                 <Route exact path="/login" Component={Login}/>
                 <Route exact path="/register" Component={Register}/>
                 <Route exact path="/signup1" Component={Signup1}/>
-                <Route exact path="/signup2" Component={Signup2}/>
+                <Route exact path="/signup2" Component={Signup2}/> 
+                <Route exact path="/add_resume" Component={CVregister}/> 
 
 
                 {/* Admin routes */}

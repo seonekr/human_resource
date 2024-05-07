@@ -92,6 +92,7 @@ const Login = () => {
     <>
       <section>
         <Header/>
+        <div>
         <form className="box_container_login2">
           <div className="cover">
             {/* <Link to="/" className="box_iconBack">
@@ -147,8 +148,10 @@ const Login = () => {
             </div>
           </div>
         </form>
+        {/* <Menu/> */}
+        </div>
       </section>
-      <Menu/>
+      
     </>
   );
 };
