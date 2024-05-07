@@ -35,31 +35,28 @@ const ForgotPassword = () => {
       <Header/>
       <section>
         <div className="box_forgot">
-          <Link to="/login" className="box_iconBack_forgot">
-            <MdArrowBack id='iconBack'/>
-          </Link>
-          <h2>비밀번호 찾기</h2>
-          <div className="title">이메일 인증 후 비밀번호를 변경해주세요!</div>
+          <h2>Find password</h2>
+          <div className="title">Please change your password after verifying your email!</div>
           <form className='container_form_forgot' onSubmit={handleForgotPassword}>
-            <div className='box_infor'>기본정보를 입력하세요</div>
+            <div className='box_infor'>Please enter basic information</div>
             <div className='container_form_forgot2'>
               <input 
                 type="email"
                 name="email"
-                placeholder="이메일"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <div className='verification'>
-              확인하다
+              Verify
               </div>
             </div>
 
             <input 
               type="text"
               name="code"
-              placeholder="확인 번호"
+              placeholder="confirmation number"
               value={code}
               onChange={(e) => setCode(e.target.value)}
               required
@@ -67,7 +64,7 @@ const ForgotPassword = () => {
             <input 
               type="password"
               name="password"
-              placeholder="새 비밀번호"
+              placeholder="New password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -75,20 +72,20 @@ const ForgotPassword = () => {
             <input 
               type="password2"
               name="password2"
-              placeholder="비밀번호 확인"
+              placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
 
             <button type="submit" >
-            확인
+            confirmation
             </button>
           </form>
         </div>
         {forgotpasswordSuccess && (
           <div className="alert_success_find">
-            비밀번호 변경 성공!
+            Password change successful!
           </div>
         )}
       </section>

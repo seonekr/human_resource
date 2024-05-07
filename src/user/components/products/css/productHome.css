@@ -209,6 +209,7 @@ a {
     border-radius: 7px;
     cursor: pointer;
     overflow: hidden;
+    padding: 5px;
 }
 
 .group_itemBox:hover {

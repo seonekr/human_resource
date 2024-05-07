@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./css/login.css";
 import { MdArrowBack } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import Header from "../header/Header";
 
 
 const Login = () => {
-  const login_en = "로그인";
+  const login_en = "Login";
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [errorText, set_errorText] = useState("");
-  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleEmail = (e) => {
     const value = e.target.value;
@@ -48,13 +49,15 @@ const Login = () => {
       .request(config)
       .then((res) => {
         const result = res.data;
-        // console.log(JSON.stringify(res.data));
         const user = {
           email: result.email,
           image: result.image,
-          is_staff: result.is_staff,
+          is_admin: result.is_admin,
+          store_id: result.store_id,
+          origin_store_name: result.origin_store_name,
           user_id: result.user_id,
           user_name: result.user_name,
+          is_first: result.is_first,
         };
         const token = result.token.access;
         if (token) {
@@ -69,35 +72,49 @@ const Login = () => {
       });
   };
 
+  const [authUrl, setAuthUrl] = useState("");
+
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API + "/user/social/url/",
+        {
+          code: "your_code_here", // Replace 'your_code_here' with the actual code
+        }
+      );
+      setAuthUrl(response.data.url);
+    } catch (error) {
+      console.error("Error fetching Google auth URL:", error);
+    }
+  };
+
   return (
     <>
-      <Header/>
+    <Header/>
       <section>
         <form className="box_container_login2">
           <div className="cover">
-            <Link to="/" className="box_iconBack_login">
+            {/* <Link to="/" className="box_iconBack">
               <MdArrowBack id="iconBack" />
-            </Link>
+            </Link> */}
             <h2 className="box_container_login_text">{login_en}</h2>
-            <p className="box_pleaselogin">서비스를 이용하시려면 로그인을 해주세요!</p>
+            <p className="box_pleaselogin">Please Log in to use the service!</p>
             <div className="input">
-              <label>이메일</label>
+              <label>Email</label>
               <input
                 className="input_form"
                 type="email"
-                placeholder="이메일을 입력하세요"
+                placeholder="Enter Your Email"
                 value={email}
                 onChange={handleEmail}
-                required
               />
-              <label>비밀번호</label>
+              <label>Password</label>
               <input
                 className="input_form"
                 type="password"
-                placeholder="비밀번호를 입력하세요"
+                placeholder="Enter Your Password"
                 value={pass}
                 onChange={handlePass}
-                required
               />
             </div>
 
@@ -108,28 +125,28 @@ const Login = () => {
             )}
 
             <div className="forgot_password">
-            비밀번호를 잊어 버렸습니까?{" "}
-              <Link to={"/forgotpassword"} className="findpassword">
-              비밀번호 찾기
+              Forgot your password?{" "}
+              <Link to={"/forgotPassword"} className="findpassword">
+                Find password
               </Link>
             </div>
 
             <div className="loginbtn_login">
-              <button type="submit" className="login_btn" onClick={Login}>
-              로그인
-              </button>
+              <Link type="submit" className="login_btn" onClick={Login}>
+                Login
+              </Link>
             </div>
             <div className="googlebtn_btn">
               <p className="box_dont">
-              이번이 처음이신가요?
-                <Link to={"/register"} className="loginmoreLink">
-                등록하다
+                Is this your first time?
+                <Link to={"/signup1"} className="loginmoreLink">
+                  Join the membership
                 </Link>
               </p>
-              <div className="google_account">
-              미디어 계정으로 가입하세요
+              {/* <div className="google_account">
+                Sign up with your social media account
               </div>
-              <Link className="google-login">
+              <div className="google-login">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
@@ -155,13 +172,13 @@ const Login = () => {
                     d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                   ></path>
                 </svg>
-              </Link>
+              </div> */}
+
+              
             </div>
           </div>
         </form>
       </section>
-      {loginSuccess && <div className="alert_success">성공적 로그인!</div>}
-      
     </>
   );
 };

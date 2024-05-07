@@ -24,6 +24,8 @@ import AlertLogin from "../user/components/login_register/AlertLogin"
 import AlertRegister from "../user/components/login_register/AlertRegister"
 import Login from "../user/components/login_register/Login"
 import Register from "../user/components/login_register/Register"
+import Signup1 from "../user/components/login_register/Signup1";
+import Signup2 from "../user/components/login_register/Signup2";
 
 
 
@@ -61,6 +63,8 @@ const Links = () => {
                 <Route exact path="/alertregister" Component={AlertRegister}/>
                 <Route exact path="/login" Component={Login}/>
                 <Route exact path="/register" Component={Register}/>
+                <Route exact path="/signup1" Component={Signup1}/>
+                <Route exact path="/signup2" Component={Signup2}/>
 
 
                 {/* Admin routes */}
