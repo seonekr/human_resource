@@ -10,6 +10,7 @@ import Terms from "../user/components/account/Terms";
 import Privacy from "../user/components/account/Privacy"
 import More from "../user/components/account/More";
 
+
 /* ============================== */
 import ProductDetails from "../user/components/products/ProductDetails";
 import OrderPage from "../admin/components/orderPage/OrderPage";
@@ -23,6 +24,7 @@ import Login from "../user/components/login_register/Login"
 import Signup1 from "../user/components/login_register/Signup1";
 import Signup2 from "../user/components/login_register/Signup2";
 import CVregister from "../user/components/login_register/CVregister";
+import Listusers from "../company/component/Listusers";
 
 
 
@@ -59,6 +61,7 @@ const Links = () => {
                 <Route exact path="/signup1" Component={Signup1}/>
                 <Route exact path="/signup2" Component={Signup2}/>
                 <Route exact path="/add_resume" Component={CVregister}/>
+                <Route exact path="/list_users" Component={Listusers}/>
                 
              
 
