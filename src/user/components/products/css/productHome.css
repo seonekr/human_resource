@@ -525,7 +525,7 @@ a {
         grid-template-columns: 1fr;
     }
     .box_image {
-        width: 100px;
+        width: 90px;
         height: auto;
         overflow: hidden;
     }
