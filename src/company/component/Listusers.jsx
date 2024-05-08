@@ -13,13 +13,9 @@ const Listusers = () => {
     <>
       <Header />
       <div className="continer-listuser">
-        <Link to="/" className="box_container_back_icons_back">
-          <IoIosArrowBack id="icons_back" />
-          <p>Back</p>
-        </Link>
         <div className="contian-box-listuser">
           <div className="box-title">
-            <h3>List Users</h3>
+            <h2>List Users</h2>
             <div className="box-sendmail">
               <Link
                 to="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=seonekr@gmail.com"
@@ -64,9 +60,6 @@ const Listusers = () => {
               </div>
             </div>
 
-
-          
-            {/* Prev */}
             <div className="box_list1">
               <div className="box_txtandiamge">
                 <div className="box_img">

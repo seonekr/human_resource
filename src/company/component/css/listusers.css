@@ -1,5 +1,5 @@
 .continer-listuser {
-  width: 70%;
+  width: 65%;
   margin: 8rem auto 0 auto;
   border-radius: 5px;
 }
@@ -8,9 +8,10 @@
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  padding: 10px 25px 15px 25px;
+  padding: 10px 25px 25px 25px;
   margin-top: 25px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
 }
 
 .box-title {
@@ -50,7 +51,10 @@
   border-radius: 10px;
   padding: 30px;
   background: #fff;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eee;
+}
+.box_list1:hover {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
 }
 
 .box_txtandiamge {

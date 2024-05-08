@@ -273,6 +273,9 @@ a {
     gap: 10px;
     list-style: none;
 }
+.txtOFproduct_user span{
+    font-size: 18px;
+}
 
 
 .btn_button_see{
@@ -285,7 +288,9 @@ a {
     display: grid;
     gap: 1rem;
     padding: 10px;
-    align-items: center;
+}
+.btn_button_see_user #icon_FaRegHeart{
+    margin-left: 0.8rem;
 }
 
 #icon_FaRegHeart{
@@ -349,9 +354,10 @@ a {
     .contentImageProducts1 {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-
-    .contentImageProducts2 {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .contentImageUser {
+        width: 100%;
+        grid-template-columns: 1fr;
+        
     }
 
     /* .group_itemBox .box_image {
@@ -365,7 +371,22 @@ a {
     
     .box_image img {
         width: 100%;
-        height: 100px;
+        height: 90px;
+        object-fit: cover;
+        overflow: hidden;
+        padding: 8px;
+        border-radius: 100%;
+    }
+
+    .box_image_user {
+        width: 80px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image_user img {
+        width: 100%;
+        height: 50px;
         object-fit: cover;
         overflow: hidden;
         padding: 8px;
@@ -408,13 +429,40 @@ a {
     .contentImageProducts1 {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
-
-    .contentImageProducts2 {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .contentImageUser {
+        width: 100%;
+        grid-template-columns: 1fr;
+        
+    }
+    .box_image {
+        width: 100px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image img {
+        width: 100%;
+        height: 90px;
     }
 
-    .group_itemBox .box_image {
-        height: 135px;
+    .txt_span{
+        display: none;
+    }
+    .box_image_user {
+        width: 130px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image_user img {
+        width: 100%;
+        height: 70px;
+    }
+    #icon_FaRegHeart{
+        font-size: 18px;
+    }
+    .button_see{
+        padding: 2px 8px;
     }
 
     .box_cart_searchs {
