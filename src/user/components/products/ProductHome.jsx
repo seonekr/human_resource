@@ -1,17 +1,10 @@
 import "./css/productHome.css";
-import job from "../../../img/job.png";
-import logo from "../../../img/logo.jpg";
-import avatar from "../../../img/avatar.png";
 import Header from "../header/Header";
 import { Link } from "react-router-dom";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { TfiMenuAlt } from "react-icons/tfi";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
-
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
@@ -96,7 +89,7 @@ const ProductHome = () => {
               </p>
               <div className="btn_button_see">
                 {/* <FormControlLabel control={<Checkbox />} /> */}
-                <FaRegHeart id="icon_FaRegHeart"/>
+                <FaRegHeart id="icon_FaRegHeart" />
                 <Link to="/productdetails" className="button_see">
                   View
                 </Link>
@@ -115,22 +108,21 @@ const ProductHome = () => {
           {resume.map((res, index) => (
             <div className="group_itemBox_user" key={index}>
               <div className="containner_box_image_user">
-                <div className="box_image">
+                <div className="box_image_user">
                   <img src={res.image} alt="image" />
                 </div>
                 <div className="txtOFproduct_user">
-                  <h4>Name: {res.name}</h4>
-                  <p>Age: {res.age}</p>
-                  <p>Major: {res.major}</p>
-                  <p>Skill: {res.skill.substring(0, 150)}...</p>
+                  <p><span>Name:</span> {res.name}</p>
+                  <p ><span >Age:</span> {res.age}</p>
+                  <p className="txt_span"><span >Major:</span> {res.major}</p>
+                  <p className="txt_span"><span >Skills:</span> {res.skill.substring(0, 30)}...</p>
                 </div>
-              </div>
-              
-              <div className="btn_button_see">
-                <FormControlLabel control={<Checkbox />} />
-                <Link to="/productdetails" className="button_see">
-                  View
-                </Link>
+                <div className="btn_button_see_user">
+                  <FaRegHeart id="icon_FaRegHeart" />
+                  <Link to="/productdetails" className="button_see">
+                    View
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

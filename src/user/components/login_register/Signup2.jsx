@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import axios from "axios";
 import Header from "../header/Header";
-import Menu from "../menu/Menu";
 
 const Signup2 = () => {
   const locataion = useLocation();
@@ -38,6 +37,7 @@ const Signup2 = () => {
       [name]: value,
     });
   }
+
 
   const SignUp = () => {
     let config = {
@@ -93,10 +93,18 @@ const Signup2 = () => {
 
   return (
     <>
-      <Header />
+    <Header/>
       <section>
         <div className="box_forgot">
-          <h2>Company registration</h2>
+          {/* <Link to="/signup1" className="box_iconBack">
+            <MdArrowBack id="iconBack" />
+          </Link> */}
+
+          {user_tyep == "1" ? (
+            <h2>User register</h2>
+          ) : (
+            <h2>Company register</h2>
+          )}
 
           <div className="title">
             You are in the process of signing up as a user!
@@ -151,51 +159,95 @@ const Signup2 = () => {
                 </div>
               )}
             </div>
-
-            <>
+            <input
+              type="text"
+              name="code"
+              onChange={onChange}
+              value={data.code}
+              placeholder="Code (required)"
+              required
+            />
+            {user_tyep == "1" && (
               <input
                 type="text"
-                name="code"
-                placeholder="code (required)"
+                name="nickname"
                 onChange={onChange}
+                value={data.nickname}
+                placeholder="Nickname (maximun 10 characters)"
                 required
               />
-              <input
-                type="text"
-                name="name"
-                placeholder="Company name (required)"
-                onChange={onChange}
-                required
-              />
-              <input
-                type="text"
-                name="address"
-                placeholder="Address (required) "
-                onChange={onChange}
-                required
-              />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone number (optional)"
-                onChange={onChange}
-              />
-              <input
-                type="text"
-                name="company_number"
-                placeholder="Business registration number (optional)"
-                onChange={onChange}
-              />
+            )}
 
-              <textarea
-                className="box_text"
-                name="introduce"
-                placeholder="Store introduction (optional/maximum 300 characters)"
-                maxLength="300"
-                onChange={onChange}
-              ></textarea>
-            </>
-
+            <input
+              type="password"
+              name="password"
+              onChange={onChange}
+              value={data.password}
+              placeholder="passwords"
+              required
+            />
+            <input
+              type="password"
+              name="password2"
+              onChange={onChange}
+              value={data.password2}
+              placeholder="Confirm password"
+              required
+            />
+            {user_tyep == "2" && (
+              <>
+                <input
+                  type="text"
+                  name="category"
+                  placeholder="category"
+                  value={(data.category = "2")}
+                  onChange={onChange}
+                  required
+                  hidden
+                />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Company name (required)"
+                  value={data.name}
+                  onChange={onChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address (required) "
+                  value={data.address}
+                  onChange={onChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone number (optional)"
+                  value={data.phone}
+                  onChange={onChange}
+                />
+                <input
+                  type="text"
+                  name="company_number"
+                  placeholder="Business registration number (optional)"
+                  value={data.company_number}
+                  onChange={onChange}
+                />
+                <textarea
+                  className="box_text"
+                  name="introduce"
+                  placeholder="Store introduction (optional/maximum 300 characters)"
+                  maxLength="300"
+                  value={data.introduce}
+                  onChange={onChange}
+                ></textarea>
+              </>
+            )}
+            {/* {!passwordMatch && (
+            <p className="error-text">Passwords do not match.</p>
+          )} */}
             <button type="button" onClick={SignUp}>
               Register
             </button>
@@ -203,7 +255,6 @@ const Signup2 = () => {
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>
-      <Menu />
     </>
   );
 };

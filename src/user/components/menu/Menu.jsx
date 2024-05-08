@@ -56,9 +56,6 @@ const Menu = () => {
                 <Link to="/contact" className="box-menu">
                     <span className="iconMenuSpan"><GrContact /></span><span>Contact</span>
                 </Link>
-                <Link to="/text" className="box-menu">
-                    <span className="iconMenuSpan"><GrContact /></span><span>Induction</span>
-                </Link>
             </div>
 
         </section>
