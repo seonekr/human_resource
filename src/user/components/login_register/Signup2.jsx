@@ -155,6 +155,13 @@ const Signup2 = () => {
             <>
               <input
                 type="text"
+                name="code"
+                placeholder="code (required)"
+                onChange={onChange}
+                required
+              />
+              <input
+                type="text"
                 name="name"
                 placeholder="Company name (required)"
                 onChange={onChange}
