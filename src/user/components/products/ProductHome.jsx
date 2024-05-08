@@ -10,6 +10,8 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { FaRegHeart } from "react-icons/fa";
+
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
@@ -39,7 +41,6 @@ const ProductHome = () => {
   console.log("My resume: ", resume);
 
   const recommendedItems = resume.filter((res) => res.is_recommend === true);
-  const notRecommendedItems = resume.filter((res) => res.is_recommend !== true);
 
   return (
     <div>
@@ -94,7 +95,8 @@ const ProductHome = () => {
                 {res.skill.substring(0, 10)}...
               </p>
               <div className="btn_button_see">
-                <FormControlLabel control={<Checkbox />} />
+                {/* <FormControlLabel control={<Checkbox />} /> */}
+                <FaRegHeart id="icon_FaRegHeart"/>
                 <Link to="/productdetails" className="button_see">
                   View
                 </Link>
@@ -108,23 +110,22 @@ const ProductHome = () => {
             <span className="spennofStyle"></span>All User
           </h1>
         </div>
-        <div className="contentImageProducts1">
-          {notRecommendedItems.map((res, index) => (
-            <div className="group_itemBox" key={index}>
-              <div className="containner_box_image">
+
+        <div className="contentImageUser">
+          {resume.map((res, index) => (
+            <div className="group_itemBox_user" key={index}>
+              <div className="containner_box_image_user">
                 <div className="box_image">
                   <img src={res.image} alt="image" />
                 </div>
-                <div className="txtOFproduct">
+                <div className="txtOFproduct_user">
                   <h4>Name: {res.name}</h4>
                   <p>Age: {res.age}</p>
                   <p>Major: {res.major}</p>
+                  <p>Skill: {res.skill.substring(0, 150)}...</p>
                 </div>
               </div>
-              <p>
-                <span>Skill: </span>
-                {res.skill.substring(0, 10)}...
-              </p>
+              
               <div className="btn_button_see">
                 <FormControlLabel control={<Checkbox />} />
                 <Link to="/productdetails" className="button_see">

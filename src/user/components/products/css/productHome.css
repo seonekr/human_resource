@@ -179,11 +179,22 @@ a {
     gap: 1rem;
     margin-top: 2rem;
 }
+.contentImageUser {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
 
 
 .containner_box_image {
     width: 100%;
     display: flex;
+}
+.containner_box_image_user {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
 }
 
 
@@ -226,15 +237,41 @@ a {
 }
 
 
+.group_itemBox_user {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.group_itemBox_user:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+.group_itemBox_user .txtOFproduct_user{
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+}
+
+
 .btn_button_see{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 10px;
 }
-/* .box_Checkbox{
-    display: none;
-} */
+
+#icon_FaRegHeart{
+    font-size: 22px;
+}
+
  .button_see{
     padding: 4px 10px;
     border: none;

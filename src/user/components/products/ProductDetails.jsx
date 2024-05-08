@@ -4,6 +4,7 @@ import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import avatar from "../../../img/avatar.png";
 
+
 function ProductDetails() {
 
   return (
@@ -32,15 +33,13 @@ function ProductDetails() {
 
         <div className="product-details-container">
           <h1 className="product-details-title">CV Details</h1>
-          {pdfUrl && (
             <div className="pdf-container">
               <iframe
-                src={pdfUrl}
+                src=""
                 title="Product PDF"
                 className="pdf-viewer"
               ></iframe>
             </div>
-          )}
         </div>
         <div className="box-check">
           <h4>Add to list</h4>
