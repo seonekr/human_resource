@@ -17,7 +17,7 @@ const ProductHome = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/",
+      url: import.meta.env.VITE_API + "/resume/list/",
     };
 
     axios
@@ -88,13 +88,13 @@ const ProductHome = () => {
                 {res.skill.substring(0, 10)}...
               </p>
               <div className="btn_button_see">
-                {/* <FormControlLabel control={<Checkbox />} /> */}
                 <FaRegHeart id="icon_FaRegHeart" />
-                <Link to="/productdetails" className="button_see">
+                <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
                 </Link>
               </div>
             </div>
+            // </Link>
           ))}
         </div>
 
@@ -121,7 +121,7 @@ const ProductHome = () => {
                 </div>
                 <div className="btn_button_see_user">
                   <FaRegHeart id="icon_FaRegHeart" />
-                  <Link to="/productdetails" className="button_see">
+                  <Link to={`/productdetails/${res.id}`} className="button_see">
                     View
                   </Link>
                 </div>

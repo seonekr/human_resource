@@ -53,7 +53,7 @@ const Links = () => {
                 <Route exact path="/text" Component={Text}/>
 
                 {/*====================== */}
-                <Route exact path="/productdetails" Component={ProductDetails}/>
+                <Route exact path="/productdetails/:id" Component={ProductDetails}/>
                 <Route exact path="/forgotpassword" Component={ForgotPassword}/>
                 <Route exact path="/alertlogin" Component={AlertLogin}/>
                 <Route exact path="/alertregister" Component={AlertRegister}/>

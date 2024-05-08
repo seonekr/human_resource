@@ -19,11 +19,16 @@ body {
 .pdf-container {
   margin-top: 20px;
   width: 100%;
-  height: 800px;
+  height: 100vh;
   overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
+
+}
+.pdf-container .pdf-viewer{
+  object-fit: contain;
 }
 
 /*  */
@@ -43,10 +48,10 @@ body {
   text-align: center;
 }
 
+
 .pdf-viewer {
   width: 100%;
   height: 100%;
-  /* Adjust height as needed */
 }
 
 .box-check {
@@ -54,9 +59,8 @@ body {
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  /* Align to the right */
   gap: 10px;
-  /* Adjust as needed */
+  margin-top: 1rem;
 }
 
 /* CSS for checkbox styling */

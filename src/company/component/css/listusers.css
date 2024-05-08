@@ -52,6 +52,7 @@
   padding: 30px;
   background: #fff;
   border: 1px solid #eee;
+  cursor: pointer;
 }
 .box_list1:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
@@ -126,6 +127,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #444;
+  cursor: pointer;
 }
 .box_prev_right_user {
   width: 80px;

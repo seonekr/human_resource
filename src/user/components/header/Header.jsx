@@ -7,24 +7,46 @@ import Logo from "../../../img/Logo.png";
 import storename from "../../../img/storename.png";
 import { AiFillDashboard } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import axios from "axios";
 
-const Header = ({ handleSearch }) => {
-  // For authenticate user
-  const userID = localStorage.getItem("userID");
-  const location = useLocation();
+const Header = () => {
+
+  const [search, set_search] = useState("");
+
+
+  console.log("Search....", search)
 
   const menuItems = [
     { label: "Home", path: "/" },
     { label: "Introduction", path: "/text" },
   ];
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Search bar function
-  const handleSubmit = (e) => {
+  function OnSearch(e) {
     e.preventDefault();
-    handleSearch(searchTerm);
-  };
+    let data = JSON.stringify({
+      search: search,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: import.meta.env.VITE_API + "/resume/search",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
 
   return (
     <>
@@ -32,9 +54,16 @@ const Header = ({ handleSearch }) => {
         <div className="navbar">
           <div className="headWithBox">
             <div className="headMenu">
-
-              <div className="storename"><Link to="/"><img src={storename} alt="Logo" /></Link></div>
-              <div className="logo1"><Link to="/"><img src={Logo} alt="Logo" /></Link></div>
+              <div className="storename">
+                <Link to="/">
+                  <img src={storename} alt="Logo" />
+                </Link>
+              </div>
+              <div className="logo1">
+                <Link to="/">
+                  <img src={Logo} alt="Logo" />
+                </Link>
+              </div>
 
               <div className="boxLiMenu">
                 <div className="linkLi">
@@ -55,18 +84,30 @@ const Header = ({ handleSearch }) => {
             </div>
 
             <div className="ulHead_box">
+              <form className="searchBarForm" onSubmit={OnSearch}>
+                <input
+                  id="search"
+                  type="text"
+                  value={search}
+                  placeholder="Search..."
+                  onChange={(e) => {
+                    set_search(e.target.value);
+                  }}
+                />
+                <button type="submit">
+                  <FaMagnifyingGlass className="iconSearch" />
+                </button>
+              </form>
 
-              <form onSubmit={handleSubmit} className="searchBarForm">
-                {" "}
-                {/* Here is search bar */}
+              {/* <form  className="searchBarForm">
                 <input
                   type="text"
                   placeholder="Search..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <button type="submit"><FaMagnifyingGlass className="iconSearch" /></button>
-              </form>
+                <button type="submit">
+                  <FaMagnifyingGlass className="iconSearch" />
+                </button>
+              </form> */}
               <div className="icon_account_login">
                 <div>
                   <Link to="/add_resume" className="head_colorr">
@@ -75,7 +116,7 @@ const Header = ({ handleSearch }) => {
                 </div>
                 <div>
                   <Link to="/list_users">
-                    <FaRegHeart className="head_colorr"/>
+                    <FaRegHeart className="head_colorr" />
                   </Link>
                 </div>
                 <div>
@@ -91,7 +132,6 @@ const Header = ({ handleSearch }) => {
                 <div>
                   <Link to="/login" className="head_colorr">
                     <p>Login</p>
-                    
                     <BiLogIn className="login" />
                   </Link>
                 </div>
