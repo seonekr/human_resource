@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../img/Logo.png";
 import storename from "../../../img/storename.png";
 import { AiFillDashboard } from "react-icons/ai";
+import { FaRegHeart } from "react-icons/fa";
 
 const Header = ({ handleSearch }) => {
   // For authenticate user
@@ -68,8 +69,13 @@ const Header = ({ handleSearch }) => {
               </form>
               <div className="icon_account_login">
                 <div>
-                  <Link to="/add_resume">
+                  <Link to="/add_resume" className="head_colorr">
                     CV
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/list_users">
+                    <FaRegHeart className="head_colorr"/>
                   </Link>
                 </div>
                 <div>
