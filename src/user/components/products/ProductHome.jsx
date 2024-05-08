@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
-
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
 
@@ -96,7 +95,7 @@ const ProductHome = () => {
               </p>
               <div className="btn_button_see">
                 {/* <FormControlLabel control={<Checkbox />} /> */}
-                <FaRegHeart id="icon_FaRegHeart"/>
+                <FaRegHeart id="icon_FaRegHeart" />
                 <Link to="/productdetails" className="button_see">
                   View
                 </Link>
@@ -115,22 +114,22 @@ const ProductHome = () => {
           {resume.map((res, index) => (
             <div className="group_itemBox_user" key={index}>
               <div className="containner_box_image_user">
-                <div className="box_image">
+                <div className="box_image_user">
                   <img src={res.image} alt="image" />
                 </div>
                 <div className="txtOFproduct_user">
-                  <h4>Name: {res.name}</h4>
-                  <p>Age: {res.age}</p>
-                  <p>Major: {res.major}</p>
-                  <p>Skill: {res.skill.substring(0, 150)}...</p>
+                  <h4>Name: {res.name},</h4>
+                  <p>Age: {res.age},</p>
+                  <p>Major: {res.major},</p>
+                  <p>Skill: {res.skill.substring(0, 30)}...</p>
                 </div>
-              </div>
-              
-              <div className="btn_button_see">
-                <FormControlLabel control={<Checkbox />} />
-                <Link to="/productdetails" className="button_see">
-                  View
-                </Link>
+                <div className="btn_button_see_user">
+                  {/* <FormControlLabel control={<Checkbox />} /> */}
+                  <FaRegHeart id="icon_FaRegHeart" />
+                  <Link to="/productdetails" className="button_see">
+                    View
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

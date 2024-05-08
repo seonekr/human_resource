@@ -194,6 +194,7 @@ a {
 .containner_box_image_user {
     width: 100%;
     display: flex;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -207,6 +208,20 @@ a {
 .box_image img {
     width: 100%;
     height: 160px;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 100%;
+}
+.box_image_user {
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+}
+
+.box_image_user img {
+    width: 100%;
+    height: 85px;
     object-fit: cover;
     overflow: hidden;
     padding: 8px;
@@ -253,9 +268,8 @@ a {
 
 .group_itemBox_user .txtOFproduct_user{
     width: 100%;
-    margin-top: 1rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 10px;
     list-style: none;
 }
@@ -266,6 +280,12 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 10px 10px;
+}
+.btn_button_see_user{
+    display: grid;
+    gap: 1rem;
+    padding: 10px;
+    align-items: center;
 }
 
 #icon_FaRegHeart{
