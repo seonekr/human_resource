@@ -39,6 +39,8 @@ import Store from "../admin/components/stores/Store";
 import Bank from "../admin/components/bank_account/Bank";
 import Addaccount from "../admin/components/bank_account/Addaccount";
 
+import AboutUs from "../user/components/contact/AboutUs";
+
 
 
 
@@ -50,7 +52,7 @@ const Links = () => {
                 {/*====================== */}
                 <Route exact path="/" Component={Home}/>
                 <Route exact path="/contact" Component={Contact}/>
-                <Route exact path="/text" Component={Text}/>
+                <Route exact path="/about" Component={AboutUs}/>
 
                 {/*====================== */}
                 <Route exact path="/productdetails/:id" Component={ProductDetails}/>

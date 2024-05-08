@@ -18,7 +18,7 @@ const Header = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Introduction", path: "/text" },
+    { label: "About us", path: "/about" },
   ];
 
   function OnSearch(e) {

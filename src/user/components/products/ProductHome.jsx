@@ -114,10 +114,8 @@ const ProductHome = () => {
                 <div className="txtOFproduct_user">
                   <p><span>Name:</span> {res.name}</p>
                   <p ><span >Age:</span> {res.age}</p>
-                  <p className=" pc"><span >Major:</span> {res.major.substring(0, 30)}...</p>
-                  <p className=" mb"><span >Major:</span> {res.major.substring(0, 5)}...</p>
-                  <p className=" pc"><span >Skills:</span> {res.skill.substring(0, 30)}...</p>
-                  <p className=" mb"><span >Skills:</span> {res.skill.substring(0, 4)}...</p>
+                  <p className="txt_span"><span >Major:</span> {res.major}</p>
+                  <p className="txt_span"><span >Skills:</span> {res.skill.substring(0, 30)}...</p>
                 </div>
                 <div className="btn_button_see_user">
                   <FaRegHeart id="icon_FaRegHeart" />
