@@ -96,11 +96,7 @@ const Signup2 = () => {
       <Header />
       <section>
         <div className="box_forgot">
-          {user_tyep == "1" ? (
-            <h2>User registration</h2>
-          ) : (
-            <h2>Company registration</h2>
-          )}
+          <h2>Company registration</h2>
 
           <div className="title">
             You are in the process of signing up as a user!
@@ -155,103 +151,44 @@ const Signup2 = () => {
                 </div>
               )}
             </div>
-            <input
-              type="text"
-              name="code"
-              onChange={onChange}
-              value={data.code}
-              placeholder="Certication Number"
-              required
-            />
-            {user_tyep == "1" && (
+
+            <>
               <input
                 type="text"
-                name="nickname"
+                name="name"
+                placeholder="Company name (required)"
                 onChange={onChange}
-                value={data.nickname}
-                placeholder="Nickname (maximun 10 characters)"
                 required
               />
-            )}
+              <input
+                type="text"
+                name="address"
+                placeholder="Address (required) "
+                onChange={onChange}
+                required
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone number (optional)"
+                onChange={onChange}
+              />
+              <input
+                type="text"
+                name="company_number"
+                placeholder="Business registration number (optional)"
+                onChange={onChange}
+              />
 
-            <input
-              type="password"
-              name="password"
-              onChange={onChange}
-              value={data.password}
-              placeholder="passwords"
-              required
-            />
-            <input
-              type="password"
-              name="password2"
-              onChange={onChange}
-              value={data.password2}
-              placeholder="Confirm password"
-              required
-            />
-            {user_tyep == "2" && (
-              <>
-                <input
-                  type="text"
-                  name="category"
-                  placeholder="category"
-                  value={(data.category = "2")}
-                  onChange={onChange}
-                  required
-                  hidden
-                />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Company name (required)"
-                  value={data.name}
-                  onChange={onChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Address (required) "
-                  value={data.address}
-                  onChange={onChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="sub_address"
-                  placeholder="Detailed address (optional)"
-                  value={data.sub_address}
-                  onChange={onChange}
-                />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Phone number (optional)"
-                  value={data.phone}
-                  onChange={onChange}
-                />
-                <input
-                  type="text"
-                  name="company_number"
-                  placeholder="Business registration number (optional)"
-                  value={data.company_number}
-                  onChange={onChange}
-                />
+              <textarea
+                className="box_text"
+                name="introduce"
+                placeholder="Store introduction (optional/maximum 300 characters)"
+                maxLength="300"
+                onChange={onChange}
+              ></textarea>
+            </>
 
-                <textarea
-                  className="box_text"
-                  name="introduce"
-                  placeholder="Store introduction (optional/maximum 300 characters)"
-                  maxLength="300"
-                  value={data.introduce}
-                  onChange={onChange}
-                ></textarea>
-              </>
-            )}
-            {/* {!passwordMatch && (
-            <p className="error-text">Passwords do not match.</p>
-          )} */}
             <button type="button" onClick={SignUp}>
               Register
             </button>
@@ -259,7 +196,7 @@ const Signup2 = () => {
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>
-      <Menu/>
+      <Menu />
     </>
   );
 };
