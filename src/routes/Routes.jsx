@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 import Home from "../user/components/homepage/Home";
-import Payment from "../user/components/cart/Payment";
-import Cart from "../user/components/cart/Cart";
-import Contacts from "../user/components/contact/Contact";
-import Bill from "../user/components/order/Bill";
+
+import Contact from "../user/components/contact/Contact";
 import Dashboard from "../admin/Dashboard";
 import Post from "../admin/components/products/Post";
 
@@ -12,8 +10,8 @@ import Terms from "../user/components/account/Terms";
 import Privacy from "../user/components/account/Privacy"
 import More from "../user/components/account/More";
 
+
 /* ============================== */
-import Order from "../user/components/order/Order";
 import ProductDetails from "../user/components/products/ProductDetails";
 import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
@@ -23,10 +21,10 @@ import ForgotPassword from "../user/components/login_register/ForgotPassword";
 import AlertLogin from "../user/components/login_register/AlertLogin"
 import AlertRegister from "../user/components/login_register/AlertRegister"
 import Login from "../user/components/login_register/Login"
-import Register from "../user/components/login_register/Register"
 import Signup1 from "../user/components/login_register/Signup1";
 import Signup2 from "../user/components/login_register/Signup2";
 import CVregister from "../user/components/login_register/CVregister";
+import Listusers from "../company/component/Listusers";
 
 
 
@@ -41,6 +39,9 @@ import Store from "../admin/components/stores/Store";
 import Bank from "../admin/components/bank_account/Bank";
 import Addaccount from "../admin/components/bank_account/Addaccount";
 
+import AboutUs from "../user/components/contact/AboutUs";
+
+
 
 
 
@@ -50,24 +51,21 @@ const Links = () => {
             <Routes>
                 {/*====================== */}
                 <Route exact path="/" Component={Home}/>
-                <Route exact path="/cart/payment" Component={Payment}/>
-                <Route exact path="/contacts" Component={Contacts}/>
-                <Route exact path="/order" Component={Order}/>
-                <Route exact path="/order/bill" Component={Bill}/>
-                <Route exact path="/text" Component={Text}/>
+                <Route exact path="/contact" Component={Contact}/>
+                <Route exact path="/about" Component={AboutUs}/>
 
                 {/*====================== */}
-                <Route exact path="/productdetails" Component={ProductDetails}/>
-                <Route exact path="/cart" Component={Cart}/>
+                <Route exact path="/productdetails/:id" Component={ProductDetails}/>
                 <Route exact path="/forgotpassword" Component={ForgotPassword}/>
                 <Route exact path="/alertlogin" Component={AlertLogin}/>
                 <Route exact path="/alertregister" Component={AlertRegister}/>
                 <Route exact path="/login" Component={Login}/>
-                <Route exact path="/register" Component={Register}/>
                 <Route exact path="/signup1" Component={Signup1}/>
-                <Route exact path="/signup2" Component={Signup2}/> 
-                <Route exact path="/add_resume" Component={CVregister}/> 
-
+                <Route exact path="/signup2" Component={Signup2}/>
+                <Route exact path="/add_resume" Component={CVregister}/>
+                <Route exact path="/list_users" Component={Listusers}/>
+                
+             
 
                 {/* Admin routes */}
                 <Route exact path="/dashboard" Component={Dashboard}/>

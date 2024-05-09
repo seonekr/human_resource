@@ -17,6 +17,7 @@ import { CiCamera } from "react-icons/ci";
 import banner1 from "../../../img/banner1.png";
 import imageicon from "../../../img/imageicon.jpg";
 import { AiOutlineDelete } from "react-icons/ai";
+import banner_job1 from "../../../img/banner_job1.jpg";
 
 const Product = () => {
   const [products, setProducts] = useState([
@@ -27,7 +28,7 @@ const Product = () => {
       review: 50,
       popular: false,
       images: [{ src: 깻잎 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 2,
@@ -36,7 +37,7 @@ const Product = () => {
       review: 45,
       popular: false,
       images: [{ src: 더덕무침 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 3,
@@ -45,7 +46,7 @@ const Product = () => {
       review: 30,
       popular: false,
       images: [{ src: 멸치볶음 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 4,
@@ -54,7 +55,7 @@ const Product = () => {
       review: 29,
       popular: true,
       images: [{ src: 진미채볶음 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 5,
@@ -63,7 +64,7 @@ const Product = () => {
       review: 39,
       popular: true,
       images: [{ src: 물김치 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 6,
@@ -72,7 +73,7 @@ const Product = () => {
       review: 35,
       popular: true,
       images: [{ src: 참외장아찌 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
     {
       productID: 7,
@@ -81,7 +82,7 @@ const Product = () => {
       review: 25,
       popular: true,
       images: [{ src: 파김치 }],
-      bannerImage: [{ src: banner1 }],
+      bannerImage: [{ src: banner_job1 }],
     },
   ]);
 
@@ -201,7 +202,7 @@ const Product = () => {
             <div className="categoryBoxfiler">
               <Link to="/post" className="box_add_product">
                 <BiPlus id="icon_add_product" />
-                <p>제품 추가</p>
+                <p>Post</p>
               </Link>
             </div>
           </div>
@@ -216,7 +217,7 @@ const Product = () => {
                         alt="Banner"
                       />
                     ) : (
-                      <img src={banner1} alt="Banner" />
+                      <img src={banner_job1} alt="Banner" />
                     )}
                   </div>
                 </div>
@@ -268,7 +269,7 @@ const Product = () => {
           <div id="container_product_admin">
             <div className="productHead_content">
               <h1 className="htxthead">
-                <span className="spennofStyle"></span>인기 메뉴
+                <span className="spennofStyle"></span>Suggest
               </h1>
             </div>
 
@@ -383,7 +384,7 @@ const Product = () => {
           <div id="container_product_admin">
             <div className="productHead_content">
               <h1 className="htxthead">
-                <span className="spennofStyle"></span>모든 메뉴
+                <span className="spennofStyle"></span>All Users
               </h1>
             </div>
             <div className="contentImageProducts">

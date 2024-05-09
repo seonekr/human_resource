@@ -179,11 +179,23 @@ a {
     gap: 1rem;
     margin-top: 2rem;
 }
+.contentImageUser {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
 
 
 .containner_box_image {
     width: 100%;
     display: flex;
+}
+.containner_box_image_user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 
@@ -196,6 +208,20 @@ a {
 .box_image img {
     width: 100%;
     height: 160px;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 100%;
+}
+.box_image_user {
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+}
+
+.box_image_user img {
+    width: 100%;
+    height: 85px;
     object-fit: cover;
     overflow: hidden;
     padding: 8px;
@@ -226,15 +252,52 @@ a {
 }
 
 
+.group_itemBox_user {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.group_itemBox_user:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+.group_itemBox_user .txtOFproduct_user{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+}
+.txtOFproduct_user span{
+    font-size: 18px;
+}
+
+
 .btn_button_see{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 10px;
 }
-/* .box_Checkbox{
-    display: none;
-} */
+.btn_button_see_user{
+    display: grid;
+    gap: 1rem;
+    padding: 10px;
+}
+.btn_button_see_user #icon_FaRegHeart{
+    margin-left: 0.8rem;
+}
+
+#icon_FaRegHeart{
+    font-size: 22px;
+    color: #FF4F16;
+}
+
  .button_see{
     padding: 4px 10px;
     border: none;
@@ -243,6 +306,10 @@ a {
     font-size: 14px;
     cursor: pointer;
     background: #FF4F16;
+}
+
+.mb{
+    display: none;
 }
 
 .loadmore_btn_more {
@@ -262,6 +329,19 @@ a {
     align-items: center;
 }
 
+
+/*========= read more text p ===========*/
+.btn_read_more{
+    padding: 3px 5px;
+    border: solid 1px #0E64D2;
+    border-radius: 3px;
+    background: #FFF;
+    cursor: pointer;
+}
+.btn_read_more:hover{
+    border: solid 1px #fa1f1fd7;
+}
+
 /* ================== Responsive ==============*/
 
 @media screen and (max-width: 1024px) {
@@ -278,9 +358,10 @@ a {
     .contentImageProducts1 {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-
-    .contentImageProducts2 {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .contentImageUser {
+        width: 100%;
+        grid-template-columns: 1fr;
+        
     }
 
     /* .group_itemBox .box_image {
@@ -294,7 +375,22 @@ a {
     
     .box_image img {
         width: 100%;
-        height: 100px;
+        height: 90px;
+        object-fit: cover;
+        overflow: hidden;
+        padding: 8px;
+        border-radius: 100%;
+    }
+
+    .box_image_user {
+        width: 80px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image_user img {
+        width: 100%;
+        height: 50px;
         object-fit: cover;
         overflow: hidden;
         padding: 8px;
@@ -327,6 +423,7 @@ a {
     #product1 {
         width: 90%;
         margin-bottom: 10rem;
+        padding: 0 10px;
     }
 
     .box_cart_search {
@@ -337,13 +434,145 @@ a {
     .contentImageProducts1 {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
-
-    .contentImageProducts2 {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .contentImageUser {
+        width: 100%;
+        grid-template-columns: 1fr;
+        
+    }
+    .box_image {
+        width: 100px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image img {
+        width: 100%;
+        height: 90px;
     }
 
-    .group_itemBox .box_image {
-        height: 135px;
+    .txt_span{
+        display: none;
+    }
+    .box_image_user {
+        width: 130px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image_user img {
+        width: 100%;
+        height: 70px;
+    }
+    #icon_FaRegHeart{
+        font-size: 18px;
+    }
+    .button_see{
+        padding: 2px 8px;
+    }
+    .mb{
+        display: flex;
+
+    }
+    .pc{
+        display: none;
+    }
+    .group_itemBox_user .txtOFproduct_user{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .txtOFproduct_user span{
+        font-size: 14px;
+    }
+
+    .box_cart_searchs {
+        margin-left: 6.3rem;
+        margin-top: 0.5rem;
+    }
+
+    .content_itemBox .container_product {
+        align-items: flex-start;
+    }
+    .box_container_ux_ui{
+        width: 100%;
+    }
+    .container_Uxui p{
+        display: none;
+
+    }
+}
+@media screen and (max-width: 431px) {
+    #product1 {
+        width: 100%;
+        margin-bottom: 10rem;
+        padding: 0 10px;
+    }
+
+    .box_cart_search {
+        margin-left: -5rem;
+        margin-top: 1rem;
+    }
+    .containner_box_image_user{
+        height: 120px;
+        position: relative;
+    }
+    .contentImageProducts1 {
+        grid-template-columns: 1fr 1fr;
+    }
+    .contentImageUser {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    .box_image {
+        width: 90px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image img {
+        width: 100%;
+        height: 90px;
+    }
+
+    .txt_span{
+        display: none;
+    }
+    .box_image_user {
+        width: 130px;
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .box_image_user img {
+        width: 100%;
+        height: 70px;
+    }
+    #icon_FaRegHeart{
+        top: 7px;
+        right: 10px;
+        position: absolute;
+        font-size: 25px;
+    }
+    .button_see{
+        padding: 5px 20px;
+        border-radius: 7px;
+    }
+    .mb{
+        display: flex;
+
+    }
+    .pc{
+        display: none;
+    }
+    .group_itemBox_user .txtOFproduct_user{
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .txtOFproduct_user span{
+        font-size: 14px;
     }
 
     .box_cart_searchs {

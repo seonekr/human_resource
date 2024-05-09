@@ -40,7 +40,7 @@
   width: 30px;
   margin: auto;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,7 @@
   }
 
   .input_wrap {
-    width: 90%;
+    width: 100%;
     display: flex;
     gap: 1rem;
   }

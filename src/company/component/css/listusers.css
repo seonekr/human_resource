@@ -1,0 +1,280 @@
+.continer-listuser {
+  width: 65%;
+  margin: 8rem auto 0 auto;
+  border-radius: 5px;
+}
+.contian-box-listuser {
+  margin: auto;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 25px 25px 25px;
+  margin-top: 25px;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+}
+
+.box-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+.box-sendmail {
+  padding: 0;
+}
+.btn-sendmail {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #fa442c;
+}
+.btn-sendmail p {
+  font-size: 15px;
+  color: #ffffff;
+}
+.box-list-user {
+  display: grid;
+}
+
+/* ============ box_users_user =========== */
+
+.box_list1 {
+  width: 100%;
+  height: 90px;
+  margin: 0.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+.box_list1:hover {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+.box_txtandiamge {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.box_user_text1 p {
+  padding: 3px;
+}
+
+.container_chat_name {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.box_img img {
+  width: 70px;
+  height: 70px;
+}
+.btn_delete_user {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: #fa442c;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+}
+/* Prev */
+.box_container_next_user {
+  display: flex;
+  gap: 1rem;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  bottom: 0;
+}
+
+.box_prev_left_user {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  gap: 0.3rem;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background: #fa442c;
+}
+.box_num_user {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.num_user {
+  width: 70px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+.box_prev_right_user {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  gap: 0.3rem;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background: #27a7ef;
+}
+@media screen and (max-width: 431px) {
+  .continer-listuser {
+    width: 100%;
+    margin: 8rem auto 0 auto;
+    border-radius: 5px;
+    
+    
+  }
+  .contian-box-listuser {
+    margin: auto;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 25px 15px 25px;
+    margin-top: 25px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
+  }
+  .btn-sendmail {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #fa442c;
+  }
+  .btn-sendmail p {
+    font-size: 15px;
+    color: #ffffff;
+  }
+  .box-list-user {
+    display: grid;
+  }
+
+  /* ============ box_users_user =========== */
+
+  .box_list1 {
+    width: 100%;
+    height: 90px;
+    margin: 0.2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .box_txtandiamge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .box_user_text1 p {
+    padding: 3px;
+    font-size: 14px;
+  }
+
+  .container_chat_name {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .box_img img {
+    width: 70px;
+    height: 70px;
+   margin-left: -15px;
+  }
+  .btn_delete_user {
+    margin-right: -20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background: #fa442c;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 20px;
+  }
+  /* Prev */
+  .box_container_next_user {
+    display: flex;
+    gap: 1rem;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    bottom: 0;
+  }
+
+  .box_prev_left_user {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    gap: 0.3rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #fa442c;
+  }
+  .box_num_user {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .num_user {
+    width: 70px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #444;
+  }
+  .box_prev_right_user {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    gap: 0.3rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #27a7ef;
+  }
+}

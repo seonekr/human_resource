@@ -2,7 +2,7 @@ import "./menu.css"
 import 'boxicons'
 import { Link } from "react-router-dom";
 import QrdownloadApp from '../../../img/QrdownloadApp.png'
-import {FaCartShopping} from "react-icons/fa6";
+import {FaCartShopping, FaBold} from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsShop, BsClipboardCheck  } from "react-icons/bs";
 import { GrContact } from "react-icons/gr";
@@ -15,36 +15,32 @@ const Menu = () => {
             <footer className="footerBox">
                 <div className="footer_Container">
                     <div className="footconentBox">
-                        <h3 className="txt_footHead">회사 소개</h3>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
+                        <h3 className="txt_footHead">About Us</h3>
+                        <p><Link to="/" className="txt_pFoot">Huma_resource</Link></p>
+                        
                     </div>
 
                     <div className="footconentBox">
-                        <h3 className="txt_footHead">문의하기</h3>
-                        <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
+                        <h3 className="txt_footHead">Contact us</h3>
                         <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
                         <p><Link to="/" className="txt_pFoot">Email: humascot@gmail.com</Link></p>
                         <p><Link to="/" className="txt_pFoot">Address: Asean mall</Link></p>
                     </div>
                     <div className="footconentBox3">
-                        <h3 className="txt_footHead txh3">앱 다운로드</h3>
+                        <h3 className="txt_footHead txh3">Download the app</h3>
                         <div className="foot_contentItem">
                             <img src={QrdownloadApp} alt="QrdownloadApp" />
                             <div className="guop_btndownl">
-                                <Link to="/" className="footLink">플레이 스토어</Link>
-                                <Link to="/" className="footLink">앱 스토어</Link>
+                                <Link to="/" className="footLink">Play store</Link>
+                                <Link to="/" className="footLink">App store</Link>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr className="hrfoo"/>
                 <p className="lastFooter">
-                    저작권 &#169;
-                     TACA 2023
+                    Copyright &#169;
+                    Huma_resource 2024
                 </p>
             </footer>
 
@@ -55,7 +51,10 @@ const Menu = () => {
                     <span className="iconMenuSpan"><HiOutlineHome/></span><span>Home</span>
                 </Link>
                 <Link to="/text" className="box-menu">
-                    <span className="iconMenuSpan"><BsShop /></span><span>Induction</span>
+                    <span className="iconMenuSpan"><FaBold /></span><span>About</span>
+                </Link>
+                <Link to="/contact" className="box-menu">
+                    <span className="iconMenuSpan"><GrContact /></span><span>Contact</span>
                 </Link>
                 <Link to="/text" className="box-menu">
                     <span className="iconMenuSpan"><GrContact /></span><span>Induction</span>

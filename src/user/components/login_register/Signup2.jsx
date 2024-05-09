@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-// import "./userRegister.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import axios from "axios";
 import Header from "../header/Header";
-import Menu from "../menu/Menu";
 
 const Signup2 = () => {
   const locataion = useLocation();
@@ -39,6 +37,7 @@ const Signup2 = () => {
       [name]: value,
     });
   }
+
 
   const SignUp = () => {
     let config = {
@@ -94,13 +93,17 @@ const Signup2 = () => {
 
   return (
     <>
-      <Header />
+    <Header/>
       <section>
         <div className="box_forgot">
+          {/* <Link to="/signup1" className="box_iconBack">
+            <MdArrowBack id="iconBack" />
+          </Link> */}
+
           {user_tyep == "1" ? (
-            <h2>User registration</h2>
+            <h2>User register</h2>
           ) : (
-            <h2>Company registration</h2>
+            <h2>Company register</h2>
           )}
 
           <div className="title">
@@ -161,7 +164,7 @@ const Signup2 = () => {
               name="code"
               onChange={onChange}
               value={data.code}
-              placeholder="Certication Number"
+              placeholder="Code (required)"
               required
             />
             {user_tyep == "1" && (
@@ -220,13 +223,6 @@ const Signup2 = () => {
                 />
                 <input
                   type="text"
-                  name="sub_address"
-                  placeholder="Detailed address (optional)"
-                  value={data.sub_address}
-                  onChange={onChange}
-                />
-                <input
-                  type="text"
                   name="phone"
                   placeholder="Phone number (optional)"
                   value={data.phone}
@@ -239,7 +235,6 @@ const Signup2 = () => {
                   value={data.company_number}
                   onChange={onChange}
                 />
-
                 <textarea
                   className="box_text"
                   name="introduce"
@@ -260,7 +255,6 @@ const Signup2 = () => {
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>
-      <Menu/>
     </>
   );
 };
