@@ -35,6 +35,17 @@ const ProductHome = () => {
 
   const recommendedItems = resume.filter((res) => res.is_recommend === true);
 
+  ////Activate
+  const [likedItems, setLikedItems] = useState([]);
+
+  const toggleLike = (index) => {
+    if (likedItems.includes(index)) {
+      setLikedItems(likedItems.filter((item) => item !== index));
+    } else {
+      setLikedItems([...likedItems, index]);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -88,7 +99,11 @@ const ProductHome = () => {
                 {res.skill.substring(0, 10)}...
               </p>
               <div className="btn_button_see">
-                <FaRegHeart id="icon_FaRegHeart" />
+                <FaRegHeart
+                  id="icon_FaRegHeart"
+                  className={likedItems.includes(index) ? "active" : ""}
+                  onClick={() => toggleLike(index)}
+                />
                 <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
                 </Link>
@@ -112,13 +127,26 @@ const ProductHome = () => {
                   <img src={res.image} alt="image" />
                 </div>
                 <div className="txtOFproduct_user">
-                  <p><span>Name:</span> {res.name}</p>
-                  <p ><span >Age:</span> {res.age}</p>
-                  <p className="txt_span"><span >Major:</span> {res.major}</p>
-                  <p className="txt_span"><span >Skills:</span> {res.skill.substring(0, 30)}...</p>
+                  <p>
+                    <span>Name:</span> {res.name}
+                  </p>
+                  <p>
+                    <span>Age:</span> {res.age}
+                  </p>
+                  <p className="txt_span">
+                    <span>Major:</span> {res.major}
+                  </p>
+                  <p className="txt_span">
+                    <span>Skills:</span> {res.skill.substring(0, 30)}...
+                  </p>
                 </div>
                 <div className="btn_button_see_user">
-                  <FaRegHeart id="icon_FaRegHeart" />
+                  <FaRegHeart
+                    id="icon_FaRegHeart"
+                    className={likedItems.includes(index) ? "active" : ""}
+                    onClick={() => toggleLike(index)}
+                  />
+                  {/* <FaRegHeart id="icon_FaRegHeart" /> */}
                   <Link to={`/productdetails/${res.id}`} className="button_see">
                     View
                   </Link>
