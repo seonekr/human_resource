@@ -4,36 +4,59 @@
     box-sizing: border-box;
 }
 
+h2, h3 {
+    font-family: 'Saysettha OT';
+}
+
 .about-us {
     width: 100%;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    gap: 2rem;
-}
-
-.box-1 {
     padding: 1rem;
-    width: 100%;
-    background: #fff;
     overflow: auto;
-    margin-bottom: 2rem;
 }
 
+.box {
+    overflow: auto;
+    margin: 1rem auto;
+    background-color: #fff;
+    
+}
 
 .pic {
-    width: 35%;
-    float: left;
-    margin-right: 20px;
+    width: 30%;
 }
 
 .pic img {
     width: 100%;
 }
 
-.text {
-    width: 90%;
-    word-wrap: break-word;
-    /* flex-grow: 1; */
+._1 .pic {
+    float: left;
+    margin-right: 20px;
 }
+
+._2 .pic {
+    float: right;
+    margin-left: 20px;
+}
+
+.text {
+    font-size: 24px;
+    font-family: 'Saysettha OT';
+    text-align: justify;
+    text-indent: 50px;
+    padding: 0 1rem;
+}
+
+.recruiting {
+    padding: 0 1rem;
+}
+
+.recruiting ul, li{
+    color: red;
+    font-family: "Saysettha OT";
+}
+
