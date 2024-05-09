@@ -3,8 +3,8 @@ import "./css/header.css";
 import { FaMagnifyingGlass, FaCartShopping, FaRegUser } from "react-icons/fa6";
 import { BiLogIn } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "../../../img/Logo.png";
-import storename from "../../../img/storename.png";
+import logo_resoure from "../../../img/logo_resoure.jpeg";
+import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
 import { AiFillDashboard } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
@@ -56,12 +56,12 @@ const Header = () => {
             <div className="headMenu">
               <div className="storename">
                 <Link to="/">
-                  <img src={storename} alt="Logo" />
+                  <img src={logo_resoure2} alt="Logo" />
                 </Link>
               </div>
               <div className="logo1">
                 <Link to="/">
-                  <img src={Logo} alt="Logo" />
+                  <img src={logo_resoure} alt="Logo" />
                 </Link>
               </div>
 
@@ -119,16 +119,16 @@ const Header = () => {
                     <FaRegHeart className="head_colorr" />
                   </Link>
                 </div>
-                <div>
-                  <Link to="/more">
+                {/* <div>
+                  <Link to="#">
                     <FaRegUser className="head_colorr" />
                   </Link>
                 </div>
                 <div>
-                  <Link to="/dashboard">
+                  <Link to="#">
                     <AiFillDashboard className="head_colorr" />
                   </Link>
-                </div>
+                </div> */}
                 <div>
                   <Link to="/login" className="head_colorr">
                     <p>Login</p>
