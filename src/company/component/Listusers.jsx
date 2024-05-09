@@ -21,7 +21,6 @@ const Listusers = () => {
   }, [favorite]);
 
   const unfavorite = (id) => {
-    alert(id);
     set_favorite(favorite.filter((item) => !(item.id === id)));
   };
 

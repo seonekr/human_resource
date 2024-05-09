@@ -35,16 +35,6 @@ const ProductHome = () => {
 
   const recommendedItems = resume.filter((res) => res.is_recommend === true);
 
-<<<<<<< Updated upstream
-  ////Activate
-  const [likedItems, setLikedItems] = useState([]);
-
-  const toggleLike = (index) => {
-    if (likedItems.includes(index)) {
-      setLikedItems(likedItems.filter((item) => item !== index));
-    } else {
-      setLikedItems([...likedItems, index]);
-=======
   // Cart management
   const [favorite, set_favorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
@@ -65,7 +55,6 @@ const ProductHome = () => {
       set_favorite([...favorite, { ...resume }]);
 
       alert("Success.");
->>>>>>> Stashed changes
     }
   };
 
@@ -124,8 +113,9 @@ const ProductHome = () => {
               <div className="btn_button_see">
                 <FaRegHeart
                   id="icon_FaRegHeart"
-                  className={likedItems.includes(index) ? "active" : ""}
-                  onClick={() => toggleLike(index)}
+                  onClick={() => {
+                    AddToFavorite(res);
+                  }}
                 />
                 <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
@@ -166,17 +156,10 @@ const ProductHome = () => {
                 <div className="btn_button_see_user">
                   <FaRegHeart
                     id="icon_FaRegHeart"
-<<<<<<< Updated upstream
-                    className={likedItems.includes(index) ? "active" : ""}
-                    onClick={() => toggleLike(index)}
-                  />
-                  {/* <FaRegHeart id="icon_FaRegHeart" /> */}
-=======
                     onClick={() => {
                       AddToFavorite(res);
                     }}
                   />
->>>>>>> Stashed changes
                   <Link to={`/productdetails/${res.id}`} className="button_see">
                     View
                   </Link>
@@ -212,4 +195,3 @@ const ProductHome = () => {
 };
 
 export default ProductHome;
-
