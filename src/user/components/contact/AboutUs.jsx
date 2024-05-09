@@ -11,35 +11,27 @@ const AboutUs = () => {
           <img src={grl} alt="" />
         </div>
         <p class="text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-          repudiandae aut vero laboriosam accusantium esse ipsa nulla molestias
-          facilis tempore. Culpa nam aut officiis totam quasi inventore ullam
-          dolorum? Eum? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Vel repudiandae aut vero laboriosam accusantium esse ipsa nulla
-          molestias facilis tempore. Culpa nam aut officiis Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Vel repudiandae aut vero
-          laboriosam accusantium esse ipsa nulla molestias facilis tempore.
-          Culpa nam aut officiis totam quasi inventore ullam dolorum? Eum? Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae aut
-          vero laboriosam accusantium esse ipsa nulla molestias facilis tempore.
-          Culpa nam aut officiis Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Vel repudiandae aut vero laboriosam accusantium esse
-          ipsa nulla molestias facilis tempore. Culpa nam aut officiis totam
-          quasi inventore ullam dolorum? Eum? Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Vel repudiandae aut vero laboriosam
-          accusantium esse ipsa nulla molestias facilis tempore. Culpa nam aut
-          officiis Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-          repudiandae aut vero laboriosam accusantium esse ipsa nulla molestias
-          facilis tempore. Culpa nam aut officiis totam quasi inventore ullam
-          dolorum? Eum? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Vel repudiandae aut vero laboriosam accusantium esse ipsa nulla
-          molestias facilis tempore. Culpa nam aut officiis Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Vel repudiandae aut vero
-          laboriosam accusantium esse ipsa nulla molestias facilis tempore.
-          Culpa nam aut officiis totam quasi inventore ullam dolorum? Eum? Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae aut
-          vero laboriosam accusantium esse ipsa nulla molestias facilis tempore.
-          Culpa nam aut officiis
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+          magni, commodi animi placeat necessitatibus tempora, quibusdam error
+          nihil corrupti iste nostrum autem eveniet eum, obcaecati ut provident
+          atque hic. Error.lore Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Ipsam alias reprehenderit dolorum dolor eos eius ea,
+          soluta iste, hic labore eum inventore voluptate quia dolores
+          accusamus. Praesentium totam molestiae dignissimos.
+        </p>
+      </div>
+      <div class="box-1">
+        <div class="pic">
+          <img src={grl} alt="" />
+        </div>
+        <p class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+          magni, commodi animi placeat necessitatibus tempora, quibusdam error
+          nihil corrupti iste nostrum autem eveniet eum, obcaecati ut provident
+          atque hic. Error.lore Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Ipsam alias reprehenderit dolorum dolor eos eius ea,
+          soluta iste, hic labore eum inventore voluptate quia dolores
+          accusamus. Praesentium totam molestiae dignissimos.
         </p>
       </div>
     </div>
