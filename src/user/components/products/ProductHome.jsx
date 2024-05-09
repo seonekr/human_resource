@@ -8,6 +8,8 @@ import { FaRegHeart } from "react-icons/fa";
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
+    ////Activate
+    const [likedItems, setLikedItems] = useState([]);
 
   useEffect(() => {
     getResume();
@@ -64,16 +66,9 @@ const ProductHome = () => {
     }
   };
 
-  ////Activate
-  const [likedItems, setLikedItems] = useState([]);
 
-  // const toggleLike = (index) => {
-  //   if (likedItems.includes(index)) {
-  //     setLikedItems(likedItems.filter((item) => item !== index));
-  //   } else {
-  //     setLikedItems([...likedItems, index]);
-  //   }
-  // };
+
+ 
   return (
     <div>
       <Header />
@@ -134,9 +129,8 @@ const ProductHome = () => {
                     AddToFavorite(res, index);
                   }}
                   
-                  // onClick={() => toggleLike(index)}
                 />
-                /
+                
                 <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
                 </Link>
