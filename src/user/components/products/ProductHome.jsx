@@ -45,7 +45,7 @@ const ProductHome = () => {
     localStorage.setItem("favorite", JSON.stringify(favorite));
   }, [favorite]);
 
-  const AddToFavorite = (resume) => {
+  const AddToFavorite = (resume, index) => {
     const existingResume = favorite.find((item) => item.id === resume.id);
 
     if (existingResume) {
@@ -56,8 +56,24 @@ const ProductHome = () => {
 
       alert("Success.");
     }
+
+    if (likedItems.includes(index)) {
+      setLikedItems(likedItems.filter((item) => item !== index));
+    } else {
+      setLikedItems([...likedItems, index]);
+    }
   };
 
+  ////Activate
+  const [likedItems, setLikedItems] = useState([]);
+
+  // const toggleLike = (index) => {
+  //   if (likedItems.includes(index)) {
+  //     setLikedItems(likedItems.filter((item) => item !== index));
+  //   } else {
+  //     setLikedItems([...likedItems, index]);
+  //   }
+  // };
   return (
     <div>
       <Header />
@@ -112,11 +128,15 @@ const ProductHome = () => {
               </p>
               <div className="btn_button_see">
                 <FaRegHeart
-                  id="icon_FaRegHeart"
+                  id="icon_FaRegHearts"
+                  className={likedItems.includes(index) ? "active" : ""}
                   onClick={() => {
-                    AddToFavorite(res);
+                    AddToFavorite(res, index);
                   }}
+                  
+                  // onClick={() => toggleLike(index)}
                 />
+                /
                 <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
                 </Link>
@@ -156,8 +176,9 @@ const ProductHome = () => {
                 <div className="btn_button_see_user">
                   <FaRegHeart
                     id="icon_FaRegHeart"
+                    className={likedItems.includes(index) ? "active" : ""}
                     onClick={() => {
-                      AddToFavorite(res);
+                      AddToFavorite(res, index);
                     }}
                   />
                   <Link to={`/productdetails/${res.id}`} className="button_see">
