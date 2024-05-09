@@ -14,23 +14,27 @@ h2, h3 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     overflow: auto;
 }
 
 .box {
     overflow: auto;
     margin: 1rem auto;
-    background-color: #fff;
+    background-color: #ffffffaa;
     
 }
 
 .pic {
-    width: 30%;
+    width: 700px;
+    height: 350px;
+    overflow: hidden;
 }
 
 .pic img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 ._1 .pic {
@@ -55,8 +59,12 @@ h2, h3 {
     padding: 0 1rem;
 }
 
-.recruiting ul, li{
+ul {
+    padding: 0 1rem;
     color: red;
+}
+
+ul li{
     font-family: "Saysettha OT";
 }
 
