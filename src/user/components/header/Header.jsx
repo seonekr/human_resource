@@ -109,6 +109,11 @@ const Header = () => {
                         CV
                       </Link>
                     </div>
+                    <div>
+                      <Link to="/list_users" className="head_colorr">
+                        <FaRegHeart/>
+                      </Link>
+                    </div>
 
                     <div>
                       <Link to="/more">
