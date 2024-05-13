@@ -5,45 +5,43 @@ import axios from "axios";
 import Header from "../header/Header";
 
 const Signup2 = () => {
-  const locataion = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
-  const [errorText, set_errorText] = useState("");
-  const user_tyep = locataion.state;
+  const [errorText, setErrorText] = useState("");
+  const userType = location.state;
 
-  const [timer, set_timer] = useState({
+  const [timer, setTimer] = useState({
     minute: 0,
     second: 0,
   });
   const { minute, second } = timer;
-  const [data, set_data] = useState({
+  const [data, setData] = useState({
     category: "",
     email: "",
     code: "",
-    nickname: "",
     password: "",
     password2: "",
     name: "",
-    phone: "",
-    address: "",
-    sub_address: "",
     company_number: "",
+    address: "",
+    phone: "",
     introduce: "",
   });
 
-  function onChange(e) {
+  const onChange = (e) => {
     const { name, value } = e.target;
-    set_data({
+    setData({
       ...data,
       [name]: value,
     });
-  }
+  };
 
-
-  const SignUp = () => {
-    let config = {
+  const signUp = (e) => {
+    e.preventDefault();
+    const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/user/signup",
+      url: `${import.meta.env.VITE_API}/user/signup`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,23 +52,17 @@ const Signup2 = () => {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        navigate("/loginuser");
-        return;
+        navigate("/login");
       })
       .catch((err) => {
-        if (err.response && err.response.data.message) {
-          set_errorText(err.response.data.message);
-        } else {
-          set_errorText("This is an unknown error.");
-        }
+        setErrorText(err.response?.data?.message || "This is an unknown error.");
       });
-    console.log(data);
   };
 
   useEffect(() => {
     const countdown = setInterval(() => {
       if (second > 0) {
-        set_timer({
+        setTimer({
           ...timer,
           second: second - 1,
         });
@@ -79,7 +71,7 @@ const Signup2 = () => {
         if (minute === 0) {
           clearInterval(countdown);
         } else {
-          set_timer({
+          setTimer({
             minute: minute - 1,
             second: 59,
           });
@@ -93,23 +85,16 @@ const Signup2 = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <section>
         <div className="box_forgot">
-          {/* <Link to="/signup1" className="box_iconBack">
-            <MdArrowBack id="iconBack" />
-          </Link> */}
-
-          {user_tyep == "1" ? (
-            <h2>User register</h2>
-          ) : (
-            <h2>Company register</h2>
-          )}
+          {userType === "1" && <h2>User register</h2>}
+          {userType === "2" && <h2>Company register</h2>}
 
           <div className="title">
             You are in the process of signing up as a user!
           </div>
-          <form className="container_form_user">
+          <form className="container_form_user" onSubmit={signUp}>
             <div className="box_title">Enter basic information</div>
             <div className="container_form_user2">
               <input
@@ -129,11 +114,11 @@ const Signup2 = () => {
                 <div
                   onClick={() => {
                     if (data.email.length > 0) {
-                      set_timer({ minute: 3, second: 0 });
-                      let config = {
+                      setTimer({ minute: 3, second: 0 });
+                      const config = {
                         method: "post",
                         maxBodyLength: Infinity,
-                        url: import.meta.env.VITE_API + "/user/send-email",
+                        url: `${import.meta.env.VITE_API}/user/send-email`,
                         headers: {
                           "Content-Type": "application/json",
                         },
@@ -149,7 +134,7 @@ const Signup2 = () => {
                           console.log(error);
                         });
                     } else {
-                      set_errorText("Please enter your e-mail.");
+                      setErrorText("Please enter your e-mail.");
                     }
                   }}
                   id="email_send_btn"
@@ -167,13 +152,13 @@ const Signup2 = () => {
               placeholder="Code (required)"
               required
             />
-            {user_tyep == "1" && (
+            {userType === "1" && (
               <input
                 type="text"
-                name="nickname"
+                name="name"
                 onChange={onChange}
-                value={data.nickname}
-                placeholder="Nickname (maximun 10 characters)"
+                value={data.name}
+                placeholder="Nickname (maximum 10 characters)"
                 required
               />
             )}
@@ -183,7 +168,7 @@ const Signup2 = () => {
               name="password"
               onChange={onChange}
               value={data.password}
-              placeholder="passwords"
+              placeholder="Password"
               required
             />
             <input
@@ -194,13 +179,13 @@ const Signup2 = () => {
               placeholder="Confirm password"
               required
             />
-            {user_tyep == "2" && (
+            {userType === "2" && (
               <>
                 <input
                   type="text"
                   name="category"
-                  placeholder="category"
-                  value={(data.category = "2")}
+                  placeholder="Category"
+                  value={data.category = "2"}
                   onChange={onChange}
                   required
                   hidden
@@ -216,7 +201,7 @@ const Signup2 = () => {
                 <input
                   type="text"
                   name="address"
-                  placeholder="Address (required) "
+                  placeholder="Address (required)"
                   value={data.address}
                   onChange={onChange}
                   required
@@ -245,12 +230,8 @@ const Signup2 = () => {
                 ></textarea>
               </>
             )}
-            {/* {!passwordMatch && (
-            <p className="error-text">Passwords do not match.</p>
-          )} */}
-            <button type="button" onClick={SignUp}>
-              Register
-            </button>
+
+            <button type="submit">Register</button>
           </form>
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>

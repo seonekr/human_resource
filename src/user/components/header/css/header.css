@@ -33,6 +33,7 @@
 .logo1{
     width: 50px;
     object-fit: cover;
+    display: none;
 }
 .logo1 img{
     width: 100%;
@@ -42,7 +43,7 @@
 
 .icon_account_login{
     display: flex;
-    gap: 3rem;
+    gap: 1.8rem;
     align-items: center;
 }
 
@@ -131,7 +132,7 @@
 .head_colorr p{
     display: flex;
     align-items: center;
-    width: 70px;
+    /* width: 70px; */
 }
 
 .iconSearch {
@@ -243,8 +244,12 @@
     .storename{
         display: none;
     }
+    .logo1{
+        display: flex;
+        align-items: center;
+    }
     .logo1 img{
-        width: 45px;
+        width: 50px;
         height: 45px;
     }
 }
@@ -287,6 +292,7 @@
     }
 
     .headMenu .logo1 img {
+        display: flex;
         width: 80%;
     }
     .head_colorr p{

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./css/header.css";
 import { FaMagnifyingGlass, FaCartShopping, FaRegUser } from "react-icons/fa6";
 import { BiLogIn } from "react-icons/bi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo_resoure from "../../../img/logo_resoure.jpeg";
 import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
 import { AiFillDashboard } from "react-icons/ai";
@@ -10,29 +10,33 @@ import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 
 const Header = () => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  const storage = JSON.parse(window.localStorage.getItem("user"));
+  const navigate = useNavigate();
 
-  const [search, set_search] = useState("");
-
-
-  console.log("Search....", search)
+  var store_id = false;
+  if (localStorage.getItem("user")) {
+    store_id = JSON.parse(window.localStorage.getItem("user")).store_id;
+  }
 
   const menuItems = [
     { label: "Home", path: "/" },
     { label: "About us", path: "/about" },
   ];
 
-  function OnSearch(e) {
-    e.preventDefault();
+  useEffect(() => {
     let data = JSON.stringify({
-      search: search,
+      token: token,
     });
 
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/search",
+      url: import.meta.env.VITE_API + "/user/check-token",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       data: data,
     };
@@ -40,13 +44,19 @@ const Header = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        if (response.data.result != "success") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          navigate("/");
+          return;
+        }
       })
       .catch((error) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         console.log(error);
       });
-  }
-
+  }, [token]);
 
   return (
     <>
@@ -84,57 +94,47 @@ const Header = () => {
             </div>
 
             <div className="ulHead_box">
-              <form className="searchBarForm" onSubmit={OnSearch}>
-                <input
-                  id="search"
-                  type="text"
-                  value={search}
-                  placeholder="Search..."
-                  onChange={(e) => {
-                    set_search(e.target.value);
-                  }}
-                />
+              <form className="searchBarForm">
+                <input id="search" type="text" placeholder="Search..." />
                 <button type="submit">
                   <FaMagnifyingGlass className="iconSearch" />
                 </button>
               </form>
 
-              {/* <form  className="searchBarForm">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                />
-                <button type="submit">
-                  <FaMagnifyingGlass className="iconSearch" />
-                </button>
-              </form> */}
               <div className="icon_account_login">
-                <div>
-                  <Link to="/add_resume" className="head_colorr">
-                    CV
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/list_users">
-                    <FaRegHeart className="head_colorr" />
-                  </Link>
-                </div>
-                {/* <div>
-                  <Link to="#">
-                    <FaRegUser className="head_colorr" />
-                  </Link>
-                </div>
-                <div>
-                  <Link to="#">
-                    <AiFillDashboard className="head_colorr" />
-                  </Link>
-                </div> */}
-                <div>
-                  <Link to="/login" className="head_colorr">
-                    <p>Login</p>
-                    <BiLogIn className="login" />
-                  </Link>
-                </div>
+                {user && (
+                  <div className="icon_account_login">
+                    <div>
+                      <Link to="/add_resume" className="head_colorr">
+                        CV
+                      </Link>
+                    </div>
+
+                    <div>
+                      <Link to="/more">
+                        <FaRegUser className="head_colorr" />
+                      </Link>
+                    </div>
+                    {storage.is_admin === true && (
+                      <div>
+                        <Link to="#">
+                          <AiFillDashboard className="head_colorr" />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {!user && (
+                  <div className="icon_account_login">
+                    <div>
+                      <Link to="/login" className="head_colorr">
+                        <p>Login</p>
+                        <BiLogIn className="login" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
