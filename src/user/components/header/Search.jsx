@@ -1,4 +1,4 @@
-import "./css/productHome.css";
+import "../products/css/productHome.css";
 import Header from "../header/Header";
 import { Link } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
@@ -6,36 +6,37 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
-const ProductHome = () => {
-  const [resume, set_resume] = useState([]);
-  ////Activate
-  const [likedItems, setLikedItems] = useState([]);
+const Search = () => {
+  // Manage search fucntion
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchParam = urlParams.get("search");
+  const [appState, setAppState] = useState({
+    search: "",
+    result: [],
+  });
 
   useEffect(() => {
-    getResume();
-  }, []);
-
-  const getResume = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/list/",
+      url: import.meta.env.VITE_API + "/resume/list/?search=" + searchParam,
+      headers: {},
     };
 
     axios
       .request(config)
       .then((response) => {
         // console.log(JSON.stringify(response.data));
-        set_resume(response.data);
+        const allPosts = response.data;
+        setAppState(allPosts);
       })
       .catch((error) => {
         console.log(error);
       });
-  };
+  }, [appState]);
 
-  console.log("My resume: ", resume);
-
-  const recommendedItems = resume.filter((res) => res.is_recommend === true);
+  ////Activate
+  const [likedItems, setLikedItems] = useState([]);
 
   // Cart management
   const [favorite, set_favorite] = useState(() => {
@@ -91,8 +92,9 @@ const ProductHome = () => {
             </select>
           </div>
         </div>
-        {resume.length > 0 &&
-          resume.map(
+
+        {appState.length > 0 &&
+          appState.map(
             (res, index) =>
               res.is_recommend == true && (
                 <div className="productHead_content">
@@ -104,8 +106,8 @@ const ProductHome = () => {
           )}
 
         <div className="contentImageProducts1">
-          {resume.length > 0 &&
-            resume.map(
+          {appState.length > 0 &&
+            appState.map(
               (res, index) =>
                 res.is_recommend == true && (
                   <div className="group_itemBox" key={index}>
@@ -114,6 +116,7 @@ const ProductHome = () => {
                         <img src={res.image} alt="image" />
                       </div>
                       <div className="txtOFproduct">
+                        <h4>Name: {res.is_recommend}</h4>
                         <h4>Name: {res.name}</h4>
                         <p>Age: {res.age}</p>
                         <p>Major: {res.major}</p>
@@ -140,8 +143,38 @@ const ProductHome = () => {
                       </Link>
                     </div>
                   </div>
-                  // </Link>
                 )
+              // <div className="group_itemBox" key={index}>
+              //   <div className="containner_box_image">
+              //     <div className="box_image">
+              //       <img src={res.image} alt="image" />
+              //     </div>
+              //     <div className="txtOFproduct">
+              //       <h4>Name: {res.is_recommend}</h4>
+              //       <h4>Name: {res.name}</h4>
+              //       <p>Age: {res.age}</p>
+              //       <p>Major: {res.major}</p>
+              //     </div>
+              //   </div>
+              //   <p>
+              //     <span>Skill: </span>
+              //     {res.skill.substring(0, 10)}...
+              //   </p>
+              //   <div className="btn_button_see">
+              //     <FaRegHeart
+              //       id="icon_FaRegHearts"
+              //       className={likedItems.includes(index) ? "active" : ""}
+              //       onClick={() => {
+              //         AddToFavorite(res, index);
+              //       }}
+              //     />
+
+              //     <Link to={`/productdetails/${res.id}`} className="button_see">
+              //       View
+              //     </Link>
+              //   </div>
+              // </div>
+              // </Link>
             )}
         </div>
 
@@ -152,41 +185,45 @@ const ProductHome = () => {
         </div>
 
         <div className="contentImageUser">
-          {resume.map((res, index) => (
-            <div className="group_itemBox_user" key={index}>
-              <div className="containner_box_image_user">
-                <div className="box_image_user">
-                  <img src={res.image} alt="image" />
-                </div>
-                <div className="txtOFproduct_user">
-                  <p>
-                    <span>Name:</span> {res.name}
-                  </p>
-                  <p>
-                    <span>Age:</span> {res.age}
-                  </p>
-                  <p className="txt_span">
-                    <span>Major:</span> {res.major}
-                  </p>
-                  <p className="txt_span">
-                    <span>Skills:</span> {res.skill.substring(0, 30)}...
-                  </p>
-                </div>
-                <div className="btn_button_see_user">
-                  <FaRegHeart
-                    id="icon_FaRegHeart"
-                    className={likedItems.includes(index) ? "active" : ""}
-                    onClick={() => {
-                      AddToFavorite(res, index);
-                    }}
-                  />
-                  <Link to={`/productdetails/${res.id}`} className="button_see">
-                    View
-                  </Link>
+          {appState.length > 0 &&
+            appState.map((res, index) => (
+              <div className="group_itemBox_user" key={index}>
+                <div className="containner_box_image_user">
+                  <div className="box_image_user">
+                    <img src={res.image} alt="image" />
+                  </div>
+                  <div className="txtOFproduct_user">
+                    <p>
+                      <span>Name:</span> {res.name}
+                    </p>
+                    <p>
+                      <span>Age:</span> {res.age}
+                    </p>
+                    <p className="txt_span">
+                      <span>Major:</span> {res.major}
+                    </p>
+                    <p className="txt_span">
+                      <span>Skills:</span> {res.skill.substring(0, 30)}...
+                    </p>
+                  </div>
+                  <div className="btn_button_see_user">
+                    <FaRegHeart
+                      id="icon_FaRegHeart"
+                      className={likedItems.includes(index) ? "active" : ""}
+                      onClick={() => {
+                        AddToFavorite(res, index);
+                      }}
+                    />
+                    <Link
+                      to={`/productdetails/${res.id}`}
+                      className="button_see"
+                    >
+                      View
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="box_container_next_product">
@@ -213,5 +250,4 @@ const ProductHome = () => {
     </div>
   );
 };
-
-export default ProductHome;
+export default Search;

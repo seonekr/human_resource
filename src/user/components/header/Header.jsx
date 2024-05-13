@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/header.css";
 import { FaMagnifyingGlass, FaCartShopping, FaRegUser } from "react-icons/fa6";
 import { BiLogIn } from "react-icons/bi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo_resoure from "../../../img/logo_resoure.jpeg";
 import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
 import { AiFillDashboard } from "react-icons/ai";
@@ -10,11 +10,11 @@ import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 
 const Header = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchParam = urlParams.get("search");
 
-  const [search, set_search] = useState("");
-
-
-  console.log("Search....", search)
+  let navigate = useNavigate();
+  const [search, set_search] = useState(searchParam);
 
   const menuItems = [
     { label: "Home", path: "/" },
@@ -23,30 +23,12 @@ const Header = () => {
 
   function OnSearch(e) {
     e.preventDefault();
-    let data = JSON.stringify({
-      search: search,
+
+    navigate({
+      pathname: "/search/",
+      search: "?search=" + search,
     });
-
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/search",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
-
 
   return (
     <>
