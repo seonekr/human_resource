@@ -1,6 +1,6 @@
 import "./css/productHome.css";
 import Header from "../header/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -11,6 +11,22 @@ const ProductHome = () => {
   ////Activate
   const [likedItems, setLikedItems] = useState([]);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchParam = urlParams.get("search");
+
+  let navigate = useNavigate();
+  const [search, set_search] = useState(searchParam);
+
+  console.log("Search.............", search);
+
+  function OnSearch(e) {
+    e.preventDefault();
+
+    navigate({
+      pathname: "/search/",
+      search: "?search=" + search,
+    });
+  }
 
   useEffect(() => {
     getResume();
@@ -65,25 +81,55 @@ const ProductHome = () => {
     }
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(resume.length / itemsPerPage);
+  // ==== Paginator management ====
+  // Calculate index range for current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentGoods = resume.slice(startIndex, endIndex);
+
+  // Handle pagination click
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Handle next and previous page
+  const nextPage = () => {
+    setCurrentPage(currentPage === totalPages ? totalPages : currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
+  };
+
   return (
     <div>
       <Header />
       <section id="product1">
         <div className="box_TfiMenuAlt">
-          <select className="filter_position">
-            <option>More title job</option>
-            <option value="1">Tester</option>
-            <option value="2">UX/UI</option>
-            <option value="3">Data Analysis</option>
-            <option value="4">Software developer</option>
-          </select>
+          <form onSubmit={OnSearch}>
+            <select
+              className="filter_position"
+              onChange={(e) => {
+                set_search(e.target.value);
+              }}
+            >
+              <option>More title job</option>
+              <option value={search}>Tester</option>
+              <option value={search}>UX/UI</option>
+              <option value={search}>Data Analysis</option>
+              <option value={search}>Software developer</option>
+            </select>
+          </form>
         </div>
 
         {resume.length > 0 &&
           resume.map(
             (res, index) =>
               res.is_recommend == true && (
-                <div className="productHead_content">
+                <div className="productHead_content" key={index}>
                   <h1 className="htxthead">
                     <span className="spennofStyle"></span>Suggest
                   </h1>
@@ -140,7 +186,7 @@ const ProductHome = () => {
         </div>
 
         <div className="contentImageUser">
-          {resume.map((res, index) => (
+          {currentGoods.map((res, index) => (
             <div className="group_itemBox_user" key={index}>
               <div className="containner_box_image_user">
                 <div className="box_image_user">
@@ -177,24 +223,34 @@ const ProductHome = () => {
           ))}
         </div>
 
+        {/* Render pagination */}
         <div className="box_container_next_product">
-          <button className="box_prev_left_product">
-            <AiOutlineLeft id="" />
-            <p>Prev</p>
+          <button
+            className="box_prev_left_product"
+            disabled={currentPage === 1}
+            onClick={prevPage}
+          >
+            Prev
           </button>
-
-          <div className="box_num_product">
-            <div className="num_admin_product">
-              <p>1</p>
-            </div>
-            <div className="num_admin_product">
-              <p>2</p>
-            </div>
-          </div>
-
-          <button className="box_prev_right_product">
-            <p>Next</p>
-            <AiOutlineRight id="" />
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            (page) => (
+              <div className="box_num_product">
+                <button
+                  key={page}
+                  className="num_admin_product"
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </button>
+              </div>
+            )
+          )}
+          <button
+            className="box_prev_right_product"
+            disabled={currentPage === totalPages}
+            onClick={nextPage}
+          >
+            Next
           </button>
         </div>
       </section>

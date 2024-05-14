@@ -26,6 +26,30 @@ const Listusers = () => {
 
   console.log(favorite);
 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(favorite.length / itemsPerPage);
+  // ==== Paginator management ====
+  // Calculate index range for current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentGoods = favorite.slice(startIndex, endIndex);
+
+  // Handle pagination click
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Handle next and previous page
+  const nextPage = () => {
+    setCurrentPage(currentPage === totalPages ? totalPages : currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
+  };
+
   return (
     <>
       <Header />
@@ -43,10 +67,10 @@ const Listusers = () => {
             </div>
           </div>
           <div className="box-list-user">
-            {favorite.length === 0 ? (
+            {currentGoods.length === 0 ? (
               <p className="no-reviews-message">No Resume</p>
             ) : (
-              favorite.map((resume) => (
+              currentGoods.map((resume) => (
                 <div className="box_list1">
                   <div className="box_txtandiamge">
                     <div className="box_img">
@@ -66,7 +90,8 @@ const Listusers = () => {
               ))
             )}
           </div>
-          <div className="box_container_next_user">
+
+          {/* <div className="box_container_next_user">
             <button className="box_prev_left_user">
               <AiOutlineLeft id="" />
               <p>Prev</p>
@@ -84,6 +109,37 @@ const Listusers = () => {
             <button className="box_prev_right_user">
               <p>Next</p>
               <AiOutlineRight id="" />
+            </button>
+          </div> */}
+
+          {/* Render pagination */}
+          <div className="box_container_next_product">
+            <button
+              className="box_prev_left_product"
+              disabled={currentPage === 1}
+              onClick={prevPage}
+            >
+              Prev
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <div className="box_num_product">
+                  <button
+                    key={page}
+                    className="num_admin_product"
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </button>
+                </div>
+              )
+            )}
+            <button
+              className="box_prev_right_product"
+              disabled={currentPage === totalPages}
+              onClick={nextPage}
+            >
+              Next
             </button>
           </div>
         </div>
