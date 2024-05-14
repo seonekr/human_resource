@@ -207,7 +207,7 @@ const Search = () => {
               (page) => (
                 <div className="box_num_product" key={page}>
                   <button
-                    className="num_admin_product"
+                    className={`num_admin_product ${currentPage === page ? 'active' : ''}`}
                     onClick={() => handlePageChange(page)}
                   >
                     {page}

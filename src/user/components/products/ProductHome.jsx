@@ -237,8 +237,7 @@ const ProductHome = () => {
               (page) => (
                 <div className="box_num_product">
                   <button
-                    key={page}
-                    className="num_admin_product"
+                    className={`num_admin_product ${currentPage === page ? 'active' : ''}`}
                     onClick={() => handlePageChange(page)}
                   >
                     {page}
