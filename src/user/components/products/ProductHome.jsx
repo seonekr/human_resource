@@ -82,12 +82,11 @@ const ProductHome = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
-  const totalPages = Math.ceil(resume.length / itemsPerPage);
+  const totalPages = Math.ceil(resume.length / 4);
   // ==== Paginator management ====
   // Calculate index range for current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const startIndex = (currentPage - 1) * 4;
+  const endIndex = startIndex + 4;
   const currentGoods = resume.slice(startIndex, endIndex);
 
   // Handle pagination click
@@ -224,35 +223,38 @@ const ProductHome = () => {
         </div>
 
         {/* Render pagination */}
-        <div className="box_container_next_product">
-          <button
-            className="box_prev_left_product"
-            disabled={currentPage === 1}
-            onClick={prevPage}
-          >
-            Prev
-          </button>
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-            (page) => (
-              <div className="box_num_product">
-                <button
-                  key={page}
-                  className="num_admin_product"
-                  onClick={() => handlePageChange(page)}
-                >
-                  {page}
-                </button>
-              </div>
-            )
-          )}
-          <button
-            className="box_prev_right_product"
-            disabled={currentPage === totalPages}
-            onClick={nextPage}
-          >
-            Next
-          </button>
-        </div>
+
+        {resume.length > 4 && (
+          <div className="box_container_next_product">
+            <button
+              className="box_prev_left_product"
+              disabled={currentPage === 1}
+              onClick={prevPage}
+            >
+              Prev
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <div className="box_num_product">
+                  <button
+                    key={page}
+                    className="num_admin_product"
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </button>
+                </div>
+              )
+            )}
+            <button
+              className="box_prev_right_product"
+              disabled={currentPage === totalPages}
+              onClick={nextPage}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
