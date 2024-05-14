@@ -70,58 +70,79 @@ const ProductHome = () => {
     <div>
       <Header />
       <section id="product1">
-        <div className="box_TfiMenuAlt">
-          <select className="filter_position">
-            <option>More title job</option>
-            <option value="1">Tester</option>
-            <option value="2">UX/UI</option>
-            <option value="3">Data Analysis</option>
-            <option value="4">Software developer</option>
-          </select>
-        </div>
-        {recommendedItems.length > 0 ? (
-          <div className="productHead_content">
-            <h1 className="htxthead">
-              <span className="spennofStyle"></span>Suggest
-            </h1>
+        <div className="box_container_ux_ui">
+          <div className="container_Uxui">
+            <div className="box_Uxui">
+              <div>UX/UI</div>
+            </div>
+            <p>Software developer</p>
+            <p>Data Analysis</p>
           </div>
-        ) : (
-          <p></p>
-        )}
+          <div className="box_TfiMenuAlt">
+            <select className="filter_position">
+              <option>More title job</option>
+              <option value="1">Tester</option>
+              <option value="2">Data Analysis</option>
+              <option value="3">Software developer</option>
+              <option value="4">Frontend</option>
+              <option value="5">Backend</option>
+              <option value="6">Web developer</option>
+              <option value="7">Programe developer</option>
+            </select>
+          </div>
+        </div>
+        {resume.length > 0 &&
+          resume.map(
+            (res, index) =>
+              res.is_recommend == true && (
+                <div className="productHead_content">
+                  <h1 className="htxthead">
+                    <span className="spennofStyle"></span>Suggest
+                  </h1>
+                </div>
+              )
+          )}
 
         <div className="contentImageProducts1">
-          {recommendedItems.map((res, index) => (
-            <div className="group_itemBox" key={index}>
-              <div className="containner_box_image">
-                <div className="box_image">
-                  <img src={res.image} alt="image" />
-                </div>
-                <div className="txtOFproduct">
-                  <h4>Name: {res.name}</h4>
-                  <p>Age: {res.age}</p>
-                  <p>Major: {res.major}</p>
-                </div>
-              </div>
-              <p>
-                <span>Skill: </span>
-                {res.skill.substring(0, 10)}...
-              </p>
-              <div className="btn_button_see">
-                <FaRegHeart
-                  id="icon_FaRegHearts"
-                  className={likedItems.includes(index) ? "active" : ""}
-                  onClick={() => {
-                    AddToFavorite(res, index);
-                  }}
-                />
+          {resume.length > 0 &&
+            resume.map(
+              (res, index) =>
+                res.is_recommend == true && (
+                  <div className="group_itemBox" key={index}>
+                    <div className="containner_box_image">
+                      <div className="box_image">
+                        <img src={res.image} alt="image" />
+                      </div>
+                      <div className="txtOFproduct">
+                        <h4>Name: {res.name}</h4>
+                        <p>Age: {res.age}</p>
+                        <p>Major: {res.major}</p>
+                      </div>
+                    </div>
+                    <p>
+                      <span>Skill: </span>
+                      {res.skill.substring(0, 10)}...
+                    </p>
+                    <div className="btn_button_see">
+                      <FaRegHeart
+                        id="icon_FaRegHearts"
+                        className={likedItems.includes(index) ? "active" : ""}
+                        onClick={() => {
+                          AddToFavorite(res, index);
+                        }}
+                      />
 
-                <Link to={`/productdetails/${res.id}`} className="button_see">
-                  View
-                </Link>
-              </div>
-            </div>
-            // </Link>
-          ))}
+                      <Link
+                        to={`/productdetails/${res.id}`}
+                        className="button_see"
+                      >
+                        View
+                      </Link>
+                    </div>
+                  </div>
+                  // </Link>
+                )
+            )}
         </div>
 
         <div className="productHead_contents">
