@@ -10,6 +10,7 @@ import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 
 const Header = () => {
+  
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
 
@@ -29,6 +30,51 @@ const Header = () => {
       search: "?search=" + search,
     });
   }
+
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  const storage = JSON.parse(window.localStorage.getItem("user"));
+
+  var store_id = false;
+  if (localStorage.getItem("user")) {
+    store_id = JSON.parse(window.localStorage.getItem("user")).store_id;
+  }
+
+
+
+  useEffect(() => {
+    let data = JSON.stringify({
+      token: token,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: import.meta.env.VITE_API + "/user/check-token",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        if (response.data.result != "success") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          navigate("/");
+          return;
+        }
+      })
+      .catch((error) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        console.log(error);
+      });
+  }, [token]);
+
 
   return (
     <>
@@ -81,42 +127,67 @@ const Header = () => {
                 </button>
               </form>
 
-              {/* <form  className="searchBarForm">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                />
-                <button type="submit">
-                  <FaMagnifyingGlass className="iconSearch" />
-                </button>
-              </form> */}
               <div className="icon_account_login">
-                <div>
-                  <Link to="/add_resume" className="head_colorr">
-                    CV
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/list_users">
-                    <FaRegHeart className="head_colorr" />
-                  </Link>
-                </div>
-                {/* <div>
-                  <Link to="#">
-                    <FaRegUser className="head_colorr" />
-                  </Link>
-                </div>
-                <div>
-                  <Link to="#">
-                    <AiFillDashboard className="head_colorr" />
-                  </Link>
-                </div> */}
-                <div>
-                  <Link to="/login" className="head_colorr">
-                    <p>Login</p>
-                    <BiLogIn className="login" />
-                  </Link>
-                </div>
+                {user && (
+                  <div className="icon_account_login">
+                    {storage.company_id == false ? (
+                      <div>
+                        <Link to="/add_resume" className="head_colorr">
+                          CV
+                        </Link>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link to="/list_users" className="head_colorr">
+                          <FaRegHeart />
+                        </Link>
+                      </div>
+                    )}
+
+                    {storage.is_admin === true && (
+                      <>
+                        <div>
+                          <Link to="/list_users" className="head_colorr">
+                            <FaRegHeart />
+                          </Link>
+                        </div>
+                        <div>
+                          <Link to="#">
+                            <AiFillDashboard className="head_colorr" />
+                          </Link>
+                        </div>
+                      </>
+                    )}
+                    
+                    <div>
+                      <Link to="/more">
+                        <FaRegUser className="head_colorr" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+
+                {!user && (
+                  <div className="icon_account_login">
+                    <div>
+                      <Link to="/add_resume" className="head_colorr">
+                        CV
+                      </Link>
+                    </div>
+
+                    <div>
+                      <Link to="/list_users" className="head_colorr">
+                        <FaRegHeart />
+                      </Link>
+                    </div>
+                    <div>
+                      <Link to="/login" className="head_colorr">
+                        <p>Login</p>
+                        <BiLogIn className="login" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

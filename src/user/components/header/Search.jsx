@@ -71,26 +71,14 @@ const Search = () => {
     <div>
       <Header />
       <section id="product1">
-        <div className="box_container_ux_ui">
-          <div className="container_Uxui">
-            <div className="box_Uxui">
-              <div>UX/UI</div>
-            </div>
-            <p>Software developer</p>
-            <p>Data Analysis</p>
-          </div>
-          <div className="box_TfiMenuAlt">
-            <select className="filter_position">
-              <option>More title job</option>
-              <option value="1">Tester</option>
-              <option value="2">Data Analysis</option>
-              <option value="3">Software developer</option>
-              <option value="4">Frontend</option>
-              <option value="5">Backend</option>
-              <option value="6">Web developer</option>
-              <option value="7">Programe developer</option>
-            </select>
-          </div>
+        <div className="box_TfiMenuAlt">
+          <select className="filter_position">
+            <option>More title job</option>
+            <option value="1">Tester</option>
+            <option value="2">UX/UI</option>
+            <option value="3">Data Analysis</option>
+            <option value="4">Software developer</option>
+          </select>
         </div>
 
         {appState.length > 0 &&
