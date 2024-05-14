@@ -105,6 +105,7 @@ a {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: #FFF;
 }
 .num_admin_product.active {
     background-color: #007bff;
