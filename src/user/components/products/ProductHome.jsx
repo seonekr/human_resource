@@ -8,7 +8,7 @@ import { FaRegHeart } from "react-icons/fa";
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
-
+  ////Activate
   const [likedItems, setLikedItems] = useState([]);
 
   const urlParams = new URLSearchParams(window.location.search);
