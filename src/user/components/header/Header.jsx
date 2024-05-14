@@ -170,13 +170,13 @@ const Header = () => {
                 {!user && (
                   <div className="icon_account_login">
                     <div>
-                      <Link to="/add_resume" className="head_colorr">
+                      <Link to={token ? ("/add_resume"):("/login")} className="head_colorr">
                         CV
                       </Link>
                     </div>
 
                     <div>
-                      <Link to="/list_users" className="head_colorr">
+                      <Link to={token ? ("/list_users"):("/login")} className="head_colorr">
                         <FaRegHeart />
                       </Link>
                     </div>

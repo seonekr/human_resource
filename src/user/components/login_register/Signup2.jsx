@@ -55,7 +55,9 @@ const Signup2 = () => {
         navigate("/login");
       })
       .catch((err) => {
-        setErrorText(err.response?.data?.message || "This is an unknown error.");
+        setErrorText(
+          err.response?.data?.message || "This is an unknown error."
+        );
       });
   };
 
@@ -185,7 +187,7 @@ const Signup2 = () => {
                   type="text"
                   name="category"
                   placeholder="Category"
-                  value={data.category = "2"}
+                  value={(data.category = "2")}
                   onChange={onChange}
                   required
                   hidden
@@ -233,6 +235,14 @@ const Signup2 = () => {
 
             <button type="submit">Register</button>
           </form>
+          <div className="googlebtn_btn">
+            <p className="box_dont">
+              Already have an acount?
+              <Link to={"/login"} className="loginmoreLink">
+                Log in
+              </Link>
+            </p>
+          </div>
           {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>

@@ -79,6 +79,14 @@ const Signup1 = () => {
                 Next
               </button>
             </div>
+            <div className="googlebtn_btn">
+            <p className="box_dont">
+              Already have an acount?
+              <Link to={"/login"} className="loginmoreLink">
+                Log in
+              </Link>
+            </p>
+          </div>
           </div>
         </div>
       </section>
