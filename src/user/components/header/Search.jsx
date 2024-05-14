@@ -182,27 +182,28 @@ const Search = () => {
               </div>
             ))}
         </div>
+        {appState.length > 4 && (
+          <div className="box_container_next_product">
+            <button className="box_prev_left_product">
+              <AiOutlineLeft id="" />
+              <p>Prev</p>
+            </button>
 
-        <div className="box_container_next_product">
-          <button className="box_prev_left_product">
-            <AiOutlineLeft id="" />
-            <p>Prev</p>
-          </button>
+            <div className="box_num_product">
+              <div className="num_admin_product">
+                <p>1</p>
+              </div>
+              <div className="num_admin_product">
+                <p>2</p>
+              </div>
+            </div>
 
-          <div className="box_num_product">
-            <div className="num_admin_product">
-              <p>1</p>
-            </div>
-            <div className="num_admin_product">
-              <p>2</p>
-            </div>
+            <button className="box_prev_right_product">
+              <p>Next</p>
+              <AiOutlineRight id="" />
+            </button>
           </div>
-
-          <button className="box_prev_right_product">
-            <p>Next</p>
-            <AiOutlineRight id="" />
-          </button>
-        </div>
+        )}
       </section>
     </div>
   );
