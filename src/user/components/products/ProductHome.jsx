@@ -8,8 +8,7 @@ import { FaRegHeart } from "react-icons/fa";
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
-  ////Activate
-  const [likedItems, setLikedItems] = useState([]);
+    
 
   useEffect(() => {
     getResume();
@@ -66,6 +65,9 @@ const ProductHome = () => {
     }
   };
 
+
+
+ 
   return (
     <div>
       <Header />
@@ -80,7 +82,6 @@ const ProductHome = () => {
               <option value="4">Software developer</option>
             </select>
           </div>
-        </div>
         {recommendedItems.length > 0 ? (
           <div className="productHead_content">
             <h1 className="htxthead">
@@ -92,45 +93,39 @@ const ProductHome = () => {
         )}
 
         <div className="contentImageProducts1">
-          {resume.length > 0 &&
-            resume.map(
-              (res, index) =>
-                res.is_recommend == true && (
-                  <div className="group_itemBox" key={index}>
-                    <div className="containner_box_image">
-                      <div className="box_image">
-                        <img src={res.image} alt="image" />
-                      </div>
-                      <div className="txtOFproduct">
-                        <h4>Name: {res.name}</h4>
-                        <p>Age: {res.age}</p>
-                        <p>Major: {res.major}</p>
-                      </div>
-                    </div>
-                    <p>
-                      <span>Skill: </span>
-                      {res.skill.substring(0, 10)}...
-                    </p>
-                    <div className="btn_button_see">
-                      <FaRegHeart
-                        id="icon_FaRegHearts"
-                        className={likedItems.includes(index) ? "active" : ""}
-                        onClick={() => {
-                          AddToFavorite(res, index);
-                        }}
-                      />
-
-                      <Link
-                        to={`/productdetails/${res.id}`}
-                        className="button_see"
-                      >
-                        View
-                      </Link>
-                    </div>
-                  </div>
-                  // </Link>
-                )
-            )}
+          {recommendedItems.map((res, index) => (
+            <div className="group_itemBox" key={index}>
+              <div className="containner_box_image">
+                <div className="box_image">
+                  <img src={res.image} alt="image" />
+                </div>
+                <div className="txtOFproduct">
+                  <h4>Name: {res.name}</h4>
+                  <p>Age: {res.age}</p>
+                  <p>Major: {res.major}</p>
+                </div>
+              </div>
+              <p>
+                <span>Skill: </span>
+                {res.skill.substring(0, 10)}...
+              </p>
+              <div className="btn_button_see">
+                <FaRegHeart
+                  id="icon_FaRegHearts"
+                  className={likedItems.includes(index) ? "active" : ""}
+                  onClick={() => {
+                    AddToFavorite(res, index);
+                  }}
+                  
+                />
+                
+                <Link to={`/productdetails/${res.id}`} className="button_see">
+                  View
+                </Link>
+              </div>
+            </div>
+            // </Link>
+          ))}
         </div>
 
         <div className="productHead_contents">
