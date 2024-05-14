@@ -62,12 +62,12 @@ const AdminMenu = () => {
 
   const togglePopupimageName = () => {
     setPopupimage(!isPopupimage);
-    setIsPopUp("이름 이미지 수정");
+    setIsPopUp("Edit name image");
   };
 
   const togglePopupimageLogo = () => {
     setPopupimage(!isPopupimage);
-    setIsPopUp("로고 이미지 편집");
+    setIsPopUp("Edit logo image");
   };
 
   const closeToggle = () => {
@@ -203,13 +203,13 @@ const AdminMenu = () => {
                           className="btn_cancel btn_addproducttxt_popup"
                           onClick={closeToggle}
                         >
-                          아니요
+                          No
                         </button>
                         <button
                           className="btn_confirm btn_addproducttxt_popup"
                           type="submit"
                         >
-                          업데이트
+                          Yes
                         </button>
                       </div>
                     </div>

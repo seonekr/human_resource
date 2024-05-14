@@ -1,5 +1,6 @@
 import "../products/css/productHome.css";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 import { Link } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
@@ -7,38 +8,43 @@ import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
 const Search = () => {
-  // Manage search fucntion
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
+
   const [appState, setAppState] = useState({
     search: "",
     result: [],
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/resume/list/?search=" + searchParam,
-      headers: {},
+    const fetchData = async () => {
+      try {
+        const config = {
+          method: "get",
+          maxBodyLength: Infinity,
+          url: import.meta.env.VITE_API + "/resume/list/?search=" + searchParam,
+          headers: {},
+        };
+
+        const response = await axios.request(config);
+        const allPosts = response.data;
+        setAppState((prevState) => ({
+          ...prevState,
+          result: allPosts,
+        }));
+        setCurrentPage(1); // Reset to the first page when search changes
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        const allPosts = response.data;
-        setAppState(allPosts);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [appState]);
+    fetchData();
+  }, [searchParam]);
 
-  ////Activate
   const [likedItems, setLikedItems] = useState([]);
 
-  // Cart management
   const [favorite, set_favorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
@@ -54,9 +60,7 @@ const Search = () => {
     if (existingResume) {
       alert("This resume already favorited!");
     } else {
-      console.log("resume: ", resume);
       set_favorite([...favorite, { ...resume }]);
-
       alert("Success.");
     }
 
@@ -65,6 +69,24 @@ const Search = () => {
     } else {
       setLikedItems([...likedItems, index]);
     }
+  };
+
+  const totalPages = Math.ceil(appState.result.length / 4);
+
+  const startIndex = (currentPage - 1) * 4;
+  const endIndex = startIndex + 4;
+  const currentGoods = appState.result.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prevPage) => (prevPage === totalPages ? totalPages : prevPage + 1));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prevPage) => (prevPage === 1 ? 1 : prevPage - 1));
   };
 
   return (
@@ -81,30 +103,27 @@ const Search = () => {
           </select>
         </div>
 
-        {appState.length > 0 &&
-          appState.map(
-            (res, index) =>
-              res.is_recommend == true && (
-                <div className="productHead_content">
-                  <h1 className="htxthead">
-                    <span className="spennofStyle"></span>Suggest
-                  </h1>
-                </div>
-              )
+        {currentGoods.length > 0 &&
+          currentGoods.some((res) => res.is_recommend) && (
+            <div className="productHead_content">
+              <h1 className="htxthead">
+                <span className="spennofStyle"></span>Suggest
+              </h1>
+            </div>
           )}
 
         <div className="contentImageProducts1">
-          {appState.length > 0 &&
-            appState.map(
+          {currentGoods.length > 0 &&
+            currentGoods.map(
               (res, index) =>
-                res.is_recommend == true && (
+                res.is_recommend && (
                   <div className="group_itemBox" key={index}>
                     <div className="containner_box_image">
                       <div className="box_image">
                         <img src={res.image} alt="image" />
                       </div>
                       <div className="txtOFproduct">
-                        <h4>Name: {res.is_recommend}</h4>
+                        <h4>Recommended: {res.is_recommend ? "Yes" : "No"}</h4>
                         <h4>Name: {res.name}</h4>
                         <p>Age: {res.age}</p>
                         <p>Major: {res.major}</p>
@@ -122,11 +141,7 @@ const Search = () => {
                           AddToFavorite(res, index);
                         }}
                       />
-
-                      <Link
-                        to={`/productdetails/${res.id}`}
-                        className="button_see"
-                      >
+                      <Link to={`/productdetails/${res.id}`} className="button_see">
                         View
                       </Link>
                     </div>
@@ -142,8 +157,8 @@ const Search = () => {
         </div>
 
         <div className="contentImageUser">
-          {appState.length > 0 &&
-            appState.map((res, index) => (
+          {currentGoods.length > 0 &&
+            currentGoods.map((res, index) => (
               <div className="group_itemBox_user" key={index}>
                 <div className="containner_box_image_user">
                   <div className="box_image_user">
@@ -171,10 +186,7 @@ const Search = () => {
                         AddToFavorite(res, index);
                       }}
                     />
-                    <Link
-                      to={`/productdetails/${res.id}`}
-                      className="button_see"
-                    >
+                    <Link to={`/productdetails/${res.id}`} className="button_see">
                       View
                     </Link>
                   </div>
@@ -182,29 +194,40 @@ const Search = () => {
               </div>
             ))}
         </div>
-
-        <div className="box_container_next_product">
-          <button className="box_prev_left_product">
-            <AiOutlineLeft id="" />
-            <p>Prev</p>
-          </button>
-
-          <div className="box_num_product">
-            <div className="num_admin_product">
-              <p>1</p>
-            </div>
-            <div className="num_admin_product">
-              <p>2</p>
-            </div>
+        {appState.result.length > 4 && (
+          <div className="box_container_next_product">
+            <button
+              className="box_prev_left_product"
+              disabled={currentPage === 1}
+              onClick={prevPage}
+            >
+              Prev
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <div className="box_num_product" key={page}>
+                  <button
+                    className={`num_admin_product ${currentPage === page ? 'active' : ''}`}
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </button>
+                </div>
+              )
+            )}
+            <button
+              className="box_prev_right_product"
+              disabled={currentPage === totalPages}
+              onClick={nextPage}
+            >
+              Next
+            </button>
           </div>
-
-          <button className="box_prev_right_product">
-            <p>Next</p>
-            <AiOutlineRight id="" />
-          </button>
-        </div>
+        )}
       </section>
+      <Menu/>
     </div>
   );
 };
+
 export default Search;

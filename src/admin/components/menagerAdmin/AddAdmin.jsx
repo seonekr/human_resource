@@ -16,7 +16,7 @@ const AddAdmin = () => {
         <div className="goback">
           <Link to="/admins" className="box_guopIconbAck">
             <FaAngleLeft id="box_icon_Back" />
-            <p>뒤쪽에</p>
+            <p>Back</p>
           </Link>
         </div>
         <div className="box_addAdmin">
@@ -24,9 +24,9 @@ const AddAdmin = () => {
           <form >
             <div className="addAdminForm">
               <div className="boxhead_subminandtitle">
-                <h2 className="titleaddmin">관리자 추가</h2>
+                <h2 className="titleaddmin">Add Admin</h2>
                 <div>
-                  <button type="submit" className="submit">추가하다</button>
+                  <button type="submit" className="submit">Add</button>
                 </div>
               </div>
 
