@@ -8,7 +8,8 @@ import { FaRegHeart } from "react-icons/fa";
 
 const ProductHome = () => {
   const [resume, set_resume] = useState([]);
-    
+  ////Activate
+  const [likedItems, setLikedItems] = useState([]);
 
   useEffect(() => {
     getResume();
@@ -65,23 +66,19 @@ const ProductHome = () => {
     }
   };
 
-
-
- 
   return (
     <div>
       <Header />
       <section id="product1">
-          
-          <div className="box_TfiMenuAlt">
-            <select className="filter_position">
-              <option>More title job</option>
-              <option value="1">Tester</option>
-              <option value="2">UX/UI</option>
-              <option value="3">Data Analysis</option>
-              <option value="4">Software developer</option>
-            </select>
-          </div>
+        <div className="box_TfiMenuAlt">
+          <select className="filter_position">
+            <option>More title job</option>
+            <option value="1">Tester</option>
+            <option value="2">UX/UI</option>
+            <option value="3">Data Analysis</option>
+            <option value="4">Software developer</option>
+          </select>
+        </div>
         {recommendedItems.length > 0 ? (
           <div className="productHead_content">
             <h1 className="htxthead">
@@ -116,9 +113,8 @@ const ProductHome = () => {
                   onClick={() => {
                     AddToFavorite(res, index);
                   }}
-                  
                 />
-                
+
                 <Link to={`/productdetails/${res.id}`} className="button_see">
                   View
                 </Link>
