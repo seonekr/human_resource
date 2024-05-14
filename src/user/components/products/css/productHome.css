@@ -25,35 +25,14 @@ a {
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
-.box_container_ux_ui{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.container_Uxui{
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-    justify-content: center;
-}
-.box_Uxui{
-    padding: 3px 10px;
-    background-color: #ff50166d;
-    border-radius: 5px;
-    color: #FF4F16;
-}
-.box_TfiMenuAlt{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
 
+.box_TfiMenuAlt{
+    width: 53%;
+    position: absolute;
 }
 .box_TfiMenuAlt p{
     color: #FF4F16;
 
-}
-.container_Uxui p{
-    color: #FF4F16;
 }
 #TfiMenuAlt{
     font-size: 24px;
@@ -65,6 +44,8 @@ a {
     border-radius: 5px;
     border: 1px solid #FF4F16;
     cursor: pointer;
+    position: relative;
+    left: 100%;
 }
 
 
@@ -414,9 +395,7 @@ a {
     .loadmore_btn_more {
         margin-top: 2rem;
     }
-    .box_container_ux_ui{
-        width: 90%;
-    }
+    
 }
 
 @media screen and (max-width: 767px) {
@@ -494,13 +473,7 @@ a {
     .content_itemBox .container_product {
         align-items: flex-start;
     }
-    .box_container_ux_ui{
-        width: 100%;
-    }
-    .container_Uxui p{
-        display: none;
-
-    }
+    
 }
 @media screen and (max-width: 431px) {
     #product1 {
@@ -583,11 +556,5 @@ a {
     .content_itemBox .container_product {
         align-items: flex-start;
     }
-    .box_container_ux_ui{
-        width: 100%;
-    }
-    .container_Uxui p{
-        display: none;
-
-    }
+   
 }

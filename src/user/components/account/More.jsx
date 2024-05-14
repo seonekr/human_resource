@@ -102,14 +102,14 @@ export const More = () => {
               {JSON.parse(window.localStorage.getItem("user")).user_name || null}
             </div>
           </div>
-          <Link to="#" className="right_box">
+          <Link to="/profile" className="right_box">
             <button>View</button>
           </Link>
         </div>
         <hr className="hr" />
         <div className="more-menu-list">
           <div onClick={() => setShowConfirmation(true)} className="menu_icon">
-            <IoLogOutOutline id="menu_icon" />
+            <IoLogOutOutline id="icon_more" />
             <p>Log out </p>
           </div>
           {showConfirmation && (

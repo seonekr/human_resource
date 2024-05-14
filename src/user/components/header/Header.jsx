@@ -104,34 +104,56 @@ const Header = () => {
               <div className="icon_account_login">
                 {user && (
                   <div className="icon_account_login">
-                    <div>
-                      <Link to="/add_resume" className="head_colorr">
-                        CV
-                      </Link>
-                    </div>
-                    <div>
-                      <Link to="/list_users" className="head_colorr">
-                        <FaRegHeart/>
-                      </Link>
-                    </div>
+                    {storage.company_id == false ? (
+                      <div>
+                        <Link to="/add_resume" className="head_colorr">
+                          CV
+                        </Link>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link to="/list_users" className="head_colorr">
+                          <FaRegHeart />
+                        </Link>
+                      </div>
+                    )}
 
+                    {storage.is_admin === true && (
+                      <>
+                        <div>
+                          <Link to="/list_users" className="head_colorr">
+                            <FaRegHeart />
+                          </Link>
+                        </div>
+                        <div>
+                          <Link to="#">
+                            <AiFillDashboard className="head_colorr" />
+                          </Link>
+                        </div>
+                      </>
+                    )}
+                    
                     <div>
                       <Link to="/more">
                         <FaRegUser className="head_colorr" />
                       </Link>
                     </div>
-                    {storage.is_admin === true && (
-                      <div>
-                        <Link to="#">
-                          <AiFillDashboard className="head_colorr" />
-                        </Link>
-                      </div>
-                    )}
                   </div>
                 )}
 
                 {!user && (
                   <div className="icon_account_login">
+                    <div>
+                      <Link to="/add_resume" className="head_colorr">
+                        CV
+                      </Link>
+                    </div>
+
+                    <div>
+                      <Link to="/list_users" className="head_colorr">
+                        <FaRegHeart />
+                      </Link>
+                    </div>
                     <div>
                       <Link to="/login" className="head_colorr">
                         <p>Login</p>

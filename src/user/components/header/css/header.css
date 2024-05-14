@@ -42,9 +42,11 @@
 }
 
 .icon_account_login{
+    width: 100%;
     display: flex;
     gap: 1.8rem;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .headMenu {
