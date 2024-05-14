@@ -1,18 +1,18 @@
-import "./css/addAmin.css";
+// import "./css/editAdmin.css";
 import AdminMenu from "../adminMenu/AdminMenu";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
 import { FaAngleLeft } from "react-icons/fa";
 import { CiImageOn } from "react-icons/ci";
-import { FiPhone } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { IoKeySharp } from "react-icons/io5";
 
-const AddAdmin = () => {
+const EditAdmin = () => {
 
   return (
     <>
       <AdminMenu />
-      <section id="addAmin">
+      <section id="addAmins">
         <div className="goback">
           <Link to="/admins" className="box_guopIconbAck">
             <FaAngleLeft id="box_icon_Back" />
@@ -24,21 +24,33 @@ const AddAdmin = () => {
           <form >
             <div className="addAdminForm">
               <div className="boxhead_subminandtitle">
-                <h2 className="titleaddmin">Add Admin</h2>
+                <h2 className="titleaddmin">Edit Admin</h2>
                 <div>
-                  <button type="submit" className="submit">Add</button>
+                  <button type="submit" className="submit">Update</button>
                 </div>
               </div>
 
               <div className="add-box">
-                <label htmlFor="fname" className="titlelabel">name:</label>
+                <label htmlFor="fname" className="titlelabel">First name:</label>
                 <div className="boxiconnandinput">
                   <LuUser className="iconinput" />
                   <input
                     type="text"
                     id="fname"
                     className="input"
-                    placeholder="Name..."
+                    placeholder="Fist name..."
+                  />
+                </div>
+              </div>
+              <div className="add-box">
+                <label htmlFor="fname" className="titlelabel">Nick name:</label>
+                <div className="boxiconnandinput">
+                  <LuUser className="iconinput" />
+                  <input
+                    type="text"
+                    id="nickname"
+                    className="input"
+                    placeholder="Nick name..."
                   />
                 </div>
               </div>
@@ -51,34 +63,21 @@ const AddAdmin = () => {
                     type="email"
                     id="email"
                     className="input"
-                    placeholder="Email..."
+                    placeholder="Email address..."
                   />
                 </div>
               </div>
               <div className="add-box">
-                <label htmlFor="email" className="titlelabel">Password:</label>
+                <label htmlFor="pass" className="titlelabel">Password:</label>
                 <div className="boxiconnandinput">
-                  <MdOutlineEmail className="iconinput" />
-                  <input
-                    type="password"
-                    id="password"
-                    className="input"
-                    placeholder="password..."
-                  />
-                </div>
-              </div>
-              <div className="add-box">
-                <label htmlFor="phone" className="titlelabel">Phone number:</label>
-                <div className="boxiconnandinput">
-                  <FiPhone className="iconinput" />
+                  <IoKeySharp className="iconinput" />
                   <input
                     type="text"
-                    id="phone"
+                    id="pass"
                     className="input"
-                    placeholder="Phone number..."
+                    placeholder="Password..."
                   />
                 </div>
-
               </div>
               <div className="add-box">
                 <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
@@ -95,4 +94,4 @@ const AddAdmin = () => {
   );
 };
 
-export default AddAdmin;
+export default EditAdmin;

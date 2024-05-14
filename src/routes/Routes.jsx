@@ -15,7 +15,6 @@ import ProductDetails from "../user/components/products/ProductDetails";
 import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
 import Product from "../admin/components/products/Product";
-import Text from "../user/components/order/Text";
 import ForgotPassword from "../user/components/login_register/ForgotPassword";
 import AlertLogin from "../user/components/login_register/AlertLogin";
 import AlertRegister from "../user/components/login_register/AlertRegister";
@@ -28,13 +27,14 @@ import Listusers from "../company/component/Listusers";
 // ===============================
 import User from "../admin/components/menagerUser/User";
 import Users from "../admin/components/menagerUser/Users";
-import Admin from "../admin/components/menagerAdmin/Admin";
 import Admins from "../admin/components/menagerAdmin/Admins";
 import AddAdmin from "../admin/components/menagerAdmin/AddAdmin";
-import Admin_acount from "../admin/components/menagerAdmin/Admin_acount";
+import Admin_acount from "../admin/components/accountAdmin/Admin_acount"
+import EditAccount from "../admin/components/accountAdmin/EditAccount"
 import Store from "../admin/components/stores/Store";
 import Bank from "../admin/components/bank_account/Bank";
 import Addaccount from "../admin/components/bank_account/Addaccount";
+import EditAdmin from "../admin/components/menagerAdmin/EditAdmin";
 
 import AboutUs from "../user/components/contact/AboutUs";
 
@@ -75,9 +75,10 @@ const Links = () => {
         <Route exact path="/user" Component={User} />
         <Route exact path="/users" Component={Users} />
         <Route exact path="/admins" Component={Admins} />
-        <Route exact path="/admins/admin" Component={Admin} />
+        <Route exact path="/edit_admin" Component={EditAdmin} />
         <Route exact path="/addadmin" Component={AddAdmin} />
         <Route exact path="/adminacount" Component={Admin_acount} />
+        <Route exact path="/edit_account" Component={EditAccount} />
         <Route exact path="/store" Component={Store} />
         <Route exact path="/bank" Component={Bank} />
         <Route exact path="/addaccount" Component={Addaccount} />

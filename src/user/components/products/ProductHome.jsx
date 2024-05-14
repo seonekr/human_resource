@@ -7,6 +7,9 @@ import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
 const ProductHome = () => {
+  const user = localStorage.getItem("user");
+  const storage = JSON.parse(window.localStorage.getItem("user"));
+
   const [resume, set_resume] = useState([]);
   ////Activate
   const [likedItems, setLikedItems] = useState([]);
@@ -157,13 +160,25 @@ const ProductHome = () => {
                       {res.skill.substring(0, 10)}...
                     </p>
                     <div className="btn_button_see">
-                      <FaRegHeart
-                        id="icon_FaRegHearts"
-                        className={likedItems.includes(index) ? "active" : ""}
-                        onClick={() => {
-                          AddToFavorite(res, index);
-                        }}
-                      />
+                      {user && (
+                        <>
+                          {storage.company_id == false ? (
+                            <p></p>
+                          ) : (
+                            <>
+                              <FaRegHeart
+                                id="icon_FaRegHearts"
+                                className={
+                                  likedItems.includes(index) ? "active" : ""
+                                }
+                                onClick={() => {
+                                  AddToFavorite(res, index);
+                                }}
+                              />
+                            </>
+                          )}
+                        </>
+                      )}
 
                       <Link
                         to={`/productdetails/${res.id}`}
@@ -206,13 +221,30 @@ const ProductHome = () => {
                   </p>
                 </div>
                 <div className="btn_button_see_user">
-                  <FaRegHeart
+                  {user && (
+                    <>
+                      {storage.company_id !== false && (
+                        <div>
+                          <FaRegHeart
+                            id="icon_FaRegHearts"
+                            className={
+                              likedItems.includes(index) ? "active" : ""
+                            }
+                            onClick={() => {
+                              AddToFavorite(res, index);
+                            }}
+                          />
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {/* <FaRegHeart
                     id="icon_FaRegHeart"
                     className={likedItems.includes(index) ? "active" : ""}
                     onClick={() => {
                       AddToFavorite(res, index);
                     }}
-                  />
+                  /> */}
                   <Link to={`/productdetails/${res.id}`} className="button_see">
                     View
                   </Link>
@@ -237,7 +269,9 @@ const ProductHome = () => {
               (page) => (
                 <div className="box_num_product">
                   <button
-                    className={`num_admin_product ${currentPage === page ? 'active' : ''}`}
+                    className={`num_admin_product ${
+                      currentPage === page ? "active" : ""
+                    }`}
                     onClick={() => handlePageChange(page)}
                   >
                     {page}

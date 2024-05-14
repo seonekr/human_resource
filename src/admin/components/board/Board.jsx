@@ -92,26 +92,6 @@ const Board = () => {
                       <p>View</p>
                     </Link>
                   </div>
-                  {/* <div className="menu-box three">
-                    <div>
-                      <IoDocumentText className="iconGad gone3" />
-                      <p>명령</p>
-                    </div>
-                    <h2>{userAccount}</h2>
-                    <Link to="/users" className="txtcol">
-                      <p>더보기</p>
-                    </Link>
-                  </div>
-                  <div className="menu-box four">
-                    <div>
-                      <IoDocumentText className="iconGad gone4" />
-                      <p>명령</p>
-                    </div>
-                    <h2>{adminCount}</h2>
-                    <Link to="/admins" className="txtcol">
-                      <p>더보기</p>
-                    </Link>
-                  </div> */}
                 </div>
               </div>
 

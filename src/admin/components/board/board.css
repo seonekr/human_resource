@@ -20,7 +20,7 @@ body {
 .containerBox_db {
     display: grid;
     justify-content: start;
-    width: 1300px;
+    width: 1240px;
     height: 500px;
     border-radius: 20px;
     border: 1px solid #F8F9FA;
@@ -44,8 +44,8 @@ body {
 
 .board .manage-target .manage .menu-box {
     display: grid;
-    width: 280px;
-    height: 284px;
+    width: 250px;
+    height: 250px;
     text-align: center;
     align-items: center;
     margin: 0 0.2rem;

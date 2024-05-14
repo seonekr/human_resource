@@ -10,14 +10,13 @@ import { RxDashboard } from "react-icons/rx";
 import { MdOutlineSell } from "react-icons/md";
 import { RiAccountBoxLine } from "react-icons/ri";
 import user from "../../../img/user.png";
-import Logo from "../../../img/Logo.png";
-import storename from "../../../img/storename.png";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiCamera } from "react-icons/ci";
 import imageicon from "../../../img/imageicon.jpg";
-import { HiOutlineBuildingStorefront } from "react-icons/hi2";
+import logo_resoure from "../../../img/logo_resoure.jpeg";
+import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
 
 const AdminMenu = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -93,26 +92,14 @@ const AdminMenu = () => {
       <section id="dashboard">
         <div className="left">
           <div className="menu">
-            {/* <NavLink to="/dashboard" className="link">
+            <NavLink to="/dashboard" className="link">
               <RxDashboard />
               <p>Dashboard</p>
-            </NavLink> */}
+            </NavLink>
             <NavLink to="/product" className="link">
               <IoDocumentText />
               <p>Product</p>
             </NavLink>
-            {/* <NavLink to="/orderpage" className="link">
-              <MdOutlineSell />
-              <p>Order</p>
-            </NavLink>
-            <NavLink to="/bank" className="link">
-              <RiAccountBoxLine />
-              <p>Bank</p>
-            </NavLink>
-            <NavLink to="/store" className="link">
-              <HiOutlineBuildingStorefront />
-              <p>Store</p>
-            </NavLink> */}
             <NavLink to="/users" className="link">
               <BiUser />
               <p>Users</p>
@@ -155,7 +142,7 @@ const AdminMenu = () => {
               <span className="logo_store">
                 <div className="image_logo_storename">
                   <Link to="/">
-                    <img src={storename} className="box_logo_storename"></img>
+                    <img src={logo_resoure2} className="box_logo_storename"></img>
                   </Link>
 
                   <div className="edit_image_logo_store">
@@ -167,7 +154,7 @@ const AdminMenu = () => {
                 </div>
 
                 <div className="image_logo">
-                  <img src={Logo} className="box_store_logo"></img>
+                  <img src={logo_resoure} className="box_store_logo"></img>
                   <div className="edit_image_logo">
                     <CiCamera
                       id="box_icon_camera_product"

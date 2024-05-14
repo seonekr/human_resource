@@ -5,10 +5,13 @@ import Header from "../header/Header";
 import avatar from "../../../img/avatar.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
 
 function ProductDetails() {
   const id = useParams().id;
   const [resume_id, set_resume_id] = useState([]);
+   ////Activate
+   const [likedItems, setLikedItems] = useState([]);
 
   console.log("Resume_id........", resume_id);
 
@@ -31,6 +34,37 @@ function ProductDetails() {
         console.log(error);
       });
   });
+
+   // Cart management
+   const [favorite, set_favorite] = useState(() => {
+    const localFavorite = localStorage.getItem("favorite");
+    return localFavorite ? JSON.parse(localFavorite) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorite", JSON.stringify(favorite));
+  }, [favorite]);
+  const AddToFavorite = (resume_id, index) => {
+    const existingResume = favorite.find((item) => item.id === resume_id.id);
+
+    if (existingResume) {
+      alert("This resume already favorited!");
+    } else {
+      console.log("resume: ", resume_id);
+      set_favorite([...favorite, { ...resume_id }]);
+
+      alert("Success.");
+    }
+
+    if (likedItems.includes(index)) {
+      setLikedItems(likedItems.filter((item) => item !== index));
+    } else {
+      setLikedItems([...likedItems, index]);
+    }
+  };
+
+
+  console.log("resume_idr..........", resume_id)
 
   return (
     <>
@@ -66,11 +100,14 @@ function ProductDetails() {
               </div>
             </div>
             <div className="box-check">
-              <h4>Add to list</h4>
-              <label className="checkbox-label">
-                <input type="checkbox" className="checkbox" />
-                <span className="checkbox-custom"></span>
-              </label>
+              <FaRegHeart
+              id="icon_FaRegHearts"
+              className={likedItems.includes(resume_id.id) ? "active" : ""}
+              onClick={() => {
+                AddToFavorite(resume_id, resume_id.id);
+              }}
+              />
+              
             </div>
           </div>
         ) : (

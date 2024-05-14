@@ -1,37 +1,35 @@
-import "./css/addAmin.css";
+import React from "react";
+import "./css/accountAdmin.css";
 import AdminMenu from "../adminMenu/AdminMenu";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
 import { FaAngleLeft } from "react-icons/fa";
 import { CiImageOn } from "react-icons/ci";
 import { FiPhone } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { IoKeyOutline } from "react-icons/io5";
 
-const AddAdmin = () => {
-
+function EditAccount() {
   return (
     <>
       <AdminMenu />
       <section id="addAmin">
-        <div className="goback">
-          <Link to="/admins" className="box_guopIconbAck">
-            <FaAngleLeft id="box_icon_Back" />
-            <p>Back</p>
-          </Link>
-        </div>
         <div className="box_addAdmin">
           {/* <h3>{message && message}</h3> */}
-          <form >
+          <form>
             <div className="addAdminForm">
               <div className="boxhead_subminandtitle">
-                <h2 className="titleaddmin">Add Admin</h2>
-                <div>
-                  <button type="submit" className="submit">Add</button>
+                <h2 className="titleaddmin">Edit Account</h2>
+                <div className="btn_boxAcouunt">
+                  <button type="submit" className="submit_delete_update">
+                    Update
+                  </button>
                 </div>
               </div>
 
               <div className="add-box">
-                <label htmlFor="fname" className="titlelabel">name:</label>
+                <label htmlFor="fname" className="titlelabel">
+                  Name:
+                </label>
                 <div className="boxiconnandinput">
                   <LuUser className="iconinput" />
                   <input
@@ -42,9 +40,10 @@ const AddAdmin = () => {
                   />
                 </div>
               </div>
-
               <div className="add-box">
-                <label htmlFor="email" className="titlelabel">Email:</label>
+                <label htmlFor="email" className="titlelabel">
+                  Email:
+                </label>
                 <div className="boxiconnandinput">
                   <MdOutlineEmail className="iconinput" />
                   <input
@@ -56,35 +55,54 @@ const AddAdmin = () => {
                 </div>
               </div>
               <div className="add-box">
-                <label htmlFor="email" className="titlelabel">Password:</label>
+                <label htmlFor="password" className="titlelabel">
+                  Password:
+                </label>
                 <div className="boxiconnandinput">
-                  <MdOutlineEmail className="iconinput" />
-                  <input
-                    type="password"
-                    id="password"
-                    className="input"
-                    placeholder="password..."
-                  />
-                </div>
-              </div>
-              <div className="add-box">
-                <label htmlFor="phone" className="titlelabel">Phone number:</label>
-                <div className="boxiconnandinput">
-                  <FiPhone className="iconinput" />
+                  <IoKeyOutline className="iconinput" />
                   <input
                     type="text"
-                    id="phone"
+                    id="password"
                     className="input"
-                    placeholder="Phone number..."
+                    placeholder="Password enter your current password..."
                   />
                 </div>
-
               </div>
               <div className="add-box">
-                <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
+                <label htmlFor="password" className="titlelabel">
+                  Password:
+                </label>
+                <div className="boxiconnandinput">
+                  <IoKeyOutline className="iconinput" />
+                  <input
+                    type="text"
+                    id="password"
+                    className="input"
+                    placeholder="Please enter a new password..."
+                  />
+                </div>
+              </div>
+              <div className="add-box">
+                <label htmlFor="password" className="titlelabel">
+                  Password:
+                </label>
+                <div className="boxiconnandinput">
+                  <IoKeyOutline className="iconinput" />
+                  <input
+                    type="text"
+                    id="password"
+                    className="input"
+                    placeholder="Please confirm your new password..."
+                  />
+                </div>
+              </div>
+              <div className="add-box">
+                <label htmlFor="adminImage" className="titlelabel">
+                  Profile image:
+                </label>
                 <div className="boxiconnandinput">
                   <CiImageOn className="iconinput" />
-                  <input type="file" className="input"/>
+                  <input type="file" className="input" />
                 </div>
               </div>
             </div>
@@ -93,6 +111,6 @@ const AddAdmin = () => {
       </section>
     </>
   );
-};
+}
 
-export default AddAdmin;
+export default EditAccount;
