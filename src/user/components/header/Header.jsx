@@ -152,7 +152,7 @@ const Header = () => {
                           </Link>
                         </div>
                         <div>
-                          <Link to="/product">
+                          <Link to="/dashboard">
                             <AiFillDashboard className="head_colorr" />
                           </Link>
                         </div>

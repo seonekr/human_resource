@@ -1,6 +1,6 @@
 import AdminMenu from "./components/adminMenu/AdminMenu";
 // import Board from "./components/board/Board";
-import Product from "../admin/components/products/Product";
+import Board from "../admin/components/board/Board";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +39,7 @@ const Dashboard = () => {
   return (
     <>
       <AdminMenu />
-      <Product />
+      <Board />
     </>
   );
 };
