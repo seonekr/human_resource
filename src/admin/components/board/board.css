@@ -19,14 +19,14 @@ body {
 /* manage and target */
 .containerBox_db {
     display: grid;
-    justify-content: center;
+    justify-content: start;
     width: 1300px;
     height: 500px;
     border-radius: 20px;
     border: 1px solid #F8F9FA;
     background: #FFF;
     box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.50);
-    padding-top: 2rem;
+    padding: 2rem;
 }
 
 .containerBox_db .contentBox_db {

@@ -70,29 +70,29 @@ const Board = () => {
           <div className="manage-target">
             <div className="manage">
               <div className="containerBox_db">
-                <h3>계기반</h3>
+                <h3>Dashboard</h3>
                 <div className="contentBox_db">
                   <div className="menu-box one">
                     <div>
                       <IoDocumentText className="iconGad gone1" />
-                      <p>명령</p>
+                      <p>Company</p>
                     </div>
                     <h2>{productCount}</h2>
-                    <Link to="/product" className="txtcol">
-                    더보기
+                    <Link to="/listcompany" className="txtcol">
+                    View
                     </Link>
                   </div>
                   <div className="menu-box two">
                     <div>
                       <IoDocumentText className="iconGad gone2" />
-                      <p>명령</p>
+                      <p>Favoriest</p>
                     </div>
                     <h2>{orderCount}</h2>
-                    <Link to="/orderpage" className="txtcol">
-                      <p>더보기</p>
+                    <Link to="/listuserscompany" className="txtcol">
+                      <p>View</p>
                     </Link>
                   </div>
-                  <div className="menu-box three">
+                  {/* <div className="menu-box three">
                     <div>
                       <IoDocumentText className="iconGad gone3" />
                       <p>명령</p>
@@ -111,7 +111,7 @@ const Board = () => {
                     <Link to="/admins" className="txtcol">
                       <p>더보기</p>
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

@@ -40,6 +40,10 @@ import AboutUs from "../user/components/contact/AboutUs";
 
 import Search from "../user/components/header/Search";
 
+import Listcompany from "../admin/components/list_company/List_company";
+import Listusers_company from "../admin/components/list_company/Listusers_company";
+
+
 const Links = () => {
   return (
     <Router>
@@ -81,6 +85,9 @@ const Links = () => {
         <Route exact path="/profile" Component={Profile} />
         <Route exact path="/terms" Component={Terms} />
         <Route exact path="/privacy" Component={Privacy} />
+
+        <Route exact path="/listcompany" Component={Listcompany} />
+        <Route exact path="/listuserscompany" Component={Listusers_company} />
       </Routes>
     </Router>
   );
