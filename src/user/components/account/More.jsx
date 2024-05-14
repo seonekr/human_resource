@@ -16,6 +16,8 @@ import axios from "axios";
 export const More = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showConfirmationDelete, setShowConfirmationDelete] = useState(false);
+
+  // const storage = JSON.parse(window.localStorage.getItem("user"));
   const userID = localStorage.getItem("userID");
   const navigate = useNavigate();
 
@@ -43,6 +45,7 @@ export const More = () => {
 
   const user = localStorage.getItem("user");
 
+  
   //Function Delete
   const handleDeleteAccount = async () => {
     try {
@@ -77,92 +80,78 @@ export const More = () => {
     <>
       <Header />
 
-        <div className="MorePage">
-          <div className="box_icon_back">
-            <Link to="/" className="box_management_iconnback">
-              <IoIosArrowBack id="icons_back" />
-              <p>뒤쪽에</p>
-            </Link>
-            <div className="Box_haed_management">
-              <h3>계정 설정</h3>
-            </div>
-          </div>
-
-          <div className="profile_box">
-            <div className="left_box">
-              <img src={profile} alt="" />
-
-              <div className="user_name">이름:</div>
-            </div>
-            <Link to="/profile" className="right_box">
-              <button>보다</button>
-            </Link>
-          </div>
-
-          <hr className="hr" />
-          <div className="more-menu-list">
-            <Link to="/terms" className="menu_icon">
-              <TfiCalendar id="icon_more" />
-              <p>이용약관</p>
-            </Link>
-            <hr className="hr" />
-            <Link to="/privacy" className="menu_icon">
-              <TfiCalendar id="icon_more" />
-              <p>개인 정보 정책</p>
-            </Link>
-            <hr className="hr" />
-            <Link to="/forgotpassword" className="menu_icon">
-              <IoKeySharp id="icon_more" />
-              <p>비밀번호 변경</p>
-            </Link>
-            <hr className="hr" />
-            <div
-              onClick={() => setShowConfirmation(true)}
-              className="menu_icon"
-            >
-              <IoLogOutOutline id="icon_more" />
-              <p>로그 아웃 </p>
-            </div>
-            {showConfirmation && (
-              <div className="confirmation-popup">
-                <p>정말로 로그아웃하시겠습니까?</p>
-                <div className="btn_ok_on">
-                  <button onClick={handleCancelLogout} className="btn_on">
-                  아니요
-                  </button>
-                  <button onClick={handleConfirmLogout} className="btn_yes">
-                  예
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <hr className="hr" />
-            <div
-              className="menu_icon"
-              onClick={() => setShowConfirmationDelete(true)}
-            >
-              <MdDelete id="icon_more" />
-              <p>계정 삭제</p>
-            </div>
-
-            {showConfirmationDelete && (
-              <div className="confirmation-popup">
-                <p>삭제 하시겠습니까?</p>
-                <div className="btn_ok_on">
-                  <button onClick={handleCancelDelete} className="btn_on">
-                  아니요
-                  </button>
-                  <button onClick={handleConfirmDelete} className="btn_yes">
-                  예
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <hr className="hr" />
+      <div className="MorePage">
+        <div className="box_icon_back">
+          <div className="Box_haed_management">
+            <h3>Account Settings</h3>
           </div>
         </div>
+
+        <div className="profile_box">
+          <div className="left_box">
+            {JSON.parse(window.localStorage.getItem("user")).image != false ? (
+              <img
+                src={JSON.parse(window.localStorage.getItem("user")).image}
+                alt=""
+              />
+            ) : (
+              <img src={profile} alt="" />
+            )}
+            <div className="user_name">
+              Name:{" "}
+              {JSON.parse(window.localStorage.getItem("user")).user_name || null}
+            </div>
+          </div>
+          <Link to="/profile" className="right_box">
+            <button>View</button>
+          </Link>
+        </div>
+        <hr className="hr" />
+        <div className="more-menu-list">
+          <div onClick={() => setShowConfirmation(true)} className="menu_icon">
+            <IoLogOutOutline id="icon_more" />
+            <p>Log out </p>
+          </div>
+          {showConfirmation && (
+            <div className="confirmation-popup">
+              <p>Are you sure you want to log out?</p>
+              <div className="btn_ok_on">
+                <button onClick={handleCancelLogout} className="btn_on">
+                  No
+                </button>
+                <button onClick={handleConfirmLogout} className="btn_yes">
+                  Yes
+                </button>
+              </div>
+            </div>
+          )}
+
+          <hr className="hr" />
+          <div
+            className="menu_icon"
+            onClick={() => setShowConfirmationDelete(true)}
+          >
+            <MdDelete id="icon_more" />
+            <p>Delete account</p>
+          </div>
+
+          {showConfirmationDelete && (
+            <div className="confirmation-popup">
+              <p>Are you sure you want to delete?</p>
+              <div className="btn_ok_on">
+                <button onClick={handleCancelDelete} className="btn_on">
+                  No
+                </button>
+                <button onClick={handleConfirmDelete} className="btn_yes">
+                  Yes
+                </button>
+              </div>
+            </div>
+          )}
+
+          <hr className="hr" />
+        </div>
+      </div>
 
       <Menu />
     </>

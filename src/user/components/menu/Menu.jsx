@@ -16,7 +16,7 @@ const Menu = () => {
                 <div className="footer_Container">
                     <div className="footconentBox">
                         <h3 className="txt_footHead">About Us</h3>
-                        <p><Link to="/" className="txt_pFoot">Huma_resource</Link></p>
+                        <p><Link to="/about" className="txt_pFoot">Huma_resource</Link></p>
                         
                     </div>
 
