@@ -127,17 +127,16 @@ const ProductHome = () => {
           </form>
         </div>
 
-        {resume.length > 0 &&
-          resume.map(
-            (res, index) =>
-              res.is_recommend == true && (
-                <div className="productHead_content" key={index}>
-                  <h1 className="htxthead">
-                    <span className="spennofStyle"></span>Suggest
-                  </h1>
-                </div>
-              )
-          )}
+        {resume.map(
+          (res) =>
+            res.is_recommend == true && (
+              <div className="productHead_content">
+                <h1 className="htxthead">
+                  <span className="spennofStyle"></span>Suggest
+                </h1>
+              </div>
+            )
+        )}
 
         <div className="contentImageProducts1">
           {resume.length > 0 &&
