@@ -13,24 +13,32 @@ const ProductHome = () => {
   const [resume, set_resume] = useState([]);
   ////Activate
   const [likedItems, setLikedItems] = useState([]);
-
+  ///////////////////////////
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
 
-  let navigate = useNavigate();
   const [search, set_search] = useState(searchParam);
 
-  console.log("Search.............", search);
+  let navigate = useNavigate();
 
-  function OnSearch(e) {
-    e.preventDefault();
+  useEffect(() => {
+    set_search(searchParam);
+  }, [searchParam]);
 
+  function handleSelectChange(e) {
+    const selectedValue = e.target.value;
+    set_search(selectedValue);
+    navigateToSearch(selectedValue);
+  }
+
+  function navigateToSearch(selectedValue) {
     navigate({
       pathname: "/search/",
-      search: "?search=" + search,
+      search: `?search=${selectedValue}`,
     });
   }
 
+  ////////////////////
   useEffect(() => {
     getResume();
   }, []);
@@ -111,18 +119,34 @@ const ProductHome = () => {
       <Header />
       <section id="product1">
         <div className="box_TfiMenuAlt">
-          <form onSubmit={OnSearch}>
+          <form>
             <select
+              id="skillSelect"
               className="filter_position"
-              onChange={(e) => {
-                set_search(e.target.value);
-              }}
+              value={search}
+              onChange={handleSelectChange} // Call handleSelectChange when an option is selected
+              name="search" // Add name attribute to the select element
             >
-              <option>More title job</option>
-              <option value={search}>Tester</option>
-              <option value={search}>UX/UI</option>
-              <option value={search}>Data Analysis</option>
-              <option value={search}>Software developer</option>
+              <option value="">More title job</option>
+              <option value="computer science">Computer Science</option>
+              <option value="computer engineer">Computer Engineer</option>
+              <option value="it engineer">IT Engineer</option>
+              <option value="software engineer">Software Engineer</option>
+            </select>
+          </form>
+          <form>
+            <select
+              id="skillSelect"
+              className="filter_month"
+              value={search}
+              onChange={handleSelectChange} // Call handleSelectChange when an option is selected
+              name="search" // Add name attribute to the select element
+            >
+              <option value="">Date</option>
+              <option value="last week">Last week</option>
+              <option value="last month">Last month</option>
+              <option value="2 month ago">2 month ago</option>
+              <option value="3 month ago">3 month ago</option>
             </select>
           </form>
         </div>
@@ -138,7 +162,6 @@ const ProductHome = () => {
                 </div>
               )
           )}
-
         <div className="contentImageProducts1">
           {resume.length > 0 &&
             resume.map(
