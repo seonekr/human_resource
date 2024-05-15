@@ -162,6 +162,7 @@ const ProductHome = () => {
                 </div>
               )
           )}
+
         <div className="contentImageProducts1">
           {resume.length > 0 &&
             resume.map(
