@@ -36,7 +36,7 @@ const Home = () => {
         }
       })
       .catch((error) => console.log("error", error));
-  }, []);
+  }, [token]);
 
   return (
     <div className="containerHomeBox">

@@ -8,10 +8,13 @@ import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
 import { AiFillDashboard } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const Header = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
+  const [is_resumed, set_is_resumed] = useState(false);
 
   let navigate = useNavigate();
   const [search, set_search] = useState(searchParam);
@@ -70,7 +73,40 @@ const Header = () => {
         localStorage.removeItem("user");
         console.log(error);
       });
+
+    IsUserHaveResume();
   }, [token]);
+
+  const IsUserHaveResume = () => {
+    let data = "";
+
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `http://3.38.225.226:8000/resume/user/${storage.user_id}/`,
+      headers: {},
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        set_is_resumed(true);
+        // navigate("/");
+      })
+      .catch((error) => {
+        // console.log(error);
+        set_is_resumed(false);
+        // navigate("/");
+      });
+  };
+
+  console.log(is_resumed);
+
+  const checkStatus = () => {
+    alert(is_resumed);
+  };
 
   return (
     <>
@@ -127,11 +163,18 @@ const Header = () => {
                 {user && (
                   <div className="icon_account_login">
                     {storage.company_id == false ? (
-                      <div>
-                        <Link to="/add_resume" className="head_colorr">
-                          CV
-                        </Link>
-                      </div>
+                      <>
+                        <div>
+                          <Link
+                            onClick={() => {
+                              checkStatus();
+                            }}
+                            className="head_colorr"
+                          >
+                            CV
+                          </Link>
+                        </div>
+                      </>
                     ) : (
                       <div>
                         <Link to="/list_users" className="head_colorr">
