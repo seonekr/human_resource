@@ -45,7 +45,6 @@ export const More = () => {
 
   const user = localStorage.getItem("user");
 
-  
   //Function Delete
   const handleDeleteAccount = async () => {
     try {
@@ -99,7 +98,8 @@ export const More = () => {
             )}
             <div className="user_name">
               Name:{" "}
-              {JSON.parse(window.localStorage.getItem("user")).user_name || null}
+              {JSON.parse(window.localStorage.getItem("user")).user_name ||
+                null}
             </div>
           </div>
           <Link to="/profile" className="right_box">
@@ -113,15 +113,37 @@ export const More = () => {
             <p>Log out </p>
           </div>
           {showConfirmation && (
-            <div className="confirmation-popup">
-              <p>Are you sure you want to log out?</p>
-              <div className="btn_ok_on">
-                <button onClick={handleCancelLogout} className="btn_on">
-                  No
-                </button>
-                <button onClick={handleConfirmLogout} className="btn_yes">
-                  Yes
-                </button>
+            // <div className="confirmation-popup">
+            //   <p>Are you sure you want to log out?</p>
+            //   <div className="btn_ok_on">
+            //     <button onClick={handleCancelLogout} className="btn_on">
+            //       No
+            //     </button>
+            //     <button onClick={handleConfirmLogout} className="btn_yes">
+            //       Yes
+            //     </button>
+            //   </div>
+            // </div>
+
+            <div className="box_background_delete">
+              <div className="hover_delete_box">
+                <div className="box_logout">
+                  <p>Are you sure you want to log out?</p>
+                </div>
+                <div className="btn_foasdf">
+                  <button
+                    className="btn_cancel btn_addproducttxt_popup"
+                    onClick={handleCancelLogout}
+                  >
+                    No
+                  </button>
+                  <button
+                    className="btn_confirm btn_addproducttxt_popup"
+                    onClick={handleConfirmLogout}
+                  >
+                    Yes
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -136,6 +158,30 @@ export const More = () => {
           </div>
 
           {showConfirmationDelete && (
+            <div className="box_background_delete">
+              <div className="hover_delete_box">
+                <div className="box_logout">
+                  <p>Are you sure you want to delete?</p>
+                </div>
+                <div className="btn_foasdf"> 
+                  <button
+                    className="btn_cancel btn_addproducttxt_popup"
+                    onClick={handleCancelDelete}
+                  >
+                    No
+                  </button>
+                  <button
+                    className="btn_confirm btn_addproducttxt_popup"
+                    onClick={handleConfirmDelete}
+                  >
+                    Yes
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* {showConfirmationDelete && (
             <div className="confirmation-popup">
               <p>Are you sure you want to delete?</p>
               <div className="btn_ok_on">
@@ -147,7 +193,7 @@ export const More = () => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
 
           <hr className="hr" />
         </div>

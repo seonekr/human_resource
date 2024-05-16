@@ -13,25 +13,6 @@ const ProductHome = () => {
   const [resume, set_resume] = useState([]);
   ////Activate
   const [likedItems, setLikedItems] = useState([]);
-<<<<<<< HEAD
-
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const searchParam = urlParams.get("search");
-
-  // let navigate = useNavigate();
-  // const [search, set_search] = useState(searchParam);
-
-  // console.log("Search.............", search);
-
-  // function OnSearch(e) {
-  //   e.preventDefault();
-
-  //   navigate({
-  //     pathname: "/search/",
-  //     search: "?search=" + search,
-  //   });
-  // }
-=======
   ///////////////////////////
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
@@ -56,7 +37,6 @@ const ProductHome = () => {
       search: `?search=${selectedValue}`,
     });
   }
->>>>>>> 780478e5f289c10d3fa0caa4dfed0c0fa63e4f29
 
   ////////////////////
   useEffect(() => {
@@ -143,14 +123,6 @@ const ProductHome = () => {
             <select
               id="skillSelect"
               className="filter_position"
-<<<<<<< HEAD
-            >
-              <option>More title job</option>
-              <option value="1">Tester</option>
-              <option value="2">UX/UI</option>
-              <option value="3">Data Analysis</option>
-              <option value="4">Software developer</option>
-=======
               value={search}
               onChange={handleSelectChange} // Call handleSelectChange when an option is selected
               name="search" // Add name attribute to the select element
@@ -175,7 +147,6 @@ const ProductHome = () => {
               <option value="last month">Last month</option>
               <option value="2 month ago">2 month ago</option>
               <option value="3 month ago">3 month ago</option>
->>>>>>> 780478e5f289c10d3fa0caa4dfed0c0fa63e4f29
             </select>
           </form>
         </div>

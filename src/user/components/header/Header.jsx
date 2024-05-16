@@ -10,7 +10,6 @@ import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 
 const Header = () => {
-  
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
 
@@ -39,8 +38,6 @@ const Header = () => {
   if (localStorage.getItem("user")) {
     store_id = JSON.parse(window.localStorage.getItem("user")).store_id;
   }
-
-
 
   useEffect(() => {
     let data = JSON.stringify({
@@ -74,7 +71,6 @@ const Header = () => {
         console.log(error);
       });
   }, [token]);
-
 
   return (
     <>
@@ -158,7 +154,7 @@ const Header = () => {
                         </div>
                       </>
                     )}
-                    
+
                     <div>
                       <Link to="/more">
                         <FaRegUser className="head_colorr" />
@@ -170,13 +166,19 @@ const Header = () => {
                 {!user && (
                   <div className="icon_account_login">
                     <div>
-                      <Link to={token ? ("/add_resume"):("/login")} className="head_colorr">
+                      <Link
+                        to={token ? "/add_resume" : "/login"}
+                        className="head_colorr"
+                      >
                         CV
                       </Link>
                     </div>
 
                     <div>
-                      <Link to={token ? ("/list_users"):("/login")} className="head_colorr">
+                      <Link
+                        to={token ? "/list_users" : "/login"}
+                        className="head_colorr"
+                      >
                         <FaRegHeart />
                       </Link>
                     </div>

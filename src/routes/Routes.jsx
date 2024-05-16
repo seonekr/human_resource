@@ -21,8 +21,10 @@ import AlertRegister from "../user/components/login_register/AlertRegister";
 import Login from "../user/components/login_register/Login";
 import Signup1 from "../user/components/login_register/Signup1";
 import Signup2 from "../user/components/login_register/Signup2";
-import CVregister from "../user/components/login_register/CVregister";
+import CVregister from "../user/components/cv/CVregister"
 import Listusers from "../company/component/Listusers";
+import DetailCV from "../user/components/cv/DetailCV";
+import EditResume from "../user/components/cv/EditResume"
 
 // ===============================
 import User from "../admin/components/menagerUser/User";
@@ -63,6 +65,8 @@ const Links = () => {
         <Route exact path="/signup2" Component={Signup2} />
         <Route exact path="/add_resume" Component={CVregister} />
         <Route exact path="/list_users" Component={Listusers} />
+        <Route exact path="/detail_cv" Component={DetailCV} />
+        <Route exact path="/edit_resume" Component={EditResume} />
 
         <Route exact path="/search" Component={Search} />
 
