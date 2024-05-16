@@ -14,22 +14,22 @@ const ProductHome = () => {
   ////Activate
   const [likedItems, setLikedItems] = useState([]);
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchParam = urlParams.get("search");
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const searchParam = urlParams.get("search");
 
-  let navigate = useNavigate();
-  const [search, set_search] = useState(searchParam);
+  // let navigate = useNavigate();
+  // const [search, set_search] = useState(searchParam);
 
-  console.log("Search.............", search);
+  // console.log("Search.............", search);
 
-  function OnSearch(e) {
-    e.preventDefault();
+  // function OnSearch(e) {
+  //   e.preventDefault();
 
-    navigate({
-      pathname: "/search/",
-      search: "?search=" + search,
-    });
-  }
+  //   navigate({
+  //     pathname: "/search/",
+  //     search: "?search=" + search,
+  //   });
+  // }
 
   useEffect(() => {
     getResume();
@@ -111,18 +111,15 @@ const ProductHome = () => {
       <Header />
       <section id="product1">
         <div className="box_TfiMenuAlt">
-          <form onSubmit={OnSearch}>
+          <form>
             <select
               className="filter_position"
-              onChange={(e) => {
-                set_search(e.target.value);
-              }}
             >
               <option>More title job</option>
-              <option value={search}>Tester</option>
-              <option value={search}>UX/UI</option>
-              <option value={search}>Data Analysis</option>
-              <option value={search}>Software developer</option>
+              <option value="1">Tester</option>
+              <option value="2">UX/UI</option>
+              <option value="3">Data Analysis</option>
+              <option value="4">Software developer</option>
             </select>
           </form>
         </div>
