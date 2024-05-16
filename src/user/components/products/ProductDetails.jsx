@@ -10,8 +10,11 @@ import { FaRegHeart } from "react-icons/fa";
 function ProductDetails() {
   const id = useParams().id;
   const [resume_id, set_resume_id] = useState([]);
-   ////Activate
-   const [likedItems, setLikedItems] = useState([]);
+  ////Activate
+  const [likedItems, setLikedItems] = useState([]);
+
+  const user = localStorage.getItem("user");
+  const storage = JSON.parse(window.localStorage.getItem("user"));
 
   console.log("Resume_id........", resume_id);
 
@@ -35,8 +38,8 @@ function ProductDetails() {
       });
   });
 
-   // Cart management
-   const [favorite, set_favorite] = useState(() => {
+  // Cart management
+  const [favorite, set_favorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
   });
@@ -63,8 +66,7 @@ function ProductDetails() {
     }
   };
 
-
-  console.log("resume_idr..........", resume_id)
+  console.log("resume_idr..........", resume_id);
 
   return (
     <>
@@ -100,14 +102,23 @@ function ProductDetails() {
               </div>
             </div>
             <div className="box-check">
-              <FaRegHeart
-              id="icon_FaRegHearts"
-              className={likedItems.includes(resume_id.id) ? "active" : ""}
-              onClick={() => {
-                AddToFavorite(resume_id, resume_id.id);
-              }}
-              />
-              
+              {user && (
+                <>
+                  {storage.company_id !== false && (
+                    <div>
+                      <FaRegHeart
+                        id="icon_FaRegHearts"
+                        className={
+                          likedItems.includes(resume_id.id) ? "active" : ""
+                        }
+                        onClick={() => {
+                          AddToFavorite(resume_id, resume_id.id);
+                        }}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         ) : (

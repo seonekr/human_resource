@@ -11,16 +11,27 @@ import { MdOutlineSell } from "react-icons/md";
 import { RiAccountBoxLine } from "react-icons/ri";
 import user from "../../../img/user.png";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiCamera } from "react-icons/ci";
 import imageicon from "../../../img/imageicon.jpg";
 import logo_resoure from "../../../img/logo_resoure.jpeg";
 import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
+import axios from "axios";
 
 const AdminMenu = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
+  const storage = JSON.parse(window.localStorage.getItem("user"));
+  const [mainImageStore, setMainImageStore] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
+  const [logo1, set_logo1] = useState(null);
+  const [logo2, set_logo2] = useState(null);
+
+  var is_admin = false;
+  if (localStorage.getItem("user")) {
+    is_admin = JSON.parse(window.localStorage.getItem("user")).is_admin;
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -38,8 +49,90 @@ const AdminMenu = () => {
     setShowConfirmation(false);
   };
 
-  // image handle logo store name
-  const [mainImage, setMainImage] = useState(null);
+  const handleImageStoreName = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setMainImageStore([file]);
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    const formdata = new FormData();
+    formdata.append("logo1", file);
+
+    const requestOptions = {
+      method: "PATCH",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/store/1", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        setMainImageStore(null);
+      })
+      .catch((error) => console.error(error));
+  };
+
+
+  const handleImageStoreLogo = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setMainImages([file]);
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    const formdata = new FormData();
+    formdata.append("logo2", file);
+
+    const requestOptions = {
+      method: "PATCH",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/store/1", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        setMainImages(null);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: import.meta.env.VITE_API + "/resume/1",
+      headers: {},
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data.logo1));
+        set_logo1(response.data.logo1);
+        set_logo2(response.data.logo2);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [logo1, logo2, mainImageStore, mainImage]);
+
+ 
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -77,6 +170,17 @@ const AdminMenu = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const formdata = new FormData();
+    formdata.append("logo", image);
+
+    const requestOptions = {
+      method: "PATCH",
+      body: formdata,
+      redirect: "follow",
+    };
+
+
     if (isPopUp === "name") {
       console.log("Submit image name");
     } else if (isPopUp === "logo") {
@@ -98,7 +202,7 @@ const AdminMenu = () => {
             </NavLink>
             <NavLink to="/product" className="link">
               <IoDocumentText />
-              <p>Product</p>
+              <p>Resume</p>
             </NavLink>
             <NavLink to="/users" className="link">
               <BiUser />
@@ -129,7 +233,7 @@ const AdminMenu = () => {
                       className="btn_confirm btn_addproducttxt_popup"
                       onClick={handleConfirmLogout}
                     >
-                    Yes
+                      Yes
                     </button>
                   </div>
                 </div>
@@ -142,25 +246,32 @@ const AdminMenu = () => {
               <span className="logo_store">
                 <div className="image_logo_storename">
                   <Link to="/">
-                    <img src={logo_resoure2} className="box_logo_storename"></img>
+                    <img
+                      src={logo_resoure2}
+                      className="box_logo_storename"
+                    ></img>
                   </Link>
 
-                  <div className="edit_image_logo_store">
-                    <CiCamera
-                      id="box_icon_camera_product"
-                      onClick={togglePopupimageName}
-                    />
-                  </div>
+                  {is_admin === true && (
+                    <div className="edit_image_logo_store">
+                      <CiCamera
+                        id="box_icon_camera_product"
+                        onClick={togglePopupimageName}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="image_logo">
                   <img src={logo_resoure} className="box_store_logo"></img>
-                  <div className="edit_image_logo">
-                    <CiCamera
-                      id="box_icon_camera_product"
-                      onClick={togglePopupimageLogo}
-                    />
-                  </div>
+                  {is_admin === true && (
+                    <div className="edit_image_logo">
+                      <CiCamera
+                        id="box_icon_camera_product"
+                        onClick={togglePopupimageLogo}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {isPopupimage && (
@@ -170,7 +281,7 @@ const AdminMenu = () => {
                   >
                     <div className="hover_addproductpopup_box_image">
                       <div className="box_input_image">
-                      <p> {isPopUp} </p>
+                        <p> {isPopUp} </p>
                         <input
                           type="file"
                           id="img"
@@ -205,9 +316,12 @@ const AdminMenu = () => {
               </span>
             </div>
 
-            <NavLink to="/adminacount" className="userAdminImage">
-              <img src={user} alt="Logo_Profile" />
-            </NavLink>
+            <div className="boximage_admin">
+              <NavLink to="/adminacount" className="userAdminImage">
+                <p>{storage.email}</p>
+                <img src={storage.image || user} alt="admin profile" />
+              </NavLink>
+            </div>
           </div>
         </div>
       </section>

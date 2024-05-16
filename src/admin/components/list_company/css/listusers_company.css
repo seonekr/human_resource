@@ -1,109 +1,122 @@
 /* ============ container_body_admincompany =========== */
 .container_body_usercompany {
-    width: 100%;
-    z-index: 999;
-    padding: 88px 20px 20px 255px;
+  width: 95%;
+  z-index: 999;
+  margin: auto;
+  padding: 110px 20px 20px 255px;
 }
+
 .goback {
-    margin: auto;
+  margin: auto;
 }
 
 .container_box_usercompany {
-    width: 100%;
-    height: auto;
-    margin: auto;
-    margin-top: 1rem;
-    padding: 30px 20px 20px 20px;
-    background: #FFF;
-    box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.15);
-    border-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 30px 20px 20px 20px;
+  background: #FFF;
+  box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.15);
+  border-radius: 10px;
 }
 
 .box_usercompany {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-  .box-sendmail {
-    padding: 0;
-  }
-  .btn-sendmail {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: #fa442c;
-  }
-  .btn-sendmail p {
-    font-size: 15px;
-    color: #ffffff;
-  }
-  .box-list-user-company {
-    display: grid;
-  }
-  
-  /* ============ box_users_user =========== */
-  
-  .box_listuser-company {
-    width: 100%;
-    height: 90px;
-    margin: 0.5rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 10px;
-    padding: 30px;
-    background: #fff;
-    border: 1px solid #eee;
-    cursor: pointer;
-  }
-  .box_listuser-company:hover {
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
-  }
-  
-  .box_txtandiamge-company {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .box_user_text1 p {
-    padding: 3px;
-  }
-  
-  .container_chat_name {
-    display: grid;
-    gap: 0.5rem;
-  }
-  
-  .box_img img {
-    width: 70px;
-    height: 70px;
-  }
-  .btn_delete_user {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    cursor: pointer;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    background: #fa442c;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 20px;
-  }
-  .btn_delete_user .ai-outline-delete {
-    width: 20px;  /* Set desired width */
-    height: 20px; /* Set desired height */
-    fill: currentColor; /* Ensures the icon inherits the text color */
-  }
-  
-  .btn_delete_user:hover .ai-outline-delete {
-    fill: rgb(0, 0, 0); /* Example of hover effect, change color on hover */
-  }
-  
+
+.box-sendmail {
+  padding: 0;
+}
+
+.btn-sendmail {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #fa442c;
+}
+
+.btn-sendmail p {
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.box-list-user-company {
+  display: grid;
+}
+
+/* ============ box_users_user =========== */
+
+.box_listuser-company {
+  width: 100%;
+  height: 90px;
+  margin: 0.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.box_listuser-company:hover {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+.box_txtandiamge-company {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.box_user_text1 p {
+  padding: 3px;
+}
+
+.container_chat_name {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.box_img img {
+  width: 70px;
+  height: 70px;
+}
+
+.btn_delete_user {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background: #fa442c;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.btn_delete_user .ai-outline-delete {
+  width: 20px;
+  /* Set desired width */
+  height: 20px;
+  /* Set desired height */
+  fill: currentColor;
+  /* Ensures the icon inherits the text color */
+}
+
+.btn_delete_user:hover .ai-outline-delete {
+  fill: rgb(0, 0, 0);
+  /* Example of hover effect, change color on hover */
+}
+
 /* ================ Responsive ==================*/
 
 @media screen and (max-width: 1024px) {}

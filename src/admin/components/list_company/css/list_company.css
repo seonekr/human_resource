@@ -6,10 +6,10 @@
 }
 
 .container_box_admincompany {
-    width: 100%;
+    width: 95%;
     height: auto;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 30px 20px 20px 20px;
     background: #FFF;
     box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.15);
@@ -37,12 +37,12 @@
     padding: 30px;
     background: #FFF;
     color: black;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
-    transition: background-color 0.3s ease;
+    border:  1px solid #ccc;
+    cursor: pointer;
 }
 /* Hover effect for the link component */
 .box_companys_company:hover {
-    background-color: rgb(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
   }
 .box_dp_txtandiamge {
     display: flex;

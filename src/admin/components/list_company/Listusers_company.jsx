@@ -31,7 +31,7 @@ const Listusers_company = () => {
   const currentGoods = favorite.slice(startIndex, endIndex);
 
   console.log("sddddddddddd", currentGoods.length);
-  
+
   // Handle pagination click
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -49,7 +49,7 @@ const Listusers_company = () => {
     <>
       <AdminMenu />
       <div className="container_body_usercompany">
-      <div className="back">
+        <div className="back">
           <Link to="/listcompany" className="box_guopIconbAck">
             <FaAngleLeft id="box_icon_Back" />
             <p>Back</p>

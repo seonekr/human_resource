@@ -114,14 +114,28 @@ body {
     display: none;
 }
 
-
-
-.userAdminImage {
+.box_icon_user{
+    display: grid;
     text-align: end;
     padding-right: 3rem;
 }
+
+
+.boximage_admin {
+    overflow: hidden;
+}
+.userAdminImage {
+    width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+    padding: 15px;
+    color: #737791;
+}
+
 .userAdminImage img {
-    width: 10%;
+    width: 15%;
 }
 
 
