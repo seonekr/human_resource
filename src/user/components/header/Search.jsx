@@ -1,21 +1,43 @@
 import "../products/css/productHome.css";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
 const Search = () => {
+  /////////////////
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
+
+  const [search, set_search] = useState(searchParam);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    set_search(searchParam);
+  }, [searchParam]);
+
+  function handleSelectChange(e) {
+    const selectedValue = e.target.value;
+    set_search(selectedValue);
+    navigateToSearch(selectedValue);
+  }
+
+  function navigateToSearch(selectedValue) {
+    navigate({
+      pathname: "/search/",
+      search: `?search=${selectedValue}`,
+    });
+  }
+  ///////////////////
 
   const [appState, setAppState] = useState({
     search: "",
     result: [],
   });
-
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -82,7 +104,9 @@ const Search = () => {
   };
 
   const nextPage = () => {
-    setCurrentPage((prevPage) => (prevPage === totalPages ? totalPages : prevPage + 1));
+    setCurrentPage((prevPage) =>
+      prevPage === totalPages ? totalPages : prevPage + 1
+    );
   };
 
   const prevPage = () => {
@@ -94,13 +118,21 @@ const Search = () => {
       <Header />
       <section id="product1">
         <div className="box_TfiMenuAlt">
-          <select className="filter_position">
-            <option>More title job</option>
-            <option value="1">Tester</option>
-            <option value="2">UX/UI</option>
-            <option value="3">Data Analysis</option>
-            <option value="4">Software developer</option>
-          </select>
+          <form>
+            <select
+              id="skillSelect"
+              className="filter_position"
+              value={search}
+              onChange={handleSelectChange} // Call handleSelectChange when an option is selected
+              name="search" // Add name attribute to the select element
+            >
+              <option value="">More title job</option>
+              <option value="computer science">Computer Science</option>
+              <option value="computer engineer">Computer Engineer</option>
+              <option value="it engineer">IT Engineer</option>
+              <option value="software engineer">Software Engineer</option>
+            </select>
+          </form>
         </div>
 
         {currentGoods.length > 0 &&
@@ -141,7 +173,10 @@ const Search = () => {
                           AddToFavorite(res, index);
                         }}
                       />
-                      <Link to={`/productdetails/${res.id}`} className="button_see">
+                      <Link
+                        to={`/productdetails/${res.id}`}
+                        className="button_see"
+                      >
                         View
                       </Link>
                     </div>
@@ -186,7 +221,10 @@ const Search = () => {
                         AddToFavorite(res, index);
                       }}
                     />
-                    <Link to={`/productdetails/${res.id}`} className="button_see">
+                    <Link
+                      to={`/productdetails/${res.id}`}
+                      className="button_see"
+                    >
                       View
                     </Link>
                   </div>
@@ -207,7 +245,9 @@ const Search = () => {
               (page) => (
                 <div className="box_num_product" key={page}>
                   <button
-                    className={`num_admin_product ${currentPage === page ? 'active' : ''}`}
+                    className={`num_admin_product ${
+                      currentPage === page ? "active" : ""
+                    }`}
                     onClick={() => handlePageChange(page)}
                   >
                     {page}
@@ -225,7 +265,7 @@ const Search = () => {
           </div>
         )}
       </section>
-      <Menu/>
+      <Menu />
     </div>
   );
 };
