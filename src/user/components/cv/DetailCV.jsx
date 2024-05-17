@@ -15,8 +15,6 @@ const DetailCV = () => {
     setShowConfirmation(false);
   };
 
-  console.log("User_ID...........", user_id);
-
   useEffect(() => {
     let config = {
       method: "get",

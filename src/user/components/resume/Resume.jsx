@@ -9,10 +9,13 @@ const ResumeHome = () => {
   const user = localStorage.getItem("user");
   const storage = JSON.parse(localStorage.getItem("user"));
   const [resume, setResume] = useState([]);
+
+
   const [likedItems, setLikedItems] = useState([]);
   const [favorite, setFavorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
+    
   });
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -85,9 +88,10 @@ const ResumeHome = () => {
 
   const recommendedResumes = resume.filter((res) => res.is_recommend);
 
+
   return (
     <div>
-      <Header resume={resume} />
+      <Header/>
       <section id="resume">
         <div className="box_TfiMenuAlt">
           <select

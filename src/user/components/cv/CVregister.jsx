@@ -7,6 +7,10 @@ import Menu from "../menu/Menu";
 import axios from "axios";
 
 function CVregister() {
+
+  const storage = JSON.parse(localStorage.getItem("user"));
+
+
   const [mainImage, setImagePreview] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg"
   );
@@ -21,7 +25,6 @@ function CVregister() {
     resume_image1: null,
   });
 
-  const id = 1;
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -75,7 +78,7 @@ function CVregister() {
     formdata.append("skill", postresume.skill);
     formdata.append("image", image);
     formdata.append("resume_image", resume_image);
-    formdata.append("user", id);
+    formdata.append("user", storage.user_id);
 
     const requestOptions = {
       method: "POST",
