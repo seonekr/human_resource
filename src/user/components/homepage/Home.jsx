@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../header/Banner";
-import ProductHome from "../products/ProductHome";
+import Resume from "../resume/Resume";
 import Menu from "../menu/Menu";
 import "./home.css";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <div className="containerHomeBox">
       <Banner />
-      <ProductHome />
+      <Resume />
       <Menu />
     </div>
   );

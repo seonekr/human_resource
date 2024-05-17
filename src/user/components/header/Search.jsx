@@ -1,4 +1,4 @@
-import "../products/css/productHome.css";
+import "../resume/css/resume.css";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,7 +8,9 @@ import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
 const Search = () => {
-  /////////////////
+  const user = localStorage.getItem("user");
+  const storage = JSON.parse(localStorage.getItem("user"));
+
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
 
@@ -32,7 +34,6 @@ const Search = () => {
       search: `?search=${selectedValue}`,
     });
   }
-  ///////////////////
 
   const [appState, setAppState] = useState({
     search: "",
@@ -116,34 +117,32 @@ const Search = () => {
   return (
     <div>
       <Header />
-      <section id="product1">
+      <section id="resume">
         <div className="box_TfiMenuAlt">
-          <form>
-            <select
-              id="skillSelect"
-              className="filter_position"
-              value={search}
-              onChange={handleSelectChange} // Call handleSelectChange when an option is selected
-              name="search" // Add name attribute to the select element
-            >
-              <option value="">More title job</option>
-              <option value="computer science">Computer Science</option>
-              <option value="Grapich design">IT Engineer</option>
-              <option value="software engineer">Software Engineer</option>
-            </select>
-          </form>
+          <select
+            id="skillSelect"
+            className="filter_position"
+            value={search || ""}
+            onChange={handleSelectChange} // Call handleSelectChange when an option is selected
+            name="search" // Add name attribute to the select element
+          >
+            <option value="">More title job</option>
+            <option value="computer science">Computer Science</option>
+            <option value="grapich design">Grapich design</option>
+            <option value="software engineer">Software Engineer</option>
+          </select>
         </div>
 
         {currentGoods.length > 0 &&
           currentGoods.some((res) => res.is_recommend) && (
-            <div className="productHead_content">
+            <div className="title">
               <h1 className="htxthead">
                 <span className="spennofStyle"></span>Suggest
               </h1>
             </div>
           )}
 
-        <div className="contentImageProducts1">
+        <div className="resume-contain">
           {currentGoods.length > 0 &&
             currentGoods.map(
               (res, index) =>
@@ -153,8 +152,7 @@ const Search = () => {
                       <div className="box_image">
                         <img src={res.image} alt="image" />
                       </div>
-                      <div className="txtOFproduct">
-                        <h4>Recommended: {res.is_recommend ? "Yes" : "No"}</h4>
+                      <div className="txtOFResume">
                         <h4>Name: {res.name}</h4>
                         <p>Age: {res.age}</p>
                         <p>Major: {res.major}</p>
@@ -165,17 +163,14 @@ const Search = () => {
                       {res.skill.substring(0, 10)}...
                     </p>
                     <div className="btn_button_see">
-                      <FaRegHeart
-                        id="icon_FaRegHearts"
-                        className={likedItems.includes(index) ? "active" : ""}
-                        onClick={() => {
-                          AddToFavorite(res, index);
-                        }}
-                      />
-                      <Link
-                        to={`/productdetails/${res.id}`}
-                        className="button_see"
-                      >
+                      {user && storage.company_id !== false && (
+                        <FaRegHeart
+                          id="icon_FaRegHearts"
+                          className={likedItems.includes(index) ? "active" : ""}
+                          onClick={() => AddToFavorite(res, index)}
+                        />
+                      )}
+                      <Link to={`/details/${res.id}`} className="button_see">
                         View
                       </Link>
                     </div>
@@ -184,7 +179,7 @@ const Search = () => {
             )}
         </div>
 
-        <div className="productHead_contents">
+        <div className="title">
           <h1 className="htxthead">
             <span className="spennofStyle"></span>All User
           </h1>
@@ -198,7 +193,7 @@ const Search = () => {
                   <div className="box_image_user">
                     <img src={res.image} alt="image" />
                   </div>
-                  <div className="txtOFproduct_user">
+                  <div className="txtOF-normal-resume">
                     <p>
                       <span>Name:</span> {res.name}
                     </p>
@@ -213,17 +208,14 @@ const Search = () => {
                     </p>
                   </div>
                   <div className="btn_button_see_user">
-                    <FaRegHeart
-                      id="icon_FaRegHeart"
-                      className={likedItems.includes(index) ? "active" : ""}
-                      onClick={() => {
-                        AddToFavorite(res, index);
-                      }}
-                    />
-                    <Link
-                      to={`/productdetails/${res.id}`}
-                      className="button_see"
-                    >
+                    {user && storage.company_id !== false && (
+                      <FaRegHeart
+                        id="icon_FaRegHearts"
+                        className={likedItems.includes(index) ? "active" : ""}
+                        onClick={() => AddToFavorite(res, index)}
+                      />
+                    )}
+                    <Link to={`/details/${res.id}`} className="button_see">
                       View
                     </Link>
                   </div>
@@ -232,9 +224,9 @@ const Search = () => {
             ))}
         </div>
         {appState.result.length > 4 && (
-          <div className="box_container_next_product">
+          <div className="box_container_next_resume">
             <button
-              className="box_prev_left_product"
+              className="box_prev_left_resume"
               disabled={currentPage === 1}
               onClick={prevPage}
             >
@@ -242,9 +234,9 @@ const Search = () => {
             </button>
             {Array.from({ length: totalPages }, (_, index) => index + 1).map(
               (page) => (
-                <div className="box_num_product" key={page}>
+                <div className="box_num_resume" key={page}>
                   <button
-                    className={`num_admin_product ${
+                    className={`num_admin_resume ${
                       currentPage === page ? "active" : ""
                     }`}
                     onClick={() => handlePageChange(page)}
@@ -255,7 +247,7 @@ const Search = () => {
               )
             )}
             <button
-              className="box_prev_right_product"
+              className="box_prev_right_resume"
               disabled={currentPage === totalPages}
               onClick={nextPage}
             >

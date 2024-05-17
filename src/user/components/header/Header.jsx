@@ -10,11 +10,11 @@ import { FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-
-const Header = () => {
+const Header = ({resume}) => {
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
-  const [is_resumed, set_is_resumed] = useState(false);
+
+  console.log("resume: 00000000000000", resume)
 
   let navigate = useNavigate();
   const [search, set_search] = useState(searchParam);
@@ -74,42 +74,7 @@ const Header = () => {
         console.log(error);
       });
 
-    IsUserHaveResume();
   }, [token]);
-
-
-
-  
-  const IsUserHaveResume = () => {
-    let data = "";
-
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `http://3.38.225.226:8000/resume/user/${storage.user_id}/`,
-      headers: {},
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        set_is_resumed(true);
-        // navigate("/");
-      })
-      .catch((error) => {
-        // console.log(error);
-        set_is_resumed(false);
-        // navigate("/");
-      });
-  };
-
-  console.log(is_resumed);
-
-  const checkStatus = () => {
-    alert(is_resumed);
-  };
 
   return (
     <>
@@ -151,7 +116,7 @@ const Header = () => {
                 <input
                   id="search"
                   type="text"
-                  value={search}
+                  value={search || ""}
                   placeholder="Search..."
                   onChange={(e) => {
                     set_search(e.target.value);
@@ -168,14 +133,7 @@ const Header = () => {
                     {storage.company_id == false ? (
                       <>
                         <div>
-                          <Link
-                            onClick={() => {
-                              checkStatus();
-                            }}
-                            className="head_colorr"
-                          >
-                            CV
-                          </Link>
+                          <Link to='/add_resume' className="head_colorr">CV</Link>
                         </div>
                       </>
                     ) : (

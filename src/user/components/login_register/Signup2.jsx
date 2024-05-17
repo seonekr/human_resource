@@ -93,9 +93,7 @@ const Signup2 = () => {
           {userType === "1" && <h2>User register</h2>}
           {userType === "2" && <h2>Company register</h2>}
 
-          <div className="title">
-            You are in the process of signing up as a user!
-          </div>
+          <p>You are in the process of signing up as a user!</p>
           <form className="container_form_user" onSubmit={signUp}>
             <div className="box_title">Enter basic information</div>
             <div className="container_form_user2">

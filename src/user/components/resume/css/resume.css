@@ -1,0 +1,547 @@
+a {
+    text-decoration: none;
+  }
+  
+  #resume {
+    width: 65%;
+    margin: auto;
+    height: auto;
+    margin-top: 6.5rem;
+  }
+  
+  .title {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .box_TfiMenuAlt {
+    grid-template-columns: 1fr 1fr 2fr;
+    display: grid;
+    width: 53%;
+    position: absolute;
+    right: 0; /* Move the element to the right edge */
+  }
+  
+  .box_TfiMenuAlt p {
+    color: #ff4f16;
+  }
+  #TfiMenuAlt {
+    font-size: 24px;
+    color: #ff4f16;
+  }
+  .filter_position {
+    font-size: 15px;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: 1px solid #ff4f16;
+    cursor: pointer;
+    position: relative;
+    left: 100%;
+  }
+  .filter_month {
+    font-size: 15px;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: 1px solid #4816ff;
+    cursor: pointer;
+    position: relative;
+    left: 100%;
+  }
+  .box_icon_cart:hover {
+    color: #ff4f16;
+  }
+  
+  .htxthead,
+  .categoryBoxfiler {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .spennofStyle {
+    width: 20px;
+    height: 40px;
+    background-color: #ff4f16;
+    border-radius: 4px;
+  }
+  
+  .box_container_next_resume {
+    display: flex;
+    gap: 1rem;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3.5rem;
+    bottom: 0;
+  }
+  
+  .box_prev_left_resume {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    gap: 0.3rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #fa442c;
+  }
+  .box_num_resume {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .num_admin_resume {
+    width: 70px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  .num_admin_resume.active {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+  }
+  .box_prev_right_resume {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    gap: 0.3rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #27a7ef;
+  }
+  
+  /*====================== All resume ================*/
+  
+  .box_cart_searchs {
+    margin-left: 10.5rem;
+  }
+  
+  .box_icon_searchs {
+    color: #3a3a3a;
+    display: flex;
+    font-size: 1.6rem;
+    margin-top: -1.3rem;
+    padding: 5px 5px;
+    border: 1px solid var(--gray);
+    border-radius: 10%;
+    background-color: #e9e5e5a1;
+  }
+  
+  .box_icon_searchs:hover {
+    color: #ff4f16;
+  }
+  
+  .resume-contain {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .contentImageUser {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .containner_box_image {
+    width: 100%;
+    display: flex;
+  }
+  .containner_box_image_user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .box_image {
+    width: 170px;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .box_image img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 100%;
+  }
+  .box_image_user {
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .box_image_user img {
+    width: 100%;
+    height: 85px;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 8px;
+    border-radius: 100%;
+  }
+  
+  .group_itemBox {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px;
+  }
+  
+  .group_itemBox:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  }
+  
+  .group_itemBox .txtOFResume {
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  .group_itemBox_user {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px;
+  }
+  
+  .group_itemBox_user:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  }
+  
+  .group_itemBox_user .txtOF-normal-resume {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+  }
+  .txtOF-normal-resume span {
+    font-size: 18px;
+  }
+  
+  .btn_button_see {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px;
+  }
+  .btn_button_see_user {
+    display: grid;
+    gap: 1rem;
+    padding: 10px;
+  }
+  .btn_button_see_user #icon_FaRegHeart {
+    margin-left: 0.8rem;
+  }
+  
+  #icon_FaRegHeart {
+    font-size: 22px;
+  }
+  
+  .button_see {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    background: #ff4f16;
+  }
+  
+  .mb {
+    display: none;
+  }
+  
+  .loadmore_btn_more {
+    padding: 12px 50px;
+    background: #ff4f16;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px;
+    cursor: pointer;
+    margin: 3rem 0 2rem 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn_more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /*========= read more text p ===========*/
+  .btn_read_more {
+    padding: 3px 5px;
+    border: solid 1px #0e64d2;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+  }
+  .btn_read_more:hover {
+    border: solid 1px #fa1f1fd7;
+  }
+  
+  /* ================== Responsive ==============*/
+  
+  @media screen and (max-width: 1024px) {
+
+    .resume-contain {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .contentImageUser {
+      width: 100%;
+      grid-template-columns: 1fr;
+    }
+  
+    /* .group_itemBox .box_image {
+          height: 140px;
+      } */
+    .box_image {
+      width: 150px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      overflow: hidden;
+      padding: 8px;
+      border-radius: 100%;
+    }
+  
+    .box_image_user {
+      width: 80px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image_user img {
+      width: 100%;
+      height: 50px;
+      object-fit: cover;
+      overflow: hidden;
+      padding: 8px;
+      border-radius: 100%;
+    }
+  
+    .group_itemBox .txtOFResume {
+      padding: 0;
+      margin-top: 1rem;
+    }
+  
+    .box_cart_searchs {
+      margin-left: 6.5rem;
+      margin-top: 0.5rem;
+    }
+  
+    .content_itemBox .container_resume {
+      align-items: flex-start;
+    }
+  
+    .loadmore_btn_more {
+      margin-top: 2rem;
+    }
+   
+  }
+  
+  @media screen and (max-width: 767px) {
+    #resume {
+      width: 90%;
+      margin-bottom: 10rem;
+      padding: 0 10px;
+    }
+  
+    .box_cart_search {
+      margin-left: -5rem;
+      margin-top: 1rem;
+    }
+  
+    .resume-contain {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    .contentImageUser {
+      width: 100%;
+      grid-template-columns: 1fr;
+    }
+    .box_image {
+      width: 100px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image img {
+      width: 100%;
+      height: 90px;
+    }
+  
+    .txt_span {
+      display: none;
+    }
+    .box_image_user {
+      width: 130px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image_user img {
+      width: 100%;
+      height: 70px;
+    }
+    #icon_FaRegHeart {
+      font-size: 18px;
+    }
+    .button_see {
+      padding: 2px 8px;
+    }
+    .mb {
+      display: flex;
+    }
+    .pc {
+      display: none;
+    }
+    .group_itemBox_user .txtOF-normal-resume {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  
+    .txtOF-normal-resume span {
+      font-size: 14px;
+    }
+  
+    .box_cart_searchs {
+      margin-left: 6.3rem;
+      margin-top: 0.5rem;
+    }
+  
+    .content_itemBox .container_resume {
+      align-items: flex-start;
+    }
+  }
+  @media screen and (max-width: 431px) {
+    #resume {
+      width: 100%;
+      margin-bottom: 10rem;
+      padding: 0 10px;
+    }
+  
+    .box_cart_search {
+      margin-left: -5rem;
+      margin-top: 1rem;
+    }
+    .containner_box_image_user {
+      height: 120px;
+      position: relative;
+    }
+    .resume-contain {
+      grid-template-columns: 1fr 1fr;
+    }
+    .contentImageUser {
+      width: 100%;
+      grid-template-columns: 1fr;
+    }
+    .box_image {
+      width: 90px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image img {
+      width: 100%;
+      height: 90px;
+    }
+  
+    .txt_span {
+      display: none;
+    }
+    .box_image_user {
+      width: 130px;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .box_image_user img {
+      width: 100%;
+      height: 70px;
+    }
+    #icon_FaRegHeart {
+      top: 7px;
+      right: 10px;
+      position: absolute;
+      font-size: 25px;
+    }
+    .button_see {
+      padding: 5px 20px;
+      border-radius: 7px;
+    }
+    .mb {
+      display: flex;
+    }
+    .pc {
+      display: none;
+    }
+    .group_itemBox_user .txtOF-normal-resume {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+  
+    .txtOF-normal-resume span {
+      font-size: 14px;
+    }
+  
+    .box_cart_searchs {
+      margin-left: 6.3rem;
+      margin-top: 0.5rem;
+    }
+  
+    .content_itemBox .container_resume {
+      align-items: flex-start;
+    }
+    .box_TfiMenuAlt {
+      gap: 5px;
+      width: auto; /* Remove fixed width */
+      left: 0; /* Align the element to the left */
+      right: initial; /* Reset right position */
+      grid-template-columns: 1fr; /* Change grid layout to one column */
+    }
+    
+    .filter_month {
+  
+      display: flex;
+      justify-content: flex-end; /* Align the items to the right */
+    }
+    
+  }
+  

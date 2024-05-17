@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./css/productBuy.css";
+import "./css/detail.css";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import avatar from "../../../img/avatar.png";
@@ -7,18 +7,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 
-function ProductDetails() {
+function Details() {
   const id = useParams().id;
   const [resume_id, set_resume_id] = useState([]);
-  ////Activate
   const [likedItems, setLikedItems] = useState([]);
 
   const user = localStorage.getItem("user");
   const storage = JSON.parse(window.localStorage.getItem("user"));
 
-  console.log("Resume_id........", resume_id);
-
-  console.log("Parameter: ", id);
 
   useEffect(() => {
     let config = {
@@ -66,37 +62,34 @@ function ProductDetails() {
     }
   };
 
-  console.log("resume_idr..........", resume_id);
 
   return (
     <>
       <Header />
       <div className="contentBody">
         {resume_id ? (
-          <div>
-            <form className="boxProduct_deteils">
-              <section className="product_details">
-                <div className="product-page-img">
+          <>
+            <div className="boxresume_deteils">
+                <div className="resume-page-img">
                   <div className="myslides">
                     <img src={resume_id.image} alt="" />
                   </div>
                 </div>
-              </section>
 
-              <div className="txtContentproduct">
+              <div className="txtContentresume">
                 <h3 className="txt_nameP">Name: {resume_id.name}</h3>
                 <p>Age: {resume_id.age}</p>
                 <p>Major: {resume_id.major}</p>
                 <p>Skills: {resume_id.skill}</p>
               </div>
-            </form>
+            </div>
 
-            <div className="product-details-container">
-              <h2 className="product-details-title">CV Details</h2>
+            <div className="resume-details-container">
+              <h2 className="resume-details-title">CV Details</h2>
               <div className="pdf-container">
                 <iframe
                   src={resume_id.resume_image}
-                  title="Product PDF"
+                  title="resume PDF"
                   className="pdf-viewer"
                 ></iframe>
               </div>
@@ -120,7 +113,7 @@ function ProductDetails() {
                 </>
               )}
             </div>
-          </div>
+          </>
         ) : (
           <p>Loading...</p>
         )}
@@ -130,4 +123,4 @@ function ProductDetails() {
   );
 }
 
-export default ProductDetails;
+export default Details;

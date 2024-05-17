@@ -11,7 +11,7 @@ import Privacy from "../user/components/account/Privacy";
 import More from "../user/components/account/More";
 
 /* ============================== */
-import ProductDetails from "../user/components/products/ProductDetails";
+import Details from "../user/components/resume/details";
 import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
 import Product from "../admin/components/products/Product";
@@ -56,7 +56,7 @@ const Links = () => {
         <Route exact path="/about" Component={AboutUs} />
 
         {/*====================== */}
-        <Route exact path="/productdetails/:id" Component={ProductDetails} />
+        <Route exact path="/details/:id" Component={Details} />
         <Route exact path="/forgotpassword" Component={ForgotPassword} />
         <Route exact path="/alertlogin" Component={AlertLogin} />
         <Route exact path="/alertregister" Component={AlertRegister} />
