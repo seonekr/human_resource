@@ -128,8 +128,7 @@ const Search = () => {
             >
               <option value="">More title job</option>
               <option value="computer science">Computer Science</option>
-              <option value="computer engineer">Computer Engineer</option>
-              <option value="it engineer">IT Engineer</option>
+              <option value="Grapich design">IT Engineer</option>
               <option value="software engineer">Software Engineer</option>
             </select>
           </form>
