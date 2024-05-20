@@ -1,118 +1,107 @@
 import "../resume/css/resume.css";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
 const Search = () => {
-  const user = localStorage.getItem("user");
-  const storage = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchParam = urlParams.get("search");
+  const location = useLocation();
+  const { filtered } = location.state || {};
+  const user = JSON.parse(localStorage.getItem("user"));
+  const searchParam =
+    new URLSearchParams(window.location.search).get("search") || "";
 
-  const [search, set_search] = useState(searchParam);
-
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    set_search(searchParam);
-  }, [searchParam]);
-
-  function handleSelectChange(e) {
-    const selectedValue = e.target.value;
-    set_search(selectedValue);
-    navigateToSearch(selectedValue);
-  }
-
-  function navigateToSearch(selectedValue) {
-    navigate({
-      pathname: "/search/",
-      search: `?search=${selectedValue}`,
-    });
-  }
-
-  const [appState, setAppState] = useState({
-    search: "",
-    result: [],
-  });
+  const [search, setSearch] = useState(searchParam);
+  const [results, setResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [favorite, setFavorite] = useState(
+    JSON.parse(localStorage.getItem("favorite")) || []
+  );
+  const [likedItems, setLikedItems] = useState([]);
+  const [filter, setFilter] = useState(filtered);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchResults = async () => {
       try {
-        const config = {
-          method: "get",
-          maxBodyLength: Infinity,
-          url: import.meta.env.VITE_API + "/resume/list/?search=" + searchParam,
-          headers: {},
-        };
-
-        const response = await axios.request(config);
-        const allPosts = response.data;
-        setAppState((prevState) => ({
-          ...prevState,
-          result: allPosts,
-        }));
-        setCurrentPage(1); // Reset to the first page when search changes
+        const query = search ? `?search=${search}` : "";
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/resume/list/${query}`
+        );
+        setResults(response.data);
+        setCurrentPage(1);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
-    fetchData();
-  }, [searchParam]);
-
-  const [likedItems, setLikedItems] = useState([]);
-
-  const [favorite, set_favorite] = useState(() => {
-    const localFavorite = localStorage.getItem("favorite");
-    return localFavorite ? JSON.parse(localFavorite) : [];
-  });
+    fetchResults();
+  }, [search]);
 
   useEffect(() => {
     localStorage.setItem("favorite", JSON.stringify(favorite));
   }, [favorite]);
 
-  const AddToFavorite = (resume, index) => {
-    const existingResume = favorite.find((item) => item.id === resume.id);
-
-    if (existingResume) {
-      alert("This resume already favorited!");
-    } else {
-      set_favorite([...favorite, { ...resume }]);
-      alert("Success.");
+  useEffect(() => {
+    if (results.length > 0) {
+      if (!filter) {
+        setFilteredResults(results);
+      } else {
+        const endDate = new Date();
+        const startDate = new Date(endDate);
+        startDate.setDate(startDate.getDate() - parseInt(filter));
+        const filtered = results.filter(({ updated_at }) => {
+          const updatedAt = new Date(updated_at);
+          return updatedAt >= startDate && updatedAt <= endDate;
+        });
+        setFilteredResults(filtered);
+      }
     }
+  }, [results, filter]);
 
-    if (likedItems.includes(index)) {
-      setLikedItems(likedItems.filter((item) => item !== index));
-    } else {
-      setLikedItems([...likedItems, index]);
-    }
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    setSearch(selectedValue);
+    navigate(`/search/?search=${selectedValue}`);
   };
 
-  const totalPages = Math.ceil(appState.result.length / 4);
-
-  const startIndex = (currentPage - 1) * 4;
-  const endIndex = startIndex + 4;
-  const currentGoods = appState.result.slice(startIndex, endIndex);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const handleSelectFilter = (e) => {
+    setFilter(e.target.value);
   };
 
-  const nextPage = () => {
-    setCurrentPage((prevPage) =>
-      prevPage === totalPages ? totalPages : prevPage + 1
+  const addToFavorite = (resume, index) => {
+    if (favorite.some((item) => item.id === resume.id)) {
+      alert("This resume is already favorited!");
+    } else {
+      setFavorite([...favorite, resume]);
+      alert("Added to favorites.");
+    }
+
+    setLikedItems((prevLikedItems) =>
+      prevLikedItems.includes(index)
+        ? prevLikedItems.filter((item) => item !== index)
+        : [...prevLikedItems, index]
     );
   };
 
-  const prevPage = () => {
-    setCurrentPage((prevPage) => (prevPage === 1 ? 1 : prevPage - 1));
-  };
+  const totalPages = Math.ceil(filteredResults.length / 4);
+  const currentItems = filteredResults.slice(
+    (currentPage - 1) * 4,
+    currentPage * 4
+  );
+
+  const handlePageChange = (page) => setCurrentPage(page);
+  const nextPage = () =>
+    setCurrentPage((prevPage) =>
+      prevPage < totalPages ? prevPage + 1 : prevPage
+    );
+  const prevPage = () =>
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
 
   return (
     <div>
@@ -122,108 +111,118 @@ const Search = () => {
           <select
             id="skillSelect"
             className="filter_position"
-            value={search || ""}
-            onChange={handleSelectChange} // Call handleSelectChange when an option is selected
-            name="search" // Add name attribute to the select element
+            value={search}
+            onChange={handleSelectChange}
+            name="search"
           >
             <option value="">More title job</option>
             <option value="computer science">Computer Science</option>
-            <option value="grapich design">Grapich design</option>
+            <option value="graphic design">Graphic Design</option>
             <option value="software engineer">Software Engineer</option>
+          </select>
+
+          <select
+            id="skillSelect"
+            className="filter_month"
+            value={filter}
+            onChange={handleSelectFilter}
+          >
+            <option value="">Date</option>
+            <option value="7">Last week</option>
+            <option value="30">Last month</option>
+            <option value="61">2 months ago</option>
+            <option value="92">3 months ago</option>
           </select>
         </div>
 
-        {currentGoods.length > 0 &&
-          currentGoods.some((res) => res.is_recommend) && (
-            <div className="title">
-              <h1 className="htxthead">
-                <span className="spennofStyle"></span>Suggest
-              </h1>
-            </div>
-          )}
+        {currentItems.some((res) => res.is_recommend) && (
+          <div className="title">
+            <h1 className="htxthead">
+              <span className="spennofStyle"></span>Suggest
+            </h1>
+          </div>
+        )}
 
         <div className="resume-contain">
-          {currentGoods.length > 0 &&
-            currentGoods.map(
-              (res, index) =>
-                res.is_recommend && (
-                  <div className="group_itemBox" key={index}>
-                    <div className="containner_box_image">
-                      <div className="box_image">
-                        <img src={res.image} alt="image" />
-                      </div>
-                      <div className="txtOFResume">
-                        <h4>Name: {res.name}</h4>
-                        <p>Age: {res.age}</p>
-                        <p>Major: {res.major}</p>
-                      </div>
-                    </div>
-                    <p>
-                      <span>Skill: </span>
-                      {res.skill.substring(0, 10)}...
-                    </p>
-                    <div className="btn_button_see">
-                      {user && storage.company_id !== false && (
-                        <FaRegHeart
-                          id="icon_FaRegHearts"
-                          className={likedItems.includes(index) ? "active" : ""}
-                          onClick={() => AddToFavorite(res, index)}
-                        />
-                      )}
-                      <Link to={`/details/${res.id}`} className="button_see">
-                        View
-                      </Link>
-                    </div>
+          {currentItems.map((res, index) =>
+            res.is_recommend ? (
+              <div className="group_itemBox" key={res.id}>
+                <div className="containner_box_image">
+                  <div className="box_image">
+                    <img src={res.image} alt="Resume" />
                   </div>
-                )
-            )}
+                  <div className="txtOFResume">
+                    <h4>Name: {res.name}</h4>
+                    <p>Age: {res.age}</p>
+                    <p>Major: {res.major}</p>
+                  </div>
+                </div>
+                <p>
+                  <span>Skill: </span>
+                  {res.skill.substring(0, 10)}...
+                </p>
+                <div className="btn_button_see">
+                  {user && user.company_id !== false && (
+                    <FaRegHeart
+                      id="icon_FaRegHearts"
+                      className={likedItems.includes(index) ? "active" : ""}
+                      onClick={() => addToFavorite(res, index)}
+                    />
+                  )}
+                  <Link to={`/details/${res.id}`} className="button_see">
+                    View
+                  </Link>
+                </div>
+              </div>
+            ) : null
+          )}
         </div>
 
         <div className="title">
           <h1 className="htxthead">
-            <span className="spennofStyle"></span>All User
+            <span className="spennofStyle"></span>All Users
           </h1>
         </div>
 
         <div className="contentImageUser">
-          {currentGoods.length > 0 &&
-            currentGoods.map((res, index) => (
-              <div className="group_itemBox_user" key={index}>
-                <div className="containner_box_image_user">
-                  <div className="box_image_user">
-                    <img src={res.image} alt="image" />
-                  </div>
-                  <div className="txtOF-normal-resume">
-                    <p>
-                      <span>Name:</span> {res.name}
-                    </p>
-                    <p>
-                      <span>Age:</span> {res.age}
-                    </p>
-                    <p className="txt_span">
-                      <span>Major:</span> {res.major}
-                    </p>
-                    <p className="txt_span">
-                      <span>Skills:</span> {res.skill.substring(0, 30)}...
-                    </p>
-                  </div>
-                  <div className="btn_button_see_user">
-                    {user && storage.company_id !== false && (
-                      <FaRegHeart
-                        id="icon_FaRegHearts"
-                        className={likedItems.includes(index) ? "active" : ""}
-                        onClick={() => AddToFavorite(res, index)}
-                      />
-                    )}
-                    <Link to={`/details/${res.id}`} className="button_see">
-                      View
-                    </Link>
-                  </div>
+          {currentItems.map((res, index) => (
+            <div className="group_itemBox_user" key={res.id}>
+              <div className="containner_box_image_user">
+                <div className="box_image_user">
+                  <img src={res.image} alt="Resume" />
+                </div>
+                <div className="txtOF-normal-resume">
+                  <p>
+                    <span>Name:</span> {res.name}
+                  </p>
+                  <p>
+                    <span>Age:</span> {res.age}
+                  </p>
+                  <p className="txt_span">
+                    <span>Major:</span> {res.major}
+                  </p>
+                  <p className="txt_span">
+                    <span>Skills:</span> {res.skill.substring(0, 30)}...
+                  </p>
+                </div>
+                <div className="btn_button_see_user">
+                  {user && user.company_id !== false && (
+                    <FaRegHeart
+                      id="icon_FaRegHearts"
+                      className={likedItems.includes(index) ? "active" : ""}
+                      onClick={() => addToFavorite(res, index)}
+                    />
+                  )}
+                  <Link to={`/details/${res.id}`} className="button_see">
+                    View
+                  </Link>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
-        {appState.result.length > 4 && (
+
+        {results.length > 4 && (
           <div className="box_container_next_resume">
             <button
               className="box_prev_left_resume"

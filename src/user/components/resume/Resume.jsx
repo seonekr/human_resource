@@ -1,4 +1,4 @@
-import './css/resume.css'
+import "./css/resume.css";
 import Header from "../header/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -7,16 +7,17 @@ import { FaRegHeart } from "react-icons/fa";
 
 const ResumeHome = () => {
   const user = localStorage.getItem("user");
-  const storage = JSON.parse(localStorage.getItem("user"));
+  const storage = user ? JSON.parse(user) : null;
+
   const [resume, setResume] = useState([]);
-
-
+  const [filteredResumes, setFilteredResumes] = useState([]);
+  const [filter, setFilter] = useState("");
   const [likedItems, setLikedItems] = useState([]);
   const [favorite, setFavorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
-    
   });
+  console.log(filter);
   const [currentPage, setCurrentPage] = useState(1);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -24,10 +25,16 @@ const ResumeHome = () => {
   const [search, setSearch] = useState(searchParam);
 
   const navigate = useNavigate();
-  const totalPages = Math.ceil(resume.length / 4);
+  const totalPages = Math.ceil(filteredResumes.length / 4);
 
   useEffect(() => {
-    setSearch(searchParam);
+    fetchResume();
+  }, []);
+
+  useEffect(() => {
+    if (search !== searchParam) {
+      setSearch(searchParam);
+    }
   }, [searchParam]);
 
   useEffect(() => {
@@ -35,8 +42,22 @@ const ResumeHome = () => {
   }, [favorite]);
 
   useEffect(() => {
-    fetchResume();
-  }, []);
+    if (resume.length > 0) {
+      if (filter === "") {
+        // Show all resumes if filter is empty
+        setFilteredResumes(resume);
+      } else {
+        const endDate = new Date();
+        const startDate = new Date(endDate);
+        startDate.setDate(startDate.getDate() - parseInt(filter));
+        const filtered = resume.filter(({ updated_at }) => {
+          const updatedAt = new Date(updated_at);
+          return updatedAt >= startDate && updatedAt <= endDate;
+        });
+        setFilteredResumes(filtered);
+      }
+    }
+  }, [resume, filter]);
 
   const fetchResume = async () => {
     try {
@@ -52,7 +73,16 @@ const ResumeHome = () => {
   const handleSelectChange = (e) => {
     const selectedValue = e.target.value;
     setSearch(selectedValue);
-    navigate(`/search/?search=${selectedValue}`);
+    navigate(`/search/?search=${selectedValue}`, {
+      state: {
+        filtered: filter,
+      },
+    });
+  };
+
+  const handleSelectFilter = (e) => {
+    const selectedValue = e.target.value;
+    setFilter(selectedValue);
   };
 
   const handleAddToFavorite = (resume, index) => {
@@ -62,7 +92,6 @@ const ResumeHome = () => {
       setFavorite([...favorite, resume]);
       alert("Success.");
     }
-
     setLikedItems((prev) =>
       prev.includes(index)
         ? prev.filter((item) => item !== index)
@@ -70,54 +99,46 @@ const ResumeHome = () => {
     );
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const handlePageChange = (page) => setCurrentPage(page);
 
-  const nextPage = () => {
+  const nextPage = () =>
     setCurrentPage((prev) => (prev === totalPages ? totalPages : prev + 1));
-  };
 
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev === 1 ? 1 : prev - 1));
-  };
+  const prevPage = () => setCurrentPage((prev) => (prev === 1 ? 1 : prev - 1));
 
   const startIndex = (currentPage - 1) * 4;
-  const endIndex = startIndex + 4;
-  const currentGoods = resume.slice(startIndex, endIndex);
+  const currentGoods = filteredResumes.slice(startIndex, startIndex + 4);
 
-  const recommendedResumes = resume.filter((res) => res.is_recommend);
-
+  const recommendedResumes = filteredResumes.filter((res) => res.is_recommend);
 
   return (
     <div>
-      <Header/>
+      <Header />
       <section id="resume">
         <div className="box_TfiMenuAlt">
           <select
             id="skillSelect"
             className="filter_position"
-            value={search || ""}
+            value={search}
             onChange={handleSelectChange}
             name="search"
           >
             <option value="">More title job</option>
             <option value="computer science">Computer Science</option>
-            <option value="grapich design">Grapich design</option>
+            <option value="graphic design">Graphic Design</option>
             <option value="software engineer">Software Engineer</option>
           </select>
           <select
             id="skillSelect"
             className="filter_month"
-            value={search || ""}
-            onChange={handleSelectChange}
-            name="search"
+            value={filter}
+            onChange={handleSelectFilter}
           >
             <option value="">Date</option>
-            <option value="last week">Last week</option>
-            <option value="last month">Last month</option>
-            <option value="2 month ago">2 months ago</option>
-            <option value="3 month ago">3 months ago</option>
+            <option value="7">Last week</option>
+            <option value="30">Last month</option>
+            <option value="61">2 months ago</option>
+            <option value="92">3 months ago</option>
           </select>
         </div>
 
@@ -131,7 +152,7 @@ const ResumeHome = () => {
 
         <div className="resume-contain">
           {recommendedResumes.map((res, index) => (
-            <div className="group_itemBox" key={index}>
+            <div className="group_itemBox" key={res.id}>
               <div className="containner_box_image">
                 <div className="box_image">
                   <img src={res.image} alt="image" />
@@ -147,7 +168,7 @@ const ResumeHome = () => {
                 {res.skill.substring(0, 10)}...
               </p>
               <div className="btn_button_see">
-                {user && storage.company_id !== false && (
+                {user && storage?.company_id && (
                   <FaRegHeart
                     id="icon_FaRegHearts"
                     className={likedItems.includes(index) ? "active" : ""}
@@ -170,7 +191,7 @@ const ResumeHome = () => {
 
         <div className="contentImageUser">
           {currentGoods.map((res, index) => (
-            <div className="group_itemBox_user" key={index}>
+            <div className="group_itemBox_user" key={res.id}>
               <div className="containner_box_image_user">
                 <div className="box_image_user">
                   <img src={res.image} alt="image" />
@@ -190,11 +211,15 @@ const ResumeHome = () => {
                   </p>
                 </div>
                 <div className="btn_button_see_user">
-                  {user && storage.company_id !== false && (
+                  {user && storage?.company_id && (
                     <FaRegHeart
                       id="icon_FaRegHearts"
-                      className={likedItems.includes(index) ? "active" : ""}
-                      onClick={() => handleAddToFavorite(res, index)}
+                      className={
+                        likedItems.includes(startIndex + index) ? "active" : ""
+                      }
+                      onClick={() =>
+                        handleAddToFavorite(res, startIndex + index)
+                      }
                     />
                   )}
                   <Link to={`/details/${res.id}`} className="button_see">
@@ -206,7 +231,7 @@ const ResumeHome = () => {
           ))}
         </div>
 
-        {resume.length > 4 && (
+        {filteredResumes.length > 4 && (
           <div className="box_container_next_resume">
             <button
               className="box_prev_left_resume"
