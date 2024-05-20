@@ -66,7 +66,7 @@ const Links = () => {
         <Route exact path="/add_resume" Component={CVregister} />
         <Route exact path="/list_users" Component={Listusers} />
         <Route exact path="/detail_cv/:id" Component={DetailCV} />
-        <Route exact path="/edit_resume" Component={EditResume} />
+        <Route exact path="/edit_resume/:id" Component={EditResume} />
 
         <Route exact path="/search" Component={Search} />
 

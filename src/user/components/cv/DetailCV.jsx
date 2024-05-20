@@ -9,29 +9,69 @@ import logo_resoure from "../../../img/logo_resoure.jpeg";
 const DetailCV = () => {
   const id = useParams().id;
   const [user_id, set_user_id] = useState([]);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showConfirmationDelete, setShowConfirmationDelete] = useState(false);
 
-  const handleCancelDelete = () => {
-    setShowConfirmation(false);
+  const handleConfirmDelete = () => {
+    handleDeleteAccount();
+    setShowConfirmationDelete(false);
   };
+  const handleCancelDelete = () => {
+    setShowConfirmationDelete(false);
+  };
+  const user = localStorage.getItem("user");
+
+  //Function Delete
+  const handleDeleteAccount = async () => {
+    try {
+      const config = {
+        method: "delete",
+        url: `${import.meta.env.VITE_API}/resume/user/${id}/`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
+      const response = await axios(config);
+      if (response.status === 204) {
+        // Account deleted successfully
+        alert("Account deleted successfully");
+        console.log("Account deleted successfully");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/");
+        // Perform any other actions (e.g., redirect to home page)
+      } else {
+        console.error("Failed to delete account:", response.data.message);
+        alert("Failed to delete account:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+    }
+  };
+
+  const iid = 27;
 
   useEffect(() => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + `/resume/user/${id}/`,
+      url: `${import.meta.env.VITE_API}/resume/user/${id}/`,
     };
 
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        set_user_id(response.data);
+        console.log(JSON.stringify(response.data.data));
+
+        set_user_id(response.data.data);
+
+        console.log("result", response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -67,18 +107,25 @@ const DetailCV = () => {
                 <div className="btn_button_see_user">
                   <div
                     className="button_see_delete"
-                    onClick={() => setShowConfirmation(true)}
+                    onClick={() => setShowConfirmationDelete(true)}
                   >
                     Delete
                   </div>
-                  <Link to="/edit_resume" className="button_edit">
-                    Edit
-                  </Link>
+                  {user_id.user && (
+                    <div>
+                      <Link
+                        to={`/edit_resume/${user_id.user.id}`}
+                        className="button_edit"
+                      >
+                        Update
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {showConfirmation && (
+            {showConfirmationDelete && (
               <div className="box_background_delete">
                 <div className="hover_delete_box">
                   <div className="box_logout">
@@ -91,7 +138,10 @@ const DetailCV = () => {
                     >
                       No
                     </button>
-                    <button className="btn_confirm btn_addproducttxt_popup">
+                    <button
+                      className="btn_confirm btn_addproducttxt_popup"
+                      onClick={handleConfirmDelete}
+                    >
                       Yes
                     </button>
                   </div>
