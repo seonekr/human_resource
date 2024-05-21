@@ -5,56 +5,49 @@ import { IoCamera } from "react-icons/io5";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function EditResume() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  // console.log("idididididididid.", id);
-
-  const storage = JSON.parse(window.localStorage.getItem("user"));
-  const store_id = storage?.store_id || false;
-
-  const [ImagePreview, setImagePreview] = useState(
-    null
-    // "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg"
-  );
-  const [email, set_email] = useState("");
-  const [name, set_name] = useState("");
-  const [age, set_age] = useState("");
-  const [major, set_major] = useState("");
-  const [skill, set_skill] = useState("");
-  const [image, set_image] = useState(null);
-  const [resume_image, set_resume_image] = useState(null);
+  const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [major, setMajor] = useState("");
+  const [skill, setSkill] = useState("");
+  const [image, setImage] = useState(null);
+  const [resumeImage, setResumeImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [newImage, setNewImage] = useState(null); // State to hold new image file
+  const [newResumeImage, setNewResumeImage] = useState(null); // State to hold new resume file
+  const [imagePreview, setImagePreview] = useState(null); // State to hold image preview URL
+
   useEffect(() => {
-    setLoading(true);
-
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `${import.meta.env.VITE_API}/resume/detail/${id}/`,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API}/resume/detail/${id}/`);
         const data = response.data;
-        set_email(data.user.email);
-        set_name(data.name);
-        set_age(data.age);
-        set_major(data.major);
-        set_skill(data.skill);
-        setImagePreview(data.image);
+        setEmail(data.user.email);
+        setName(data.name);
+        setAge(data.age);
+        setMajor(data.major);
+        setSkill(data.skill);
+        setUserId(data.user.id);
+        setImage(data.image);
+        setResumeImage(data.resume_image);
         setLoading(false);
-
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -63,50 +56,52 @@ function EditResume() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-      set_image(file);
+      setImagePreview(URL.createObjectURL(file));
+      setNewImage(file);
     }
   };
 
   const handleResumeChange = (e) => {
     const file = e.target.files[0];
-    set_resume_image(file);
+    setNewResumeImage(file);
   };
 
+  const extractFilename = (url) => {
+    return url.split('/').pop();
+  };
+
+
   const handleUpdate = () => {
-    const formdata = new FormData();
-    formdata.append("name", name);
-    formdata.append("age", age);
-    formdata.append("major", major);
-    formdata.append("skill", skill);
-    formdata.append("image", image);
-    formdata.append("resume_image", resume_image);
-    formdata.append("is_recommend", "false");
-    formdata.append("user", id);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("age", age);
+    formData.append("major", major);
+    formData.append("skill", skill);
+    formData.append("is_recommend", "true");
+    formData.append("user", userId);
 
-    const requestOptions = {
+    if (newImage) {
+      formData.append("image", newImage);
+    } else if (image) {
+      formData.append("image", extractFilename(image));
+    }
+
+    if (newResumeImage) {
+      formData.append("resume_image", newResumeImage);
+    } else if (resumeImage) {
+      formData.append("resume_image", extractFilename(resumeImage));
+    }
+
+    fetch(`${import.meta.env.VITE_API}/resume/update/${id}/`, {
       method: "PUT",
-      body: formdata,
-      redirect: "follow",
-    };
-
-    fetch(`http://3.38.225.226:8000/resume/update/${id}/`, requestOptions)
+      body: formData,
+    })
       .then((response) => response.json())
-      // .then((result) => console.log(result))
-      // .catch((error) => console.error(error));
       .then((result) => {
         console.log(result);
-        if (result.success) {
-          alert('Resume updated successfully!');
-        } else {
-          alert('Failed to update resume. Please try again.');
-        }
+        navigate("/");
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -117,7 +112,7 @@ function EditResume() {
         <div className="image_profile_user">
           <label htmlFor="profileImage">
             <div>
-              <img src={ImagePreview} alt="Preview" />
+              <img src={imagePreview || image} alt="Preview" />
             </div>
             <div className="iconn_changecamera">
               <IoCamera />
@@ -139,7 +134,7 @@ function EditResume() {
               type="text"
               placeholder="Email"
               value={email}
-              onChange={(e) => set_email(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="box_inputContent">
@@ -149,7 +144,7 @@ function EditResume() {
               type="text"
               placeholder="Name"
               value={name}
-              onChange={(e) => set_name(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="box_inputContent">
@@ -159,7 +154,7 @@ function EditResume() {
               type="text"
               placeholder="Age"
               value={age}
-              onChange={(e) => set_age(e.target.value)}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
           <div className="box_inputContent">
@@ -169,7 +164,7 @@ function EditResume() {
               type="text"
               placeholder="Major"
               value={major}
-              onChange={(e) => set_major(e.target.value)}
+              onChange={(e) => setMajor(e.target.value)}
             />
           </div>
           <div className="box_inputContent">
@@ -178,15 +173,14 @@ function EditResume() {
               id="skill"
               placeholder="Skills..."
               value={skill}
-              onChange={(e) => set_skill(e.target.value)}
+              onChange={(e) => setSkill(e.target.value)}
             />
           </div>
           <div className="boxfileUp">
             <div className="boxfileUpInfo">
-              <div className="icon_boxfileUpInfo">
+              <label className="icon_boxfileUpInfo" htmlFor="filecv">
                 <BsUpload />
-              </div>
-              <label htmlFor="filecv">Choose file CV PDF</label>
+              </label>
               <input
                 type="file"
                 id="filecv"

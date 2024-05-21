@@ -87,20 +87,12 @@
     overflow: hidden;
     cursor: pointer;
 }
-.boxfileUpInfo label{
-    border: 1px solid #FF4F16;
-    padding: 2px 10px;
-    border-radius: 5px;
-    cursor: pointer;
 
-}
-.boxfileUpInfo input {
-    display: none;
-}
 
 .icon_boxfileUpInfo {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 /* .btn_submitUploadFile {

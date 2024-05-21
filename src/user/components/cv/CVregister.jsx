@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { IoCamera } from "react-icons/io5";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CVregister() {
-
+ const  usenavigate = useNavigate()
   const storage = JSON.parse(localStorage.getItem("user"));
 
 
@@ -90,6 +91,7 @@ function CVregister() {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
+      usenavigate("/")
     setPostresume({
       image1: null,
       name: "",

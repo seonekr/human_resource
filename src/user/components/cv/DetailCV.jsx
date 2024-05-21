@@ -8,6 +8,8 @@ import logo_resoure from "../../../img/logo_resoure.jpeg";
 
 const DetailCV = () => {
   const id = useParams().id;
+  const  usenavigate = useNavigate()
+  console.log("ididid", id)
   const [user_id, set_user_id] = useState([]);
   const [showConfirmationDelete, setShowConfirmationDelete] = useState(false);
 
@@ -22,34 +24,19 @@ const DetailCV = () => {
 
   //Function Delete
   const handleDeleteAccount = async () => {
-    try {
-      const config = {
-        method: "delete",
-        url: `${import.meta.env.VITE_API}/resume/user/${id}/`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-
-      const response = await axios(config);
-      if (response.status === 204) {
-        // Account deleted successfully
-        alert("Account deleted successfully");
-        console.log("Account deleted successfully");
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
-        // Perform any other actions (e.g., redirect to home page)
-      } else {
-        console.error("Failed to delete account:", response.data.message);
-        alert("Failed to delete account:", response.data.message);
-      }
-    } catch (error) {
-      console.error("Error deleting account:", error);
-    }
+    const requestOptions = {
+      method: "DELETE",
+      redirect: "follow"
+    };
+    
+    fetch(`http://3.38.225.226:8000/resume/delete/${user_id.id}/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+      usenavigate("/")
+     
   };
-
+  //  console.log(user_id.id)
 
   useEffect(() => {
     let config = {
