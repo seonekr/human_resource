@@ -1,6 +1,6 @@
 import "./css/addresume.css";
 import { BsUpload } from "react-icons/bs";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoCamera } from "react-icons/io5";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
@@ -12,26 +12,26 @@ function EditResume() {
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState("");
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [major, setMajor] = useState("");
   const [skill, setSkill] = useState("");
   const [image, setImage] = useState(null);
   const [resumeImage, setResumeImage] = useState(null);
+  const [newImage, setNewImage] = useState(null);
+  const [newResumeImage, setNewResumeImage] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const [newImage, setNewImage] = useState(null); // State to hold new image file
-  const [newResumeImage, setNewResumeImage] = useState(null); // State to hold new resume file
-  const [imagePreview, setImagePreview] = useState(null); // State to hold image preview URL
+  const imageInputRef = useRef(null);
+  const resumeInputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API}/resume/detail/${id}/`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/resume/detail/${id}/`
+        );
         const data = response.data;
-        setEmail(data.user.email);
         setName(data.name);
         setAge(data.age);
         setMajor(data.major);
@@ -47,7 +47,7 @@ function EditResume() {
     };
 
     fetchData();
-  }, [id]);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -56,51 +56,63 @@ function EditResume() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImagePreview(URL.createObjectURL(file));
+      setImage(URL.createObjectURL(file));
       setNewImage(file);
     }
   };
 
   const handleResumeChange = (e) => {
     const file = e.target.files[0];
-    setNewResumeImage(file);
+    if (file) {
+      setResumeImage(file.name);
+      setNewResumeImage(file);
+    }
   };
 
   const extractFilename = (url) => {
-    return url.split('/').pop();
+    return url.split("/").pop();
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("age", age);
     formData.append("major", major);
     formData.append("skill", skill);
-    formData.append("is_recommend", "true");
     formData.append("user", userId);
 
+    // Append new image if selected, otherwise append the current image filename
     if (newImage) {
       formData.append("image", newImage);
-    } else if (image) {
+    } else {
       formData.append("image", extractFilename(image));
     }
 
+    // Append new resume if selected, otherwise append the current resume filename
     if (newResumeImage) {
       formData.append("resume_image", newResumeImage);
-    } else if (resumeImage) {
-      formData.append("resume_image", extractFilename(resumeImage));
+    } else {
+      formData.append("resume_image", "extractFilename(resumeImage)");
     }
 
-    fetch(`${import.meta.env.VITE_API}/resume/update/${id}/`, {
-      method: "PUT",
-      body: formData,
-    })
-      .then((response) => response.text())
-      .then((result) => {
-        console.log(result);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API}/resume/update/${id}/`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      if (response.ok) {
         navigate("/");
-      })
-      .catch((error) => console.error(error));
+      } else {
+        console.error("Failed to update the resume");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    // Clear the file inputs
+    imageInputRef.current.value = null;
+    resumeInputRef.current.value = null;
   };
 
   return (
@@ -111,7 +123,7 @@ function EditResume() {
         <div className="image_profile_user">
           <label htmlFor="profileImage">
             <div>
-              <img src={imagePreview || image} alt="Preview" />
+              <img src={image} alt="Preview" />
             </div>
             <div className="iconn_changecamera">
               <IoCamera />
@@ -122,20 +134,11 @@ function EditResume() {
             id="profileImage"
             accept="image/*"
             onChange={handleImageChange}
+            ref={imageInputRef} // Set the ref to the input
           />
         </div>
 
         <div className="box_content_input">
-          <div className="box_inputContent">
-            <label>Email:</label>
-            <input
-              id="email"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
           <div className="box_inputContent">
             <label>Name:</label>
             <input
@@ -185,6 +188,7 @@ function EditResume() {
                 id="filecv"
                 accept="application/pdf"
                 onChange={handleResumeChange}
+                ref={resumeInputRef} // Set the ref to the input
               />
             </div>
           </div>
