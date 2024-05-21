@@ -96,8 +96,17 @@ function EditResume() {
 
     fetch(`http://3.38.225.226:8000/resume/update/${id}/`, requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
+      // .then((result) => console.log(result))
+      // .catch((error) => console.error(error));
+      .then((result) => {
+        console.log(result);
+        if (result.success) {
+          alert('Resume updated successfully!');
+        } else {
+          alert('Failed to update resume. Please try again.');
+        }
+      })
+      .catch((error) => console.error('Error:', error));
   };
 
   return (
