@@ -157,45 +157,46 @@ const Search = () => {
 
         {currentGoods.length > 0 &&
           currentGoods.some((res) => res.is_recommend) && (
-            <div className="title">
-              <h1 className="htxthead">
-                <span className="spennofStyle"></span>Suggest
-              </h1>
-            </div>
+            <>
+              <div className="title">
+                <h1 className="htxthead">
+                  <span className="spennofStyle"></span>Suggest
+                </h1>
+              </div>
+              <div className="resume-contain">
+                {currentGoods.map((res, index) => (
+                  <div className="group_itemBox" key={index}>
+                    <div className="containner_box_image">
+                      <div className="box_image">
+                        <img src={res.image} alt="image" />
+                      </div>
+                      <div className="txtOFResume">
+                        <h4>Name: {res.name}</h4>
+                        <p>Age: {res.age}</p>
+                        <p>Major: {res.major}</p>
+                      </div>
+                    </div>
+                    <p>
+                      <span>Skill: </span>
+                      {res.skill.substring(0, 10)}...
+                    </p>
+                    <div className="btn_button_see">
+                      {user && user.company_id !== false && (
+                        <FaRegHeart
+                          id="icon_FaRegHearts"
+                          className={likedItems.includes(index) ? "active" : ""}
+                          onClick={() => addToFavorite(res, index)}
+                        />
+                      )}
+                      <Link to={`/details/${res.id}`} className="button_see">
+                        View
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
-
-        <div className="resume-contain">
-          {currentGoods.map((res, index) => (
-            <div className="group_itemBox" key={index}>
-              <div className="containner_box_image">
-                <div className="box_image">
-                  <img src={res.image} alt="image" />
-                </div>
-                <div className="txtOFResume">
-                  <h4>Name: {res.name}</h4>
-                  <p>Age: {res.age}</p>
-                  <p>Major: {res.major}</p>
-                </div>
-              </div>
-              <p>
-                <span>Skill: </span>
-                {res.skill.substring(0, 10)}...
-              </p>
-              <div className="btn_button_see">
-                {user && user.company_id !== false && (
-                  <FaRegHeart
-                    id="icon_FaRegHearts"
-                    className={likedItems.includes(index) ? "active" : ""}
-                    onClick={() => addToFavorite(res, index)}
-                  />
-                )}
-                <Link to={`/details/${res.id}`} className="button_see">
-                  View
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
 
         <div className="title">
           <h1 className="htxthead">
