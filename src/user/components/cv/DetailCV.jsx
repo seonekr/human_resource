@@ -50,7 +50,6 @@ const DetailCV = () => {
     }
   };
 
-  const iid = 27;
 
   useEffect(() => {
     let config = {
@@ -114,7 +113,7 @@ const DetailCV = () => {
                   {user_id.user && (
                     <div>
                       <Link
-                        to={`/edit_resume/${user_id.user.id}`}
+                        to={`/edit_resume/${user_id.id}`}
                         className="button_edit"
                       >
                         Update
