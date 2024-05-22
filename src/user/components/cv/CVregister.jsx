@@ -8,9 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CVregister() {
- const  usenavigate = useNavigate()
+  const usenavigate = useNavigate();
   const storage = JSON.parse(localStorage.getItem("user"));
-
 
   const [mainImage, setImagePreview] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg"
@@ -25,7 +24,6 @@ function CVregister() {
     skill: "",
     resume_image1: null,
   });
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -72,6 +70,11 @@ function CVregister() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!postresume.name) {
+      alert("Please enter your name!");
+      return;
+    }
+
     const formdata = new FormData();
     formdata.append("name", postresume.name);
     formdata.append("age", postresume.age);
@@ -91,7 +94,7 @@ function CVregister() {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
-      usenavigate("/")
+    usenavigate("/");
     setPostresume({
       image1: null,
       name: "",
