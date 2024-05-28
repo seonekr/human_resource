@@ -9,6 +9,19 @@ h3 {
   font-family: "Saysettha OT";
 }
 
+.link {
+  text-align: center;
+  padding: 1rem;
+}
+
+.link button {
+  padding: 0.5rem;
+  border-radius: 7px;
+  background-color: orangered;
+  margin: 1rem;
+  margin-top: 6rem;
+}
+
 .about-us {
   width: 100%;
   background-size: cover;
