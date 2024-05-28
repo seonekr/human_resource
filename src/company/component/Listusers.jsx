@@ -24,6 +24,8 @@ const Listusers = () => {
     set_favorite(favorite.filter((item) => !(item.id === id)));
   };
 
+  
+
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(favorite.length / 4);
   // ==== Paginator management ====
