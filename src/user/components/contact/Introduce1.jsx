@@ -1,36 +1,44 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./aboutUs.css";
 
 const Introduce1 = () => {
-
-  const [pdf, setPDF] = useState([])
-
+  const [pdf, setPDF] = useState([]);
 
   useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + `company/webinfo/list`,
-    };
+    fetchResume();
+  }, []);
 
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        setPDF(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-
-  console.log(pdf)
+  const fetchResume = async () => {
+    try {
+      const response = await axios.get(
+        "http://3.38.225.226:8000/company/webinfo/list"
+      );
+      setPDF(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
-      <div>
-  
-      </div>
+    <h2>dfff</h2>
+      {pdf.map((df) => (
+        <div key={df.id} className="about-us">
+          <h1>Company</h1>
+          <iframe
+            className="iframe"
+            src={df.company_pdf}
+            title="Company PDF"
+          ></iframe>
+          <h1>Employee</h1>
+          <iframe
+            className="iframe"
+            src={df.employee_pdf}
+            title="Company PDF"
+          ></iframe>
+        </div>
+      ))}
     </>
   );
 };

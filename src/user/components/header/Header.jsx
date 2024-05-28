@@ -1,37 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "./css/header.css";
-import { FaMagnifyingGlass, FaCartShopping, FaRegUser } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaCartShopping, FaRegUser, FaRegHeart } from "react-icons/fa6";
 import { BiLogIn } from "react-icons/bi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AiFillDashboard } from "react-icons/ai";
+import axios from "axios";
 import logo_resoure from "../../../img/logo_resoure.jpeg";
 import logo_resoure2 from "../../../img/logo_resoure2.jpeg";
-import { AiFillDashboard } from "react-icons/ai";
-import { FaRegHeart } from "react-icons/fa";
-import axios from "axios";
 
 const Header = () => {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
   const storage = JSON.parse(localStorage.getItem("user"));
   const [resume, setResume] = useState([]);
-  const navigate = useNavigate();
-
-  const location = useLocation();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchParam = urlParams.get("search");
-
   const [checkMyCV, setCheckMyCV] = useState(false);
   const [id, setId] = useState(null);
-  const [search, setSearch] = useState(searchParam || "");
+  const [search, setSearch] = useState(new URLSearchParams(window.location.search).get("search") || "");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  if (storage) {
-    useEffect(() => {
+  useEffect(() => {
+    if (storage) {
       const fetchResume = async () => {
         try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API}/resume/list/`
-          );
+          const response = await axios.get(`${import.meta.env.VITE_API}/resume/list/`);
           setResume(response.data);
         } catch (error) {
           console.error(error);
@@ -39,11 +31,11 @@ const Header = () => {
       };
 
       fetchResume();
-    }, []);
-  }
+    }
+  }, [storage]);
 
   useEffect(() => {
-    const userInfo = resume.find((res) => res.user.id === storage.user_id);
+    const userInfo = resume.find((res) => res.user.id === storage?.user_id);
     if (userInfo) {
       setId(userInfo.user.id);
       setCheckMyCV(true);
@@ -51,7 +43,7 @@ const Header = () => {
       setId(null);
       setCheckMyCV(false);
     }
-  }, [resume]);
+  }, [resume, storage]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -65,11 +57,7 @@ const Header = () => {
         const response = await axios.post(
           `${import.meta.env.VITE_API}/user/check-token`,
           { token },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
         if (response.data.result !== "success") {
           localStorage.removeItem("token");
@@ -110,9 +98,7 @@ const Header = () => {
                   <Link
                     key={menuItem.label}
                     to={menuItem.path}
-                    className={`link ${
-                      location.pathname === menuItem.path ? "active" : ""
-                    }`}
+                    className={`link ${location.pathname === menuItem.path ? "active" : ""}`}
                   >
                     {menuItem.label}
                   </Link>
@@ -136,11 +122,8 @@ const Header = () => {
             <div className="icon_account_login">
               {user ? (
                 <div className="icon_account_login">
-                  {!storage.company_id ? (
-                    <Link
-                      to={checkMyCV ? `/detail_cv/${id}` : "/add_resume"}
-                      className="head_colorr"
-                    >
+                  {!storage?.company_id ? (
+                    <Link to={checkMyCV ? `/detail_cv/${id}` : "/add_resume"} className="head_colorr">
                       CV
                     </Link>
                   ) : (
@@ -148,7 +131,7 @@ const Header = () => {
                       <FaRegHeart />
                     </Link>
                   )}
-                  {storage.is_admin && (
+                  {storage?.is_admin && (
                     <>
                       <Link to="/list_users" className="head_colorr">
                         <FaRegHeart />
@@ -164,16 +147,10 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="icon_account_login">
-                  <Link
-                    to={token ? "/add_resume" : "/login"}
-                    className="head_colorr"
-                  >
-                    CV
+                  <Link to={token ? "/add_resume" : "/login"} className="head_colorr">
+                    Resume
                   </Link>
-                  <Link
-                    to={token ? "/list_users" : "/login"}
-                    className="head_colorr"
-                  >
+                  <Link to={token ? "/list_users" : "/login"} className="head_colorr">
                     <FaRegHeart />
                   </Link>
                   <Link to="/login" className="head_colorr">
