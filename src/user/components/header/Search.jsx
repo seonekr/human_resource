@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from "react";
 import "../resume/css/resume.css";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
@@ -108,7 +108,7 @@ const Search = () => {
   const totalPages = Math.ceil(filteredResumes.length / 4);
   const startIndex = (currentPage - 1) * 4;
   const endIndex = startIndex + 4;
-  const currentGoods = filteredResumes.slice(startIndex, endIndex);
+  const currentResumes = filteredResumes.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -123,6 +123,8 @@ const Search = () => {
   const prevPage = () => {
     setCurrentPage((prevPage) => (prevPage === 1 ? 1 : prevPage - 1));
   };
+
+  const suggestedResumes = filteredResumes.filter((res) => res.is_recommend);
 
   return (
     <div>
@@ -155,48 +157,47 @@ const Search = () => {
           </select>
         </div>
 
-        {currentGoods.length > 0 &&
-          currentGoods.some((res) => res.is_recommend) && (
-            <>
-              <div className="title">
-                <h1 className="htxthead">
-                  <span className="spennofStyle"></span>Suggest
-                </h1>
-              </div>
-              <div className="resume-contain">
-                {currentGoods.map((res, index) => (
-                  <div className="group_itemBox" key={index}>
-                    <div className="containner_box_image">
-                      <div className="box_image">
-                        <img src={res.image} alt="image" />
-                      </div>
-                      <div className="txtOFResume">
-                        <h4>Name: {res.name}</h4>
-                        <p>Age: {res.age}</p>
-                        <p>Major: {res.major}</p>
-                      </div>
+        {suggestedResumes.length > 0 && (
+          <>
+            <div className="title">
+              <h1 className="htxthead">
+                <span className="spennofStyle"></span>Suggest
+              </h1>
+            </div>
+            <div className="resume-contain">
+              {suggestedResumes.map((res, index) => (
+                <div className="group_itemBox" key={res.id}>
+                  <div className="containner_box_image">
+                    <div className="box_image">
+                      <img src={res.image} alt="image" />
                     </div>
-                    <p>
-                      <span>Skill: </span>
-                      {res.skill.substring(0, 10)}...
-                    </p>
-                    <div className="btn_button_see">
-                      {user && user.company_id !== false && (
-                        <FaRegHeart
-                          id="icon_FaRegHearts"
-                          className={likedItems.includes(index) ? "active" : ""}
-                          onClick={() => addToFavorite(res, index)}
-                        />
-                      )}
-                      <Link to={`/details/${res.id}`} className="button_see">
-                        View
-                      </Link>
+                    <div className="txtOFResume">
+                      <h4>Name: {res.name}</h4>
+                      <p>Age: {res.age}</p>
+                      <p>Major: {res.major}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </>
-          )}
+                  <p>
+                    <span>Skill: </span>
+                    {res.skill.substring(0, 10)}...
+                  </p>
+                  <div className="btn_button_see">
+                    {user && user.company_id !== false && (
+                      <FaRegHeart
+                        id="icon_FaRegHearts"
+                        className={likedItems.includes(index) ? "active" : ""}
+                        onClick={() => addToFavorite(res, index)}
+                      />
+                    )}
+                    <Link to={`/details/${res.id}`} className="button_see">
+                      View
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
         <div className="title">
           <h1 className="htxthead">
@@ -205,8 +206,8 @@ const Search = () => {
         </div>
 
         <div className="contentImageUser">
-          {currentGoods.map((res, index) => (
-            <div className="group_itemBox_user" key={index}>
+          {currentResumes.map((res, index) => (
+            <div className="group_itemBox_user" key={res.id}>
               <div className="containner_box_image_user">
                 <div className="box_image_user">
                   <img src={res.image} alt="image" />
