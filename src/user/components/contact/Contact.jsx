@@ -10,7 +10,7 @@ const Contact = () => {
       <Header />
       <div className="contactBox_container">
         <div className="contact_content">
-          <h2>Huma_resource </h2>
+          <h2>information</h2>
           <p>Phone: 020 77414787</p>
           <p>Email: Huma999@gmail.com</p>
           <p>Address: Asian</p>

@@ -124,7 +124,7 @@ const Header = () => {
                 <div className="icon_account_login">
                   {!storage?.company_id ? (
                     <Link to={checkMyCV ? `/detail_cv/${id}` : "/add_resume"} className="head_colorr">
-                      CV
+                      Resume
                     </Link>
                   ) : (
                     <Link to="/list_users" className="head_colorr">

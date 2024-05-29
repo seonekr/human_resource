@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./css/list_company.css";
-
-import AdminMenu from "../adminMenu/AdminMenu";
 import { Link } from "react-router-dom";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
@@ -12,7 +10,6 @@ import logo_resoure from "../../../img/logo_resoure.jpeg";
 const List_company = () => {
   return (
     <>
-      <AdminMenu />
       <div className="container_body_admincompany">
         <div className="container_box_admincompany">
           <div className="box_company">

@@ -2,40 +2,34 @@ import React, { useState, useEffect } from "react";
 import "./css/detail.css";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
-import avatar from "../../../img/avatar.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 
 function Details() {
-  const id = useParams().id;
-  const [resume_id, set_resume_id] = useState([]);
+  const { id } = useParams();
+  const [resume, setResume] = useState(null);
   const [likedItems, setLikedItems] = useState([]);
 
   const user = localStorage.getItem("user");
-  const storage = JSON.parse(window.localStorage.getItem("user"));
-
+  const storage = user ? JSON.parse(user) : null;
 
   useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + `/resume/detail/${id}/`,
+    const fetchResume = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/resume/detail/${id}/`
+        );
+        setResume(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     };
-
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        set_resume_id(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+    fetchResume();
+  }, [id]);
 
   // Cart management
-  const [favorite, set_favorite] = useState(() => {
+  const [favorite, setFavorite] = useState(() => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
   });
@@ -43,44 +37,39 @@ function Details() {
   useEffect(() => {
     localStorage.setItem("favorite", JSON.stringify(favorite));
   }, [favorite]);
-  const AddToFavorite = (resume_id, index) => {
-    const existingResume = favorite.find((item) => item.id === resume_id.id);
 
-    if (existingResume) {
-      alert("This resume already favorited!");
+  const addToFavorite = (resume) => {
+    if (favorite.some((item) => item.id === resume.id)) {
+      alert("This resume is already favorited!");
     } else {
-      console.log("resume: ", resume_id);
-      set_favorite([...favorite, { ...resume_id }]);
-
+      setFavorite([...favorite, resume]);
       alert("Success.");
     }
-
-    if (likedItems.includes(index)) {
-      setLikedItems(likedItems.filter((item) => item !== index));
-    } else {
-      setLikedItems([...likedItems, index]);
-    }
+    setLikedItems((prev) =>
+      prev.includes(resume.id)
+        ? prev.filter((item) => item !== resume.id)
+        : [...prev, resume.id]
+    );
   };
-
 
   return (
     <>
       <Header />
       <div className="contentBody">
-        {resume_id ? (
+        {resume ? (
           <>
             <div className="boxresume_deteils">
-                <div className="resume-page-img">
-                  <div className="myslides">
-                    <img src={resume_id.image} alt="" />
-                  </div>
+              <div className="resume-page-img">
+                <div className="myslides">
+                  <img src={resume.image} alt="" />
                 </div>
+              </div>
 
               <div className="txtContentresume">
-                <h3 className="txt_nameP">Name: {resume_id.name}</h3>
-                <p>Age: {resume_id.age}</p>
-                <p>Major: {resume_id.major}</p>
-                <p>Skills: {resume_id.skill}</p>
+                <p>Name: {resume.name}</p>
+                <p>Age: {resume.age}</p>
+                <p>Major: {resume.major}</p>
+                <p>Skills: {resume.skill}</p>
               </div>
             </div>
 
@@ -88,29 +77,19 @@ function Details() {
               <h2 className="resume-details-title">CV Details</h2>
               <div className="pdf-container">
                 <iframe
-                  src={resume_id.resume_image}
+                  src={resume.resume_image}
                   title="resume PDF"
                   className="pdf-viewer"
                 ></iframe>
               </div>
             </div>
             <div className="box-check">
-              {user && (
-                <>
-                  {storage.company_id !== false && (
-                    <div>
-                      <FaRegHeart
-                        id="icon_FaRegHearts"
-                        className={
-                          likedItems.includes(resume_id.id) ? "active" : ""
-                        }
-                        onClick={() => {
-                          AddToFavorite(resume_id, resume_id.id);
-                        }}
-                      />
-                    </div>
-                  )}
-                </>
+              {user && storage?.company_id && (
+                <FaRegHeart
+                  id="icon_FaRegHearts"
+                  className={likedItems.includes(resume.id) ? "active" : ""}
+                  onClick={() => addToFavorite(resume)}
+                />
               )}
             </div>
           </>

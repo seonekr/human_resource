@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./css/listusers_company.css";
-
-import AdminMenu from "../adminMenu/AdminMenu";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
@@ -47,7 +45,6 @@ const Listusers_company = () => {
   };
   return (
     <>
-      <AdminMenu />
       <div className="container_body_usercompany">
         <div className="back">
           <Link to="/listcompany" className="box_guopIconbAck">

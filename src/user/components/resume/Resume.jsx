@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from "react";
 import "./css/resume.css";
 import Header from "../header/Header";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
@@ -17,7 +17,7 @@ const ResumeHome = () => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
   });
-  console.log(filter);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -44,7 +44,6 @@ const ResumeHome = () => {
   useEffect(() => {
     if (resume.length > 0) {
       if (filter === "") {
-        // Show all resumes if filter is empty
         setFilteredResumes(resume);
       } else {
         const endDate = new Date();

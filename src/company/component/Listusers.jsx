@@ -32,8 +32,6 @@ const Listusers = () => {
   const endIndex = startIndex + 4;
   const currentGoods = favorite.slice(startIndex, endIndex);
 
-  console.log("sddddddddddd", currentGoods.length);
-
   // Handle pagination click
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -88,27 +86,6 @@ const Listusers = () => {
               ))
             )}
           </div>
-
-          {/* <div className="box_container_next_user">
-            <button className="box_prev_left_user">
-              <AiOutlineLeft id="" />
-              <p>Prev</p>
-            </button>
-
-            <div className="box_num_user">
-              <div className="num_user">
-                <p>1</p>
-              </div>
-              <div className="num_user">
-                <p>2</p>
-              </div>
-            </div>
-
-            <button className="box_prev_right_user">
-              <p>Next</p>
-              <AiOutlineRight id="" />
-            </button>
-          </div> */}
 
           {/* Render pagination */}
           {favorite.length > 4 && (

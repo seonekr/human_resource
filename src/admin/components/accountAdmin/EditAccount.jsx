@@ -1,6 +1,5 @@
 import React from "react";
 import "./css/accountAdmin.css";
-import AdminMenu from "../adminMenu/AdminMenu";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
 import { FaAngleLeft } from "react-icons/fa";
@@ -11,7 +10,6 @@ import { IoKeyOutline } from "react-icons/io5";
 function EditAccount() {
   return (
     <>
-      <AdminMenu />
       <section id="addAmin">
         <div className="box_addAdmin">
           {/* <h3>{message && message}</h3> */}

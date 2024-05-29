@@ -1,7 +1,6 @@
 import Reac, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/accountAdmin.css";
-import AdminMenu from "../adminMenu/AdminMenu";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
 import { CiImageOn } from "react-icons/ci";
@@ -20,7 +19,6 @@ function Admin_acount() {
 
   return (
     <>
-      <AdminMenu />
       <section id="addAmin">
         <div className="box_addAdmin">
           <form>
