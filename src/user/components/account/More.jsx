@@ -112,19 +112,8 @@ export const More = () => {
             <IoLogOutOutline id="icon_more" />
             <p>Log out </p>
           </div>
+          
           {showConfirmation && (
-            // <div className="confirmation-popup">
-            //   <p>Are you sure you want to log out?</p>
-            //   <div className="btn_ok_on">
-            //     <button onClick={handleCancelLogout} className="btn_on">
-            //       No
-            //     </button>
-            //     <button onClick={handleConfirmLogout} className="btn_yes">
-            //       Yes
-            //     </button>
-            //   </div>
-            // </div>
-
             <div className="box_background_delete">
               <div className="hover_delete_box">
                 <div className="box_logout">

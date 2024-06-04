@@ -17,7 +17,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-
   const urlParams = new URLSearchParams(window.location.search);
   const searchParam = urlParams.get("search");
 
@@ -133,6 +132,7 @@ const Header = () => {
                 <FaMagnifyingGlass className="iconSearch" />
               </button>
             </form>
+
             <div className="icon_account_login">
               {user ? (
                 <div className="icon_account_login">
@@ -184,6 +184,7 @@ const Header = () => {
               )}
             </div>
           </div>
+          
         </div>
       </div>
     </section>
