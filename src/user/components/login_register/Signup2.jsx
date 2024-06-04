@@ -134,6 +134,7 @@ const Signup2 = () => {
                           console.log(error);
                         });
                     } else {
+                      
                       setErrorText("Please enter your e-mail.");
                     }
                   }}
@@ -240,8 +241,9 @@ const Signup2 = () => {
                 Log in
               </Link>
             </p>
+            
+            {errorText.length > 0 && <div>{errorText}</div>}
           </div>
-          {errorText.length > 0 && <div>{errorText}</div>}
         </div>
       </section>
     </>
