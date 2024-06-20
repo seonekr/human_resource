@@ -76,7 +76,7 @@ const ForgotPassword = () => {
       <section>
         <div className="box_forgot">
           <h2>Find password</h2>
-          <div className="title">
+          <div className="titles">
             Please change your password after verifying your email!
           </div>
           <form className="container_form_forgot" onSubmit={handleSubmit}>
