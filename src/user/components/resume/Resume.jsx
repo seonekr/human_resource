@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
-const ResumeHome = () => {
+const Resume = () => {
   const user = localStorage.getItem("user");
   const storage = user ? JSON.parse(user) : null;
 
@@ -265,4 +265,4 @@ const ResumeHome = () => {
   );
 };
 
-export default ResumeHome;
+export default Resume;

@@ -69,10 +69,24 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        Swal.fire({
-          text: "The username or password do not match.",
-          icon: "error",
-        });
+        // Swal.fire({
+        //   text: "The username or password do not match.",
+        //   icon: "error",
+        // });
+
+        if (error.response && error.response.status === 400) {
+          MySwal.fire({
+            icon: 'question',
+            title: 'Oops...',
+            text: error.response.message || 'Something went wrong!',
+          });
+        } else {
+          MySwal.fire({
+            icon: 'question',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+        }
       });
   };
 
