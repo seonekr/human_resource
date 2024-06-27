@@ -6,11 +6,14 @@ import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [errorText, set_errorText] = useState("");
- 
+  const MySwal = withReactContent(Swal);
+
   const [data, set_data] = useState({
     email: "",
     code: "",
@@ -58,6 +61,49 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!data.email) {
+      MySwal.fire({
+        text: "Please fill the email!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!data.code) {
+      MySwal.fire({
+        text: "Please fill the code!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!data.password) {
+      MySwal.fire({
+        text: "Please fill the password!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!data.password2) {
+      MySwal.fire({
+        text: "Please fill the confirm password!",
+        icon: "question",
+      });
+      return;
+    }
+    if (data.password != data.password2) {
+      MySwal.fire({
+        text: "Password do not match!",
+        icon: "question",
+      });
+      return;
+    }
+    if (data.password.length <= 7 || data.password2.length <= 7) {
+      MySwal.fire({
+        text: "Password must be at least 8 characters!",
+        icon: "question",
+      });
+      return;
+    }
+
     axios
       .post(`${import.meta.env.VITE_API}/user/my-page`, data)
       .then((response) => {
@@ -76,7 +122,7 @@ const ForgotPassword = () => {
       <section>
         <div className="box_forgot">
           <h2>Find password</h2>
-          <div className="title">
+          <div className="box_infor_txt">
             Please change your password after verifying your email!
           </div>
           <form className="container_form_forgot" onSubmit={handleSubmit}>
@@ -88,7 +134,6 @@ const ForgotPassword = () => {
                 placeholder="Email"
                 value={email}
                 onChange={onChange}
-                required
               />
               {minute > 0 || second > 0 ? (
                 <div id="email_send_btn" className="verification">
@@ -136,7 +181,6 @@ const ForgotPassword = () => {
               placeholder="confirmation number"
               value={code}
               onChange={onChange}
-              required
             />
             <input
               type="password"
@@ -145,21 +189,25 @@ const ForgotPassword = () => {
               placeholder="New password"
               value={password}
               onChange={onChange}
-              required
             />
             <input
-              type="password2"
+              type="password"
               name="password2"
               autoComplete="new-password"
               placeholder="Confirm password"
               value={password2}
               onChange={onChange}
-              required
             />
 
-            <button type="submit">
-              confirmation
-            </button>
+            <button type="submit">confirmation</button>
+            <div className="googlebtn_bt">
+              <p className="box_dont">
+                Already have an acount?
+                <Link to={"/login"} className="loginmoreLink">
+                  Log in
+                </Link>
+              </p>
+            </div>
           </form>
           {errorText.length > 0 && (
             <div id="error_msg" className="error mt20">

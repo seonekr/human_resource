@@ -66,6 +66,7 @@
 
 .googlebtn_btn {
   display: grid;
+  text-align: end;
 }
 
 #icon_cancel_login {

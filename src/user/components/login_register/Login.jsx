@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./css/login.css";
 import axios from "axios";
 import Header from "../header/Header";
+import Menu from "../menu/Menu"
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -29,6 +30,20 @@ const Login = () => {
 
   const Login = (e) => {
     e.preventDefault(); // Prevent the default form submission behavsior
+    if (!email) {
+      MySwal.fire({
+        text: "Please fill the email!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!password) {
+      MySwal.fire({
+        text: "Please fill the password!",
+        icon: "question",
+      });
+      return;
+    }
     let data = JSON.stringify({
       email: email,
       password: password,
@@ -69,22 +84,20 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        // Swal.fire({
-        //   text: "The username or password do not match.",
-        //   icon: "error",
-        // });
+        MySwal.fire({
+          text: `${error.response.data.message}`,
+          icon: "question",
+        });
 
-        if (error.response && error.response.status === 400) {
+        if (error.response.data.message == "Email does not exist.") {
           MySwal.fire({
-            icon: 'question',
-            title: 'Oops...',
-            text: error.response.message || 'Something went wrong!',
+            text: "Email does not exist. Please register first!",
+            icon: "question",
           });
-        } else {
+          navigate("/login", { replace: true });
           MySwal.fire({
-            icon: 'question',
-            title: 'Oops...',
-            text: 'Something went wrong!',
+            text: `${error.response.data.message} `,
+            icon: "question",
           });
         }
       });

@@ -24,11 +24,10 @@ const Signup1 = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <section>
         <div className="signup_page">
           <div className="signup_page">
-
             <h3 className="title_mt20">Join the membership</h3>
             <p>Please sign up to use the service!</p>
             <div className="box_form_register">
@@ -78,19 +77,19 @@ const Signup1 = () => {
               >
                 Next
               </button>
+              <div className="googlebtn_bt">
+                <p className="box_dont">
+                  Already have an acount?
+                  <Link to={"/login"} className="loginmoreLink">
+                    Log in
+                  </Link>
+                </p>
+              </div>
             </div>
-            <div className="googlebtn_btn">
-            <p className="box_dont">
-              Already have an acount?
-              <Link to={"/login"} className="loginmoreLink">
-                Log in
-              </Link>
-            </p>
-          </div>
           </div>
         </div>
       </section>
-      <Menu/>
+      <Menu />
     </>
   );
 };

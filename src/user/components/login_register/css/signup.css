@@ -59,6 +59,10 @@
 
 }
 
+.googlebtn_bt{
+  margin-left: 17rem;
+}
+
 
 
 .box_iconBack_user {
@@ -87,7 +91,7 @@
 @media (max-width: 768px) {
   .signup_page {
     width: 90%;
-
+    margin-bottom: 7rem;
   }
 
   .box_iconBack_user {
@@ -129,5 +133,9 @@
   .user_type02 {
     display: flex;
     gap: 0.5rem;
+  }
+  .googlebtn_bt{
+    margin-left: 1px;
+    text-align: center;
   }
 }
