@@ -45,6 +45,7 @@ const Header = () => {
     }
   }, [resume, storage]);
 
+
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/?search=${search}`);

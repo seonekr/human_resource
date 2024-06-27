@@ -18,6 +18,7 @@ const Resume = () => {
     return localFavorite ? JSON.parse(localFavorite) : [];
   });
 
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const urlParams = new URLSearchParams(window.location.search);

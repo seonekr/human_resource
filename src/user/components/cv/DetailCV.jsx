@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/detailCV.css";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -168,6 +169,7 @@ const DetailCV = () => {
           </div>
         )}
       </section>
+      <Menu/>
     </div>
   );
 };
