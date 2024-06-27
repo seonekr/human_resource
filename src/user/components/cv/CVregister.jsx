@@ -6,6 +6,8 @@ import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function CVregister() {
  const  usenavigate = useNavigate()
@@ -25,6 +27,7 @@ function CVregister() {
     skill: "",
     resume_image1: null,
   });
+  const MySwal = withReactContent(Swal);
 
 
   const handleImageChange = (e) => {
@@ -71,7 +74,49 @@ function CVregister() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!postresume.name) {
+      MySwal.fire({
+        text: "Please fill the name!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!postresume.age) {
+      MySwal.fire({
+        text: "Please fill the age!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!postresume.major) {
+      MySwal.fire({
+        text: "Please fill the major!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!postresume.skill) {
+      MySwal.fire({
+        text: "Please fill the skill!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!postresume.image1) {
+      MySwal.fire({
+        text: "Please fill the image!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!postresume.resume_image1) {
+      MySwal.fire({
+        text: "Please fill the file PDF!",
+        icon: "question",
+      });
+      return;
+    }
+  
     const formdata = new FormData();
     formdata.append("name", postresume.name);
     formdata.append("age", postresume.age);
@@ -80,27 +125,40 @@ function CVregister() {
     formdata.append("image", image);
     formdata.append("resume_image", resume_image);
     formdata.append("user", storage.user_id);
-
+  
     const requestOptions = {
       method: "POST",
       body: formdata,
       redirect: "follow",
     };
-
-    fetch("http://3.38.225.226:8000/resume/create/", requestOptions)
+  
+    fetch(`${import.meta.env.VITE_API}/resume/create/`, requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
-      usenavigate("/")
-    setPostresume({
-      image1: null,
-      name: "",
-      age: "",
-      major: "",
-      skill: "",
-      resume_image1: null,
-    });
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          text: 'Your resume has been submitted successfully.',
+          icon: 'success',
+        });
+        usenavigate("/");
+        setPostresume({
+          image1: null,
+          name: "",
+          age: "",
+          major: "",
+          skill: "",
+          resume_image1: null,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          text: 'There was a problem submitting your resume. Please try again.',
+          icon: 'error',
+        });
+      });
   };
+  
 
   return (
     <>

@@ -8,7 +8,9 @@ a {
     height: auto;
     margin-top: 6.5rem;
 }
-
+.box_RotatingLines{
+    text-align: center;
+}
 
 .productHead_contents {
     width: 100%;
