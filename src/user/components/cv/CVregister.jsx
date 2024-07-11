@@ -131,7 +131,7 @@ function CVregister() {
       body: formdata,
       redirect: "follow",
     };
- fetch(`${import.meta.env.VITE_API}/resume/create/`, requestOptions)
+    fetch(`${import.meta.env.VITE_API}/resume/create/`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         console.log(result);
