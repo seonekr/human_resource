@@ -29,7 +29,7 @@ const DetailCV = () => {
       redirect: "follow"
     };
     
-    fetch(`http://3.38.225.226:8000/resume/delete/${user_id.id}/`, requestOptions)
+    fetch(`${import.meta.env.VITE_API}/resume/delete/${user_id.id}/`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));

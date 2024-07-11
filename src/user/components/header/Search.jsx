@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../resume/css/resume.css";
-import Header from "../header/Header";
+import Header from "./Header";
+import Banner from "./Banner"
 import Menu from "../menu/Menu";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -129,6 +130,7 @@ const Search = () => {
   return (
     <div>
       <Header />
+      <Banner/>
       <section id="resume">
         <div className="box_TfiMenuAlt">
           <select

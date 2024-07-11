@@ -69,10 +69,6 @@ function EditResume() {
     }
   };
 
-  const extractFilename = (url) => {
-    return url.split("/").pop();
-  };
-
   const handleUpdate = async () => {
     const formData = new FormData();
     formData.append("name", name);
@@ -84,31 +80,23 @@ function EditResume() {
     // Append new image if selected, otherwise append the current image filename
     if (newImage) {
       formData.append("image", newImage);
-    } else {
-      formData.append("image", extractFilename(image));
     }
 
     // Append new resume if selected, otherwise append the current resume filename
     if (newResumeImage) {
       formData.append("resume_image", newResumeImage);
-    } else {
-      formData.append("resume_image", "extractFilename(resumeImage)");
     }
 
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API}/resume/update/${id}/`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      if (response.ok) {
-        navigate("/");
-      } else {
-        console.error("Failed to update the resume");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    const requestOptions = {
+      method: "PATCH",
+      body: formData,
+      redirect: "follow"
+    };
+    
+    fetch(`${import.meta.env.VITE_API}/resume/update/${id}/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
 
     // Clear the file inputs
     imageInputRef.current.value = null;
