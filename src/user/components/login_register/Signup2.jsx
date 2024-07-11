@@ -3,12 +3,15 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import axios from "axios";
 import Header from "../header/Header";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Signup2 = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState("");
   const userType = location.state;
+  const MySwal = withReactContent(Swal);
 
   const [timer, setTimer] = useState({
     minute: 0,
@@ -38,6 +41,97 @@ const Signup2 = () => {
 
   const signUp = (e) => {
     e.preventDefault();
+    if (!data.email) {
+      MySwal.fire({
+        text: "Please fill the email!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!data.code) {
+      MySwal.fire({
+        text: "Please fill the code!",
+        icon: "question",
+      });
+      return;
+    }
+    if (userType === "1" && !data.name) {
+      if (!data.nickname) {
+        MySwal.fire({
+          text: "Please fill the nickname!",
+          icon: "question",
+        });
+        return;
+      }
+    }
+
+    if (!data.password) {
+      MySwal.fire({
+        text: "Please fill the password!",
+        icon: "question",
+      });
+      return;
+    }
+    if (!data.password2) {
+      MySwal.fire({
+        text: "Please fill the confirm password!",
+        icon: "question",
+      });
+      return;
+    }
+    if (data.password != data.password2) {
+      MySwal.fire({
+        text: "Password do not match!",
+        icon: "question",
+      });
+      return;
+    }
+    if (data.password.length <= 7 || data.password2.length <= 7) {
+      MySwal.fire({
+        text: "Password must be at least 8 characters!",
+        icon: "question",
+      });
+      return;
+    }
+
+    if (userType == "2") {
+      if (!data.name) {
+        MySwal.fire({
+          text: "Please fill the store name!",
+          icon: "question",
+        });
+        return;
+      }
+      if (!data.address) {
+        MySwal.fire({
+          text: "Please fill the address!",
+          icon: "question",
+        });
+        return;
+      }
+      if (!data.phone) {
+        MySwal.fire({
+          text: "Please fill the phone!",
+          icon: "question",
+        });
+        return;
+      }
+      if (!data.company_number) {
+        MySwal.fire({
+          text: "Please fill the company number!",
+          icon: "question",
+        });
+        return;
+      }
+      if (!data.introduce) {
+        MySwal.fire({
+          text: "Please fill the introduce!",
+          icon: "question",
+        });
+        return;
+      }
+    }
+
     const config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -103,7 +197,6 @@ const Signup2 = () => {
                 onChange={onChange}
                 value={data.email}
                 placeholder="Email"
-                required
               />
               {minute > 0 || second > 0 ? (
                 <div id="email_send_btn" className="verification">
@@ -150,7 +243,6 @@ const Signup2 = () => {
               onChange={onChange}
               value={data.code}
               placeholder="Code (required)"
-              required
             />
             {userType === "1" && (
               <input
@@ -159,7 +251,6 @@ const Signup2 = () => {
                 onChange={onChange}
                 value={data.name}
                 placeholder="Nickname (maximum 10 characters)"
-                required
               />
             )}
 
@@ -169,7 +260,6 @@ const Signup2 = () => {
               onChange={onChange}
               value={data.password}
               placeholder="Password"
-              required
             />
             <input
               type="password"
@@ -177,7 +267,6 @@ const Signup2 = () => {
               onChange={onChange}
               value={data.password2}
               placeholder="Confirm password"
-              required
             />
             {userType === "2" && (
               <>
@@ -187,7 +276,6 @@ const Signup2 = () => {
                   placeholder="Category"
                   value={(data.category = "2")}
                   onChange={onChange}
-                  required
                   hidden
                 />
                 <input
@@ -196,7 +284,6 @@ const Signup2 = () => {
                   placeholder="Company name (required)"
                   value={data.name}
                   onChange={onChange}
-                  required
                 />
                 <input
                   type="text"
@@ -204,7 +291,6 @@ const Signup2 = () => {
                   placeholder="Address (required)"
                   value={data.address}
                   onChange={onChange}
-                  required
                 />
                 <input
                   type="text"
@@ -232,8 +318,7 @@ const Signup2 = () => {
             )}
 
             <button type="submit">Register</button>
-          </form>
-          <div className="googlebtn_btn">
+            <div className="googlebtn_btn">
             <p className="box_dont">
               Already have an acount?
               <Link to={"/login"} className="loginmoreLink">
@@ -241,7 +326,10 @@ const Signup2 = () => {
               </Link>
             </p>
           </div>
+          </form>
+          
           {errorText.length > 0 && <div>{errorText}</div>}
+          
         </div>
       </section>
     </>

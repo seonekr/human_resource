@@ -45,6 +45,7 @@ const Header = () => {
     }
   }, [resume, storage]);
 
+
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/?search=${search}`);
@@ -147,10 +148,10 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="icon_account_login">
-                  <Link to={token ? "/add_resume" : "/login"} className="head_colorr">
+                  <Link to={token ? "/add_resume" : "/login"} className="head_colorr txt_resume">
                     Resume
                   </Link>
-                  <Link to={token ? "/list_users" : "/login"} className="head_colorr">
+                  <Link to={token ? "/list_users" : "/login"} className="head_colorr txt_resume">
                     <FaRegHeart />
                   </Link>
                   <Link to="/login" className="head_colorr">

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 
-const ResumeHome = () => {
+const Resume = () => {
   const user = localStorage.getItem("user");
   const storage = user ? JSON.parse(user) : null;
 
@@ -17,6 +17,7 @@ const ResumeHome = () => {
     const localFavorite = localStorage.getItem("favorite");
     return localFavorite ? JSON.parse(localFavorite) : [];
   });
+
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -265,4 +266,4 @@ const ResumeHome = () => {
   );
 };
 
-export default ResumeHome;
+export default Resume;

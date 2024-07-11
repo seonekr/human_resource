@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./css/detailCV.css";
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import logo_resoure from "../../../img/logo_resoure.jpeg";
+import { RotatingLines } from "react-loader-spinner";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const DetailCV = () => {
   const id = useParams().id;
@@ -12,7 +15,8 @@ const DetailCV = () => {
   console.log("ididid", id)
   const [user_id, set_user_id] = useState([]);
   const [showConfirmationDelete, setShowConfirmationDelete] = useState(false);
-
+  const MySwal = withReactContent(Swal);
+  
   const handleConfirmDelete = () => {
     handleDeleteAccount();
     setShowConfirmationDelete(false);
@@ -23,19 +27,33 @@ const DetailCV = () => {
   const user = localStorage.getItem("user");
 
   //Function Delete
+
   const handleDeleteAccount = async () => {
     const requestOptions = {
       method: "DELETE",
       redirect: "follow"
     };
     
-    fetch(`${import.meta.env.VITE_API}/resume/delete/${user_id.id}/`, requestOptions)
+    fetch(`http://3.38.225.226:8000/resume/delete/${user_id.id}/`, requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
-      usenavigate("/")
-     
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          text: 'Your account has been deleted successfully.',
+          icon: 'success',
+        }).then(() => {
+          usenavigate("/");
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          text: 'There was a problem deleting your account. Please try again.',
+          icon: 'error',
+        });
+      });
   };
+  
   //  console.log(user_id.id)
 
   useEffect(() => {
@@ -136,9 +154,22 @@ const DetailCV = () => {
             )}
           </div>
         ) : (
-          <p>Loading...</p>
+          <div className="box_RotatingLines">
+            <RotatingLines
+              visible={true}
+              height="45"
+              width="45"
+              color="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              ariaLabel="rotating-lines-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
         )}
       </section>
+      <Menu/>
     </div>
   );
 };

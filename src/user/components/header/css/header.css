@@ -97,6 +97,7 @@
 /* Search bar */
 .ulHead_box .searchBarForm {
     width: 100%;
+    height: 40px;
     display: flex;
 }
 
@@ -198,6 +199,7 @@
     .ulHead_box form input {
         width: 100%;
     }
+   
 
 }
 
@@ -246,13 +248,8 @@
     .storename{
         display: none;
     }
-    .logo1{
-        display: flex;
-        align-items: center;
-    }
-    .logo1 img{
-        width: 50px;
-        height: 45px;
+    .ulHead_box .searchBarForm {
+        width: 100%;
     }
 }
 
@@ -276,17 +273,17 @@
     }
 
     .ulHead_box {
-        width: 90%;
+        width: 100%;
     }
 
     .ulHead_box form input {
         width: 100%;
         padding: 0.6rem 1rem;
-        border-radius: 10px;
+        border-radius: 7px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-
+   
     .ulHead_box form button {
         border-radius: 10px;
         border-top-left-radius: 0;
@@ -302,6 +299,12 @@
     }
     .icon_account_login{
         gap: 5px;
+    }
+    .txt_resume{
+        display: none;
+    }
+    .ulHead_box .searchBarForm {
+        width: 1000px;
     }
 
 }

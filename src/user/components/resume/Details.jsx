@@ -5,6 +5,7 @@ import Header from "../header/Header";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
+import { RotatingLines } from "react-loader-spinner";
 
 function Details() {
   const { id } = useParams();
@@ -94,7 +95,19 @@ function Details() {
             </div>
           </>
         ) : (
-          <p>Loading...</p>
+          <div className="box_RotatingLines">
+            <RotatingLines
+              visible={true}
+              height="45"
+              width="45"
+              color="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              ariaLabel="rotating-lines-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
         )}
       </div>
       <Menu />
